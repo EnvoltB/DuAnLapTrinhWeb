@@ -1,0 +1,354 @@
+﻿@using GearDTK.Controllers
+@model PaginatedList<GearDTK.Models.Product>
+@{
+    var category = ViewBag.Category as GearDTK.Models.Category;
+    ViewData["Title"] = category?.Name + " - GearDTK";
+}
+
+<div class="container py-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="/categories">Danh mục</a></li>
+            <li class="breadcrumb-item active">@category?.Name</li>
+        </ol>
+    </nav>
+
+    <!-- Category Header -->
+    <div class="category-header mb-4 text-center">
+        <div class="category-icon-wrapper mb-3">
+            <i class="@category?.IconClass"></i>
+        </div>
+        <h1 class="display-5 fw-bold mb-3">@category?.Name</h1>
+        <p class="lead text-muted mx-auto" style="max-width: 700px;">@category?.Description</p>
+    </div>
+
+    <!-- Sort and Filter Options -->
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-6">
+            <div class="result-count">
+                <span class="fw-semibold">@Model.TotalPages</span> sản phẩm
+            </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <div class="btn-group">
+                <a asp-action="Details" asp-route-slug="@category?.Slug" asp-route-sortOrder="name_asc"
+                   class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-sort-alpha-down"></i> Tên A-Z
+                </a>
+                <a asp-action="Details" asp-route-slug="@category?.Slug" asp-route-sortOrder="name_desc"
+                   class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-sort-alpha-up"></i> Tên Z-A
+                </a>
+                <a asp-action="Details" asp-route-slug="@category?.Slug" asp-route-sortOrder="price_asc"
+                   class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-sort-numeric-down"></i> Giá tăng
+                </a>
+                <a asp-action="Details" asp-route-slug="@category?.Slug" asp-route-sortOrder="price_desc"
+                   class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-sort-numeric-up"></i> Giá giảm
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center py-5">
+            <i class="fas fa-box-open fa-3x mb-3"></i>
+            <h4>Chưa có sản phẩm nào trong danh mục này</h4>
+            <p>Hãy quay lại sau nhé!</p>
+            <a href="/products" class="btn btn-primary mt-3">Xem tất cả sản phẩm</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card h-100">
+                        <div class="position-relative">
+                            @if (product.DiscountPercent.HasValue)
+                            {
+                                <span class="badge-discount">-@product.DiscountPercent%</span>
+                            }
+                            @if (product.IsNew)
+                            {
+                                <span class="badge bg-success position-absolute top-0 start-0 m-2">New</span>
+                            }
+                            @if (product.IsBestSeller)
+                            {
+                                <span class="badge bg-danger position-absolute top-0 start-0 m-2" style="margin-top: 40px !important;">Best Seller</span>
+                            }
+                            <img src="@product.MainImageUrl" class="card-img-top" alt="@product.Name"
+                                 onerror="this.src='https://placehold.co/400x400/1a1a2e/white?text=GearDTK'">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text small text-muted">@(product.ShortDescription.Length > 60 ? product.ShortDescription.Substring(0, 60) + "..." : product.ShortDescription)</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="price">@product.Price.ToString("N0")đ</span>
+                                    @if (product.ComparePrice.HasValue)
+                                    {
+                                        <span class="old-price">@product.ComparePrice.Value.ToString("N0")đ</span>
+                                    }
+                                </div>
+                                <a href="/products/details/@product.Slug" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Pagination -->
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+
+        <nav aria-label="Page navigation" class="mt-5">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @prevDisabled">
+                    <a asp-action="Details"
+                       asp-route-slug="@category?.Slug"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       class="page-link">
+                        <i class="fas fa-chevron-left"></i> Trước
+                    </a>
+                </li>
+
+                @{
+                    int startPage = Math.Max(1, Model.PageIndex - 2);
+                    int endPage = Math.Min(Model.TotalPages, Model.PageIndex + 2);
+
+                    if (startPage > 1)
+                    {
+                        <li class="page-item">
+                            <a asp-action="Details"
+                               asp-route-slug="@category?.Slug"
+                               asp-route-pageNumber="1"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               class="page-link">1</a>
+                        </li>
+                        if (startPage > 2)
+                        {
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        }
+                    }
+
+                    for (int i = startPage; i <= endPage; i++)
+                    {
+                        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                            <a asp-action="Details"
+                               asp-route-slug="@category?.Slug"
+                               asp-route-pageNumber="@i"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               class="page-link">@i</a>
+                        </li>
+                    }
+
+                    if (endPage < Model.TotalPages)
+                    {
+                        if (endPage < Model.TotalPages - 1)
+                        {
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        }
+                        <li class="page-item">
+                            <a asp-action="Details"
+                               asp-route-slug="@category?.Slug"
+                               asp-route-pageNumber="@Model.TotalPages"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               class="page-link">@Model.TotalPages</a>
+                        </li>
+                    }
+                }
+
+                <li class="page-item @nextDisabled">
+                    <a asp-action="Details"
+                       asp-route-slug="@category?.Slug"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       class="page-link">
+                        Sau <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>
+
+@section Styles {
+    <style>
+        /* Category Header */
+        .category-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+            .category-icon-wrapper i {
+                font-size: 3rem;
+                color: white;
+            }
+
+        /* Result Count */
+        .result-count {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+            .result-count span {
+                color: #667eea;
+                font-size: 1.1rem;
+            }
+
+        /* Product Card */
+        .product-card {
+            border: none;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            background: white;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+            .product-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            }
+
+            .product-card .card-img-top {
+                padding: 1.5rem;
+                background: #f8f9fa;
+                transition: transform 0.3s ease;
+                width: 100%;
+                height: 200px;
+                object-fit: contain;
+            }
+
+            .product-card:hover .card-img-top {
+                transform: scale(1.05);
+            }
+
+            .product-card .card-title {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                color: #1a1a1a;
+            }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .old-price {
+            font-size: 0.8rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+
+        .badge-discount {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4757;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Pagination */
+        .pagination {
+            gap: 0.25rem;
+        }
+
+            .pagination .page-item .page-link {
+                color: #667eea;
+                border-radius: 8px;
+                padding: 0.5rem 0.75rem;
+                border: 1px solid #dee2e6;
+                transition: all 0.3s ease;
+            }
+
+            .pagination .page-item.active .page-link {
+                background-color: #667eea;
+                border-color: #667eea;
+                color: white;
+                box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            }
+
+            .pagination .page-item:not(.disabled) .page-link:hover {
+                background-color: #667eea;
+                border-color: #667eea;
+                color: white;
+                transform: translateY(-2px);
+            }
+
+            .pagination .page-item.disabled .page-link {
+                color: #999;
+                cursor: not-allowed;
+            }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .category-icon-wrapper {
+                width: 70px;
+                height: 70px;
+            }
+
+                .category-icon-wrapper i {
+                    font-size: 2rem;
+                }
+
+            .category-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .category-header p {
+                font-size: 0.9rem;
+            }
+
+            .btn-group {
+                margin-top: 1rem;
+                width: 100%;
+            }
+
+                .btn-group .btn {
+                    flex: 1;
+                }
+
+            .product-card .card-title {
+                font-size: 0.9rem;
+            }
+
+            .price {
+                font-size: 1rem;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .pagination .page-link {
+                padding: 0.35rem 0.6rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+}

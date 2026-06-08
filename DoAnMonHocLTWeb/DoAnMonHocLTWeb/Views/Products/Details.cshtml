@@ -1,0 +1,865 @@
+﻿@model GearDTK.Models.Product
+@{
+    ViewData["Title"] = Model != null ? Model.Name + " - GearDTK" : "Sản phẩm không tồn tại";
+    var relatedProducts = ViewBag.RelatedProducts as List<GearDTK.Models.Product>;
+}
+
+@if (Model == null)
+{
+    <div class="container py-5 text-center">
+        <i class="fas fa-box-open fa-4x mb-3 text-muted"></i>
+        <h2>Không tìm thấy sản phẩm</h2>
+        <p>Sản phẩm bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
+        <a href="/products" class="btn btn-dark">Quay lại cửa hàng</a>
+    </div>
+}
+else
+{
+    <div class="product-detail-container">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-wrapper py-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/products">All products</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="row g-5">
+                <!-- Product Gallery - Left Column -->
+                <div class="col-lg-6">
+                    <div class="product-gallery">
+                        <!-- Main Image -->
+                        <div class="main-image-wrapper">
+                            <img id="mainProductImage" src="@Model.MainImageUrl" alt="@Model.Name" class="main-product-image"
+                                 onerror="this.src='https://placehold.co/600x600/f5f5f5/999?text=No+Image'">
+                        </div>
+
+                        <!-- Thumbnail Gallery -->
+                        @if (Model.GalleryImagesList != null && Model.GalleryImagesList.Length > 0)
+                        {
+                            <div class="thumbnail-wrapper">
+                                @foreach (var img in Model.GalleryImagesList)
+                                {
+                                    if (!string.IsNullOrEmpty(img))
+                                    {
+                                        <div class="thumbnail-item" data-image="@img.Trim()">
+                                            <img src="@img.Trim()" alt="Thumbnail"
+                                                 onerror="this.src='https://placehold.co/100x100/f5f5f5/999?text=No+Image'">
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Product Info - Right Column -->
+                <div class="col-lg-6">
+                    <div class="product-info">
+                        <!-- Stock Badge -->
+                        <div class="stock-badge">
+                            @if (Model.StockQuantity > 0)
+                            {
+                                <span class="in-stock"><i class="fas fa-check-circle"></i> In stock</span>
+                            }
+                            else
+                            {
+                                <span class="out-of-stock"><i class="fas fa-times-circle"></i> Sold Out</span>
+                            }
+                        </div>
+
+                        <!-- Product Title -->
+                        <h1 class="product-title">@Model.Name</h1>
+
+                        <!-- Price -->
+                        <div class="product-price">
+                            @if (Model.ComparePrice.HasValue && Model.ComparePrice > Model.Price)
+                            {
+                                <span class="current-price">@Model.Price.ToString("N0") VND</span>
+                                <span class="old-price">@Model.ComparePrice.Value.ToString("N0") VND</span>
+                                <span class="save-price">Save @((Model.ComparePrice.Value - Model.Price).ToString("N0")) VND</span>
+                            }
+                            else
+                            {
+                                <span class="current-price">@Model.Price.ToString("N0") VND</span>
+                            }
+                        </div>
+
+                        <!-- Rating -->
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">392 reviews</span>
+                        </div>
+
+                        <!-- Short Description -->
+                        <div class="product-short-desc">
+                            <p>@Model.ShortDescription</p>
+                        </div>
+
+                        <!-- Specifications List -->
+                        <div class="specs-list">
+                            @if (!string.IsNullOrEmpty(Model.Specifications))
+                            {
+                                try
+                                {
+                                    var specs = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(Model.Specifications);
+                                    if (specs != null && specs.Any())
+                                    {
+                                        foreach (var spec in specs.Take(6))
+                                        {
+                                            <div class="spec-item">
+                                                <span class="spec-label">@spec.Key:</span>
+                                                <span class="spec-value">@spec.Value</span>
+                                            </div>
+                                        }
+                                    }
+                                }
+                                catch
+                                {
+                                    <div class="spec-item">
+                                        <span class="spec-value">@Model.Specifications</span>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                        <!-- Color Option (if available) -->
+                        @if (!string.IsNullOrEmpty(Model.Color))
+                        {
+                            <div class="product-option">
+                                <div class="option-label">Color:</div>
+                                <div class="color-options">
+                                    <span class="color-tag active">@Model.Color</span>
+                                </div>
+                            </div>
+                        }
+
+                        <!-- Add to Cart Section -->
+                        @if (Model.StockQuantity > 0)
+                        {
+                            <div class="add-to-cart-section">
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" id="qtyMinus">-</button>
+                                    <input type="number" id="quantity" class="qty-input" value="1" min="1" max="@Model.StockQuantity">
+                                    <button class="qty-btn" id="qtyPlus">+</button>
+                                </div>
+                                <button id="addToCartBtn" class="btn-add-cart" data-product-id="@Model.Id">
+                                    <i class="fas fa-shopping-cart"></i> Add to cart
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="sold-out-section">
+                                <button class="btn-sold-out" disabled>
+                                    <i class="fas fa-times"></i> SOLD OUT
+                                </button>
+                            </div>
+                        }
+
+                        <!-- Meta Info -->
+                        <div class="product-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">SKU:</span>
+                                <span class="meta-value">DTK-@Model.Id.ToString("D4")</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Category:</span>
+                                <a href="/products/category/@Model.Category?.Slug" class="meta-value">@Model.Category?.Name</a>
+                            </div>
+                            @if (Model.Weight.HasValue)
+                            {
+                                <div class="meta-item">
+                                    <span class="meta-label">Weight:</span>
+                                    <span class="meta-value">@Model.Weight g</span>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Shipping Info -->
+                        <div class="shipping-info">
+                            <div class="shipping-item">
+                                <i class="fas fa-truck"></i>
+                                <span>Free shipping on orders over 1,000,000 VND</span>
+                            </div>
+                            <div class="shipping-item">
+                                <i class="fas fa-undo-alt"></i>
+                                <span>30-day easy returns</span>
+                            </div>
+                            <div class="shipping-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>12-month warranty</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details Tabs -->
+            <div class="product-tabs-wrapper mt-5">
+                <ul class="product-tabs">
+                    <li class="tab-item active" data-tab="description">Description</li>
+                    <li class="tab-item" data-tab="specifications">Specifications</li>
+                </ul>
+
+                <div class="tab-content-wrapper">
+                    <!-- Description Tab -->
+                    <div class="tab-pane active" id="tab-description">
+                        <div class="description-content">
+                            @Html.Raw(Model.Description)
+                        </div>
+                    </div>
+
+                    <!-- Specifications Tab -->
+                    <div class="tab-pane" id="tab-specifications">
+                        <div class="specifications-table">
+                            @if (!string.IsNullOrEmpty(Model.Specifications))
+                            {
+                                try
+                                {
+                                    var specs = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(Model.Specifications);
+                                    if (specs != null && specs.Any())
+                                    {
+                                        <table class="spec-table">
+                                            <tbody>
+                                                @foreach (var spec in specs)
+                                                {
+                                                    <tr>
+                                                        <th>@spec.Key</th>
+                                                        <td>@spec.Value</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    else
+                                    {
+                                        <p>@Model.Specifications</p>
+                                    }
+                                }
+                                catch
+                                {
+                                    <p>@Model.Specifications</p>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted">No specifications available.</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            @if (relatedProducts != null && relatedProducts.Any())
+            {
+                <div class="related-products mt-5 pt-4">
+                    <h3 class="related-title">You may also like</h3>
+                    <div class="related-grid">
+                        @foreach (var product in relatedProducts.Take(4))
+                        {
+                            <a href="/products/details/@product.Slug" class="related-product-card">
+                                <div class="related-product-image">
+                                    <img src="@product.MainImageUrl" alt="@product.Name"
+                                         onerror="this.src='https://placehold.co/200x200/f5f5f5/999?text=No+Image'">
+                                </div>
+                                <div class="related-product-info">
+                                    <h4 class="related-product-title">@product.Name</h4>
+                                    <div class="related-product-price">@product.Price.ToString("N0") VND</div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        // Thumbnail click to change main image
+        $('.thumbnail-item').click(function() {
+            var newImage = $(this).data('image');
+            $('#mainProductImage').attr('src', newImage);
+
+            // Update active state
+            $('.thumbnail-item').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        // Quantity selector
+        $('#qtyMinus').click(function() {
+            var $input = $('#quantity');
+            var currentVal = parseInt($input.val());
+            if (currentVal > 1) {
+                $input.val(currentVal - 1);
+            }
+        });
+
+        $('#qtyPlus').click(function() {
+            var $input = $('#quantity');
+            var currentVal = parseInt($input.val());
+            var maxVal = parseInt($input.attr('max'));
+            if (currentVal < maxVal) {
+                $input.val(currentVal + 1);
+            }
+        });
+
+        // Tab switching
+        $('.tab-item').click(function() {
+            var tabId = $(this).data('tab');
+
+            // Update active tab
+            $('.tab-item').removeClass('active');
+            $(this).addClass('active');
+
+            // Update active content
+            $('.tab-pane').removeClass('active');
+            $('#tab-' + tabId).addClass('active');
+        });
+
+        // Add to cart
+        $('#addToCartBtn').click(function() {
+            var $btn = $(this);
+            var productId = $btn.data('product-id');
+            var quantity = $('#quantity').val();
+            var originalText = $btn.html();
+
+            $btn.prop('disabled', true);
+            $btn.html('<i class="fas fa-spinner fa-spin"></i> Adding...');
+
+            $.ajax({
+                url: '/cart/add',
+                type: 'POST',
+                data: { productId: productId, quantity: quantity },
+                success: function(response) {
+                    if (response.success) {
+                        $('#cartCount').text(response.cartCount);
+                        $btn.html('<i class="fas fa-check"></i> Added!');
+                        setTimeout(function() {
+                            $btn.html(originalText);
+                            $btn.prop('disabled', false);
+                        }, 2000);
+                    } else {
+                        $btn.html(originalText);
+                        $btn.prop('disabled', false);
+                        alert('Error adding to cart');
+                    }
+                },
+                error: function() {
+                    $btn.html(originalText);
+                    $btn.prop('disabled', false);
+                    alert('Error adding to cart');
+                }
+            });
+        });
+    </script>
+}
+
+@section Styles {
+    <style>
+        .product-detail-container {
+            background: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb-wrapper {
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+        }
+
+        .breadcrumb-item a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .breadcrumb-item.active {
+            color: #000;
+            font-weight: 500;
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+            position: sticky;
+            top: 20px;
+        }
+
+        .main-image-wrapper {
+            background: #f8f8f8;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .main-product-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .thumbnail-wrapper {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail-item {
+            width: 80px;
+            height: 80px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+            .thumbnail-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            .thumbnail-item:hover {
+                border-color: #ddd;
+            }
+
+            .thumbnail-item.active {
+                border-color: #000;
+            }
+
+        /* Product Info */
+        .product-info {
+            padding-right: 1rem;
+        }
+
+        .stock-badge {
+            margin-bottom: 1rem;
+        }
+
+        .in-stock {
+            color: #00a650;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+            .in-stock i {
+                margin-right: 0.25rem;
+            }
+
+        .out-of-stock {
+            color: #ff4444;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .product-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .product-price {
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .old-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+
+        .save-price {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-size: 0.85rem;
+            color: #00a650;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+
+            .stars i {
+                font-size: 14px;
+                color: #ffc107;
+            }
+
+        .rating-count {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .product-short-desc {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+            .product-short-desc p {
+                color: #333;
+                line-height: 1.5;
+            }
+
+        /* Specs List */
+        .specs-list {
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .spec-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .spec-value {
+            color: #666;
+        }
+
+        /* Product Option */
+        .product-option {
+            margin-bottom: 1.5rem;
+        }
+
+        .option-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .color-tag {
+            padding: 0.25rem 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+            .color-tag.active {
+                border-color: #000;
+                background: #000;
+                color: white;
+            }
+
+        /* Add to Cart */
+        .add-to-cart-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            width: 40px;
+            height: 48px;
+            background: #f8f8f8;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+            .qty-btn:hover {
+                background: #e5e5e5;
+            }
+
+        .qty-input {
+            width: 60px;
+            height: 48px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+            .qty-input:focus {
+                outline: none;
+            }
+
+        .btn-add-cart {
+            flex: 1;
+            background: #000;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+            .btn-add-cart:hover {
+                background: #333;
+            }
+
+        .btn-sold-out {
+            width: 100%;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 14px;
+            color: #999;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: not-allowed;
+        }
+
+        /* Product Meta */
+        .product-meta {
+            padding-top: 1rem;
+            border-top: 1px solid #e5e5e5;
+            margin-bottom: 1rem;
+        }
+
+        .meta-item {
+            margin-bottom: 0.5rem;
+            font-size: 13px;
+        }
+
+        .meta-label {
+            color: #666;
+            width: 80px;
+            display: inline-block;
+        }
+
+        .meta-value {
+            color: #333;
+            text-decoration: none;
+        }
+
+            .meta-value:hover {
+                text-decoration: underline;
+            }
+
+        /* Shipping Info */
+        .shipping-info {
+            background: #f8f8f8;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .shipping-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 13px;
+            color: #666;
+        }
+
+            .shipping-item i {
+                width: 20px;
+                color: #000;
+            }
+
+        /* Tabs */
+        .product-tabs-wrapper {
+            border-top: 1px solid #e5e5e5;
+            margin-top: 2rem;
+        }
+
+        .product-tabs {
+            display: flex;
+            gap: 2rem;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .tab-item {
+            padding: 1rem 0;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+            .tab-item.active {
+                color: #000;
+                border-bottom-color: #000;
+            }
+
+        .tab-content-wrapper {
+            padding: 2rem 0;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+            .tab-pane.active {
+                display: block;
+            }
+
+        .description-content {
+            line-height: 1.6;
+            color: #333;
+        }
+
+            .description-content ul {
+                padding-left: 1.5rem;
+            }
+
+            .description-content li {
+                margin-bottom: 0.5rem;
+            }
+
+        /* Spec Table */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .spec-table th,
+            .spec-table td {
+                padding: 12px;
+                border-bottom: 1px solid #e5e5e5;
+                text-align: left;
+            }
+
+            .spec-table th {
+                width: 30%;
+                font-weight: 500;
+                color: #333;
+            }
+
+            .spec-table td {
+                color: #666;
+            }
+
+        /* Related Products */
+        .related-products {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .related-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .related-product-card {
+            text-decoration: none;
+            transition: transform 0.2s;
+            display: block;
+        }
+
+            .related-product-card:hover {
+                transform: translateY(-2px);
+            }
+
+        .related-product-image {
+            background: #f8f8f8;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+            .related-product-image img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+
+        .related-product-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 0.25rem;
+        }
+
+        .related-product-price {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #000;
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .product-title {
+                font-size: 1.25rem;
+            }
+
+            .current-price {
+                font-size: 1.25rem;
+            }
+
+            .add-to-cart-section {
+                flex-direction: column;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-tabs {
+                gap: 1rem;
+            }
+
+            .tab-item {
+                font-size: 14px;
+            }
+        }
+    </style>
+}

@@ -1,32 +1,57 @@
-using DoAnMonHocLTWeb.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+using GearDTK.Data;
+using GearDTK.ViewModels;
 
-namespace DoAnMonHocLTWeb.Controllers
+namespace GearDTK.Controllers;
+
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly ApplicationDbContext _context;
+
+    public HomeController(ApplicationDbContext context)
     {
-        private readonly ILogger<HomeController> _logger;
+        _context = context;
+    }
 
-        public HomeController(ILogger<HomeController> logger)
+    public async Task<IActionResult> Index()
+    {
+        var Model = new HomeViewModel
         {
-            _logger = logger;
-        }
+            FeaturedProducts = await _context.Products
+                .Include(p => p.Category)
+                .Where(p => p.IsFeatured)
+                .Take(8)
+                .ToListAsync(),
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+            NewProducts = await _context.Products
+                .Include(p => p.Category)
+                .Where(p => p.IsNew)
+                .Take(8)
+                .ToListAsync(),
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            BestSellerProducts = await _context.Products
+                .Include(p => p.Category)
+                .Where(p => p.IsBestSeller)
+                .Take(4)
+                .ToListAsync(),
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+            Categories = await _context.Categories
+                .Where(c => c.ShowOnHomepage)
+                .OrderBy(c => c.DisplayOrder)
+                .ToListAsync()
+        };
+
+        return View(Model);
+    }
+
+    public IActionResult About()
+    {
+        return View();
+    }
+
+    public IActionResult Contact()
+    {
+        return View();
     }
 }

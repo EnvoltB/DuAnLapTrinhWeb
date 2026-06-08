@@ -1,8 +1,258 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model GearDTK.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "GearDTK - Premium Gaming Gear";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Hero Carousel Section -->
+<div class="hero-carousel">
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <!-- Slide 1 - ATK Blazing Sky ZERO -->
+            <div class="carousel-item active">
+                <div class="carousel-bg" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-6 text-white">
+                                <span class="badge bg-danger mb-3 px-3 py-2">Save 30% + Free Gift</span>
+                                <h1 class="display-4 fw-bold">ATK Blazing Sky<br>ZERO</h1>
+                                <p class="lead mb-4">Ultra-light 39g • PAW3950 Sensor • 8K Wireless</p>
+                                <div class="d-flex gap-3">
+                                    <a href="/products/atk-blazing-sky-zero" class="btn btn-primary btn-lg px-4">Shop Now →</a>
+                                    <a href="#" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-none d-lg-block text-center">
+                                <img src="/images/products/atk-blazing-sky-zero.png" alt="ATK Blazing Sky ZERO" class="img-fluid" style="max-height: 350px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 - ATK RS6 Keyboard -->
+            <div class="carousel-item">
+                <div class="carousel-bg" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-6 text-white">
+                                <span class="badge bg-info mb-3 px-3 py-2">Pro Player Edition</span>
+                                <h1 class="display-4 fw-bold">ATK RS6<br>Hall Effect Keyboard</h1>
+                                <p class="lead mb-4">Co-Developed with Aspas • Rapid Trigger • 8K Polling</p>
+                                <a href="/products/atk-rs6-hall-effect" class="btn btn-primary btn-lg px-4">Discover Now →</a>
+                            </div>
+                            <div class="col-lg-6 d-none d-lg-block text-center">
+                                <img src="/images/products/atk-rs6-keyboard.png" alt="ATK RS6 Keyboard" class="img-fluid" style="max-height: 350px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
 </div>
+
+<!-- Categories Section -->
+<section class="categories py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Shop by Category</h2>
+        <div class="row g-4">
+            @foreach (var category in Model.Categories)
+            {
+                <div class="col-md-6 col-lg-3">
+                    <a href="/products/category/@category.Slug" class="category-card">
+                        <i class="@category.IconClass"></i>
+                        <h5>@category.Name</h5>
+                        <small class="text-muted">@(category.Products?.Count ?? 0) products</small>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="featured-products py-5 bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">🔥 Featured Products</h2>
+            <a href="/products" class="btn btn-outline-primary">View All →</a>
+        </div>
+        <div class="row g-4">
+            @foreach (var product in Model.FeaturedProducts)
+            {
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <div class="position-relative">
+                            @if (product.DiscountPercent.HasValue)
+                            {
+                                <span class="badge-discount">-@product.DiscountPercent%</span>
+                            }
+                            <img src="@product.MainImageUrl" class="card-img-top" alt="@product.Name"
+                                 onerror="this.src='https://placehold.co/400x400/1a1a2e/white?text=GearDTK'">
+                        </div>
+                        <div class="card-body">
+                            <small class="text-muted">@product.Category?.Name</small>
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text small text-muted">@(product.ShortDescription.Length > 60 ? product.ShortDescription.Substring(0, 60) + "..." : product.ShortDescription)</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="price">@product.Price.ToString("N0")₫</span>
+                                    @if (product.ComparePrice.HasValue)
+                                    {
+                                        <span class="old-price">@product.ComparePrice.Value.ToString("N0")₫</span>
+                                    }
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="@product.Id">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- New Arrivals Section -->
+<section class="new-arrivals py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">✨ New Arrivals</h2>
+            <a href="/products?filter=new" class="btn btn-outline-primary">View All →</a>
+        </div>
+        <div class="row g-4">
+            @foreach (var product in Model.NewProducts)
+            {
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <div class="position-relative">
+                            <span class="badge bg-success position-absolute top-0 start-0 m-2">New</span>
+                            <img src="@product.MainImageUrl" class="card-img-top" alt="@product.Name"
+                                 onerror="this.src='https://placehold.co/400x400/1a1a2e/white?text=GearDTK'">
+                        </div>
+                        <div class="card-body">
+                            <small class="text-muted">@product.Category?.Name</small>
+                            <h5 class="card-title">@product.Name</h5>
+                            <div class="price">@product.Price.ToString("N0")₫</div>
+                            <button class="btn btn-sm btn-outline-primary w-100 mt-2 add-to-cart-btn" data-product-id="@product.Id">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Esports Partners Section -->
+<section class="esports-partners py-5 bg-dark text-white">
+    <div class="container">
+        <h2 class="text-center mb-4">Esports-Verified</h2>
+        <p class="text-center text-white-50 mb-5">Trusted by top esports organizations and champions worldwide</p>
+        <div class="row text-center align-items-center">
+            <div class="col-md-3 col-6 mb-3">
+                <div class="partner-card">
+                    <img src="/images/partners/aspas.png" alt="Aspas" onerror="this.src='https://placehold.co/80x80/333/white?text=Aspas'">
+                    <p class="mt-2 fw-bold">Aspas</p>
+                    <small>VALORANT World Champion</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="partner-card">
+                    <img src="/images/partners/chronicle.png" alt="Chronicle" onerror="this.src='https://placehold.co/80x80/333/white?text=Chronicle'">
+                    <p class="mt-2 fw-bold">Chronicle</p>
+                    <small>VALORANT Pro</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="partner-card">
+                    <img src="/images/partners/leviatan.png" alt="Leviatán" onerror="this.src='https://placehold.co/80x80/333/white?text=Leviatán'">
+                    <p class="mt-2 fw-bold">Leviatán Esports</p>
+                    <small>VALORANT Team</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="partner-card">
+                    <img src="/images/partners/wolves.png" alt="Wolves" onerror="this.src='https://placehold.co/80x80/333/white?text=Wolves'">
+                    <p class="mt-2 fw-bold">Wolves Esports</p>
+                    <small>VALORANT Team</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Banner -->
+<section class="features-banner py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-3 col-6 text-center">
+                <i class="fas fa-truck fa-2x text-primary mb-2"></i>
+                <h6>Worldwide Shipping</h6>
+                <small class="text-muted">Fast & reliable delivery</small>
+            </div>
+            <div class="col-md-3 col-6 text-center">
+                <i class="fas fa-shield-alt fa-2x text-primary mb-2"></i>
+                <h6>12-Month Warranty</h6>
+                <small class="text-muted">Hassle-free returns</small>
+            </div>
+            <div class="col-md-3 col-6 text-center">
+                <i class="fas fa-lock fa-2x text-primary mb-2"></i>
+                <h6>Secure Payment</h6>
+                <small class="text-muted">Encrypted transactions</small>
+            </div>
+            <div class="col-md-3 col-6 text-center">
+                <i class="fas fa-headset fa-2x text-primary mb-2"></i>
+                <h6>24/7 Support</h6>
+                <small class="text-muted">Dedicated team</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        // Add to cart functionality
+        $('.add-to-cart-btn').click(function(e) {
+            e.preventDefault();
+            let button = $(this);
+            let productId = button.data('product-id');
+            let originalText = button.html();
+
+            $.ajax({
+                url: '/cart/add',
+                type: 'POST',
+                data: { productId: productId, quantity: 1 },
+                success: function(response) {
+                    if (response.success) {
+                        button.html('<i class="fas fa-check"></i> Added!');
+                        $('#cartCount').text(response.cartCount);
+                        setTimeout(function() {
+                            button.html(originalText);
+                        }, 2000);
+                    }
+                },
+                error: function() {
+                    button.html('<i class="fas fa-exclamation-triangle"></i> Error');
+                    setTimeout(function() {
+                        button.html(originalText);
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+}
