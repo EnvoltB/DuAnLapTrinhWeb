@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DoAnMonHocLTWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f83fd7734682094805ece8c495418dcbbd27e1a6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe83e55de80120c28e59d546f6bd5b21046f8521")]
 [assembly: System.Reflection.AssemblyProductAttribute("DoAnMonHocLTWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DoAnMonHocLTWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

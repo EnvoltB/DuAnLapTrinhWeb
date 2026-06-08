@@ -53,6 +53,7 @@ public class ProductsController : Controller
 
     // GET: Products/Details/{slug}
     // Xem chi tiết sản phẩm
+    [HttpGet("/Products/Details/{slug}")]
     public async Task<IActionResult> Details(string slug)
     {
         if (string.IsNullOrEmpty(slug))

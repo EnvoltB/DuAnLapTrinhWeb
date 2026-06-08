@@ -28,6 +28,7 @@ public class CategoriesController : Controller
 
     // GET: Categories/Details/{slug}
     // Xem chi tiết danh mục và sản phẩm trong danh mục
+    [HttpGet("/categories/{slug}")]
     public async Task<IActionResult> Details(string slug, string sortOrder, int? pageNumber)
     {
         if (string.IsNullOrEmpty(slug))
