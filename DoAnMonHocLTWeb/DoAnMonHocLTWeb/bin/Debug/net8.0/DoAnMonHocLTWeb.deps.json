@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "DoAnMonHocLTWeb/1.0.0": {
+        "runtime": {
+          "DoAnMonHocLTWeb.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DoAnMonHocLTWeb/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
