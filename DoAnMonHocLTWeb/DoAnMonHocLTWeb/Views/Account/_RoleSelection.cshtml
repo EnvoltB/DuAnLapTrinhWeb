@@ -1,0 +1,181 @@
+﻿@model string
+
+<div class="role-selection-container">
+    <label class="form-label fw-bold mb-3">Chọn vai trò tài khoản</label>
+
+    <div class="role-cards">
+        <!-- Customer Role -->
+        <div class="role-card @(Model == "Customer" ? "selected" : "")" data-role="Customer">
+            <div class="role-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="role-info">
+                <h5 class="role-name">Customer</h5>
+                <p class="role-desc">Khách hàng thông thường - Mua sắm và theo dõi đơn hàng</p>
+            </div>
+            <div class="role-check">
+                <i class="fas fa-check-circle"></i>
+            </div>
+        </div>
+
+        <!-- Employee Role (Chỉ hiển thị khi Admin đăng nhập) -->
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <div class="role-card @(Model == "Employee" ? "selected" : "")" data-role="Employee">
+                <div class="role-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="role-info">
+                    <h5 class="role-name">Employee</h5>
+                    <p class="role-desc">Nhân viên - Quản lý sản phẩm, đơn hàng và khách hàng</p>
+                </div>
+                <div class="role-check">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+            </div>
+
+            <!-- Supplier Role -->
+            <div class="role-card @(Model == "Supplier" ? "selected" : "")" data-role="Supplier">
+                <div class="role-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div class="role-info">
+                    <h5 class="role-name">Supplier</h5>
+                    <p class="role-desc">Nhà cung cấp - Đăng sản phẩm và quản lý kho hàng</p>
+                </div>
+                <div class="role-check">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+            </div>
+
+            <!-- Admin Role -->
+            <div class="role-card @(Model == "Admin" ? "selected" : "")" data-role="Admin">
+                <div class="role-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="role-info">
+                    <h5 class="role-name">Admin</h5>
+                    <p class="role-desc">Quản trị viên - Toàn quyền quản lý hệ thống</p>
+                </div>
+                <div class="role-check">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+            </div>
+        }
+    </div>
+
+    <input type="hidden" id="selectedRole" name="SelectedRole" value="@Model" />
+</div>
+
+<style>
+    .role-selection-container {
+        margin-bottom: 1.5rem;
+    }
+
+    .role-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .role-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .role-card:hover {
+            border-color: #cbd5e0;
+            background: #fff;
+            transform: translateX(5px);
+        }
+
+        .role-card.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+        }
+
+            .role-card.selected .role-icon i,
+            .role-card.selected .role-name,
+            .role-card.selected .role-desc {
+                color: white;
+            }
+
+            .role-card.selected .role-check i {
+                color: white;
+                opacity: 1;
+            }
+
+    .role-icon i {
+        font-size: 2rem;
+        color: #667eea;
+    }
+
+    .role-info {
+        flex: 1;
+    }
+
+    .role-name {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 0.25rem 0;
+        color: #1a1a1a;
+    }
+
+    .role-desc {
+        font-size: 0.8rem;
+        color: #666;
+        margin: 0;
+    }
+
+    .role-check i {
+        font-size: 1.5rem;
+        color: #28a745;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .role-card.selected .role-check i {
+        opacity: 1;
+    }
+
+    @@media (max-width: 576px) {
+        .role-card {
+            padding: 0.75rem 1rem;
+        }
+
+        .role-icon i {
+            font-size: 1.5rem;
+        }
+
+        .role-name {
+            font-size: 0.9rem;
+        }
+
+        .role-desc {
+            font-size: 0.7rem;
+        }
+    }
+</style>
+
+<script>
+    // Role selection click handler
+    document.querySelectorAll('.role-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const role = this.dataset.role;
+            document.getElementById('selectedRole').value = role;
+
+            // Update selected style
+            document.querySelectorAll('.role-card').forEach(c => {
+                c.classList.remove('selected');
+            });
+            this.classList.add('selected');
+        });
+    });
+</script>

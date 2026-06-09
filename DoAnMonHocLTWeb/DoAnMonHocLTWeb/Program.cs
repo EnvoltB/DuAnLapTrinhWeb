@@ -1,16 +1,21 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using GearDTK.Data;
+using GearDTK.Repositories;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Đăng ký DbContext - ĐÂY LÀ PHẦN QUAN TRỌNG NHẤT
+// Đăng ký DbContext
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Đăng ký Identity
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+// Đăng ký Repository
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+// Đăng ký Identity với ApplicationUser
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequireDigit = false;
@@ -20,12 +25,15 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Password.RequireLowercase = false;
 })
 .AddRoles<IdentityRole>()
-.AddEntityFrameworkStores<ApplicationDbContext>();
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
 
 // Thêm các dịch vụ khác
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();  // ← THÊM DÒNG NÀY
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -44,9 +52,25 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
 
+// Routes
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+
+app.MapControllerRoute(
+    name: "product_details",
+    pattern: "products/details/{slug}",
+    defaults: new { controller = "Products", action = "Details" });
+
+app.MapControllerRoute(
+    name: "category_products",
+    pattern: "products/category/{slug}",
+    defaults: new { controller = "Products", action = "Category" });
+
+app.MapRazorPages();  // Giữ nguyên dòng này
 
 app.Run();

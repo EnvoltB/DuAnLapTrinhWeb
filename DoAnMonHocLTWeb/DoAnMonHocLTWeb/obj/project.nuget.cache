@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bGHTLtX9+5Y=",
+  "dgSpecHash": "HFkKECoCSoI=",
   "success": true,
-  "projectFilePath": "D:\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb.csproj",
+  "projectFilePath": "D:\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\GearDTK.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kiet\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\kiet\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

@@ -1,21 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GearDTK.Models;
+using GearDTK.Repositories;  // ← THÊM DÒNG NÀY
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using GearDTK.Data;
-using GearDTK.Models;
 
 namespace GearDTK.Controllers;
 
 public class ProductsController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IProductRepository _productRepository;
+    private readonly ICategoryRepository _categoryRepository;
 
-    public ProductsController(ApplicationDbContext context)
+    // Inject Repository thay vì DbContext
+    public ProductsController(IProductRepository productRepository, ICategoryRepository categoryRepository)
     {
-        _context = context;
+        _productRepository = productRepository;
+        _categoryRepository = categoryRepository;
     }
 
     // GET: Products/Index
-    // Hiển thị tất cả sản phẩm
     public async Task<IActionResult> Index(string searchString, string sortOrder, int? pageNumber)
     {
         ViewData["CurrentFilter"] = searchString;
@@ -23,36 +25,18 @@ public class ProductsController : Controller
         ViewData["NameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
         ViewData["PriceSortParm"] = sortOrder == "price" ? "price_desc" : "price";
 
-        var products = _context.Products
-            .Include(p => p.Category)
-            .AsQueryable();
-
-        // Tìm kiếm
-        if (!string.IsNullOrEmpty(searchString))
-        {
-            products = products.Where(p => p.Name.Contains(searchString) ||
-                                           p.ShortDescription.Contains(searchString) ||
-                                           (p.Category != null && p.Category.Name.Contains(searchString)));
-        }
-
-        // Sắp xếp
-        products = sortOrder switch
-        {
-            "name_desc" => products.OrderByDescending(p => p.Name),
-            "price" => products.OrderBy(p => p.Price),
-            "price_desc" => products.OrderByDescending(p => p.Price),
-            _ => products.OrderBy(p => p.Name)
-        };
-
-        // Phân trang (10 sản phẩm mỗi trang)
         int pageSize = 10;
-        var paginatedProducts = await PaginatedList<Product>.CreateAsync(products, pageNumber ?? 1, pageSize);
+        int pageIndex = pageNumber ?? 1;
+
+        var (items, totalCount) = await _productRepository.GetFilteredPagedAsync(
+            pageIndex, pageSize, searchString, sortOrder);
+
+        var paginatedProducts = new PaginatedList<Product>(items.ToList(), totalCount, pageIndex, pageSize);
 
         return View(paginatedProducts);
     }
 
     // GET: Products/Details/{slug}
-    // Xem chi tiết sản phẩm
     [HttpGet("/Products/Details/{slug}")]
     public async Task<IActionResult> Details(string slug)
     {
@@ -61,21 +45,14 @@ public class ProductsController : Controller
             return NotFound();
         }
 
-        var product = await _context.Products
-            .Include(p => p.Category)
-            .FirstOrDefaultAsync(p => p.Slug == slug);
+        var product = await _productRepository.GetBySlugWithCategoryAsync(slug);
 
         if (product == null)
         {
             return NotFound();
         }
 
-        // Lấy sản phẩm liên quan (cùng danh mục)
-        var relatedProducts = await _context.Products
-            .Include(p => p.Category)
-            .Where(p => p.CategoryId == product.CategoryId && p.Id != product.Id)
-            .Take(4)
-            .ToListAsync();
+        var relatedProducts = await _productRepository.GetRelatedProductsAsync(product.Id, product.CategoryId);
 
         ViewBag.RelatedProducts = relatedProducts;
 
@@ -83,7 +60,7 @@ public class ProductsController : Controller
     }
 
     // GET: Products/Category/{slug}
-    // Hiển thị sản phẩm theo danh mục
+    [HttpGet("/Products/Category/{slug}")]
     public async Task<IActionResult> Category(string slug, string sortOrder, int? pageNumber)
     {
         if (string.IsNullOrEmpty(slug))
@@ -91,8 +68,7 @@ public class ProductsController : Controller
             return NotFound();
         }
 
-        var category = await _context.Categories
-            .FirstOrDefaultAsync(c => c.Slug == slug);
+        var category = await _categoryRepository.GetBySlugAsync(slug);
 
         if (category == null)
         {
@@ -104,23 +80,13 @@ public class ProductsController : Controller
         ViewData["NameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
         ViewData["PriceSortParm"] = sortOrder == "price" ? "price_desc" : "price";
 
-        var products = _context.Products
-            .Include(p => p.Category)
-            .Where(p => p.CategoryId == category.Id)
-            .AsQueryable();
-
-        // Sắp xếp
-        products = sortOrder switch
-        {
-            "name_desc" => products.OrderByDescending(p => p.Name),
-            "price" => products.OrderBy(p => p.Price),
-            "price_desc" => products.OrderByDescending(p => p.Price),
-            _ => products.OrderBy(p => p.Name)
-        };
-
-        // Phân trang
         int pageSize = 12;
-        var paginatedProducts = await PaginatedList<Product>.CreateAsync(products, pageNumber ?? 1, pageSize);
+        int pageIndex = pageNumber ?? 1;
+
+        var (items, totalCount) = await _productRepository.GetFilteredPagedAsync(
+            pageIndex, pageSize, null, sortOrder, category.Id);
+
+        var paginatedProducts = new PaginatedList<Product>(items.ToList(), totalCount, pageIndex, pageSize);
 
         ViewBag.Category = category;
 
@@ -128,7 +94,7 @@ public class ProductsController : Controller
     }
 }
 
-// Helper class cho phân trang
+// Helper class cho phân trang (giữ nguyên)
 public class PaginatedList<T> : List<T>
 {
     public int PageIndex { get; private set; }
@@ -138,7 +104,6 @@ public class PaginatedList<T> : List<T>
     {
         PageIndex = pageIndex;
         TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-
         AddRange(items);
     }
 

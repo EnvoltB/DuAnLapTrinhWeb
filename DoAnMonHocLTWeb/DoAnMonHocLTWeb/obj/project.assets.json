@@ -4737,9 +4737,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb.csproj",
-      "projectName": "DoAnMonHocLTWeb",
-      "projectPath": "D:\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb.csproj",
+      "projectUniqueName": "D:\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\GearDTK.csproj",
+      "projectName": "GearDTK",
+      "projectPath": "D:\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\GearDTK.csproj",
       "packagesPath": "C:\\Users\\kiet\\.nuget\\packages\\",
       "outputPath": "D:\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\obj\\",
       "projectStyle": "PackageReference",

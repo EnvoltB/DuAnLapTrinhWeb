@@ -1,0 +1,323 @@
+﻿@model GearDTK.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow border-0">
+                <div class="card-header bg-gradient-primary text-white text-center py-3">
+                    <h4 class="mb-0"><i class="fas fa-user-plus"></i> Đăng ký tài khoản</h4>
+                </div>
+                <div class="card-body p-4">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle"></i> @TempData["Success"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <form asp-action="Register" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Email" class="form-label fw-bold"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        <input asp-for="Email" class="form-control" placeholder="Email@example.com" />
+                                    </div>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="FullName" class="form-label fw-bold"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <input asp-for="FullName" class="form-control" placeholder="Nguyễn Văn A" />
+                                    </div>
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Phone" class="form-label fw-bold"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        <input asp-for="Phone" class="form-control" placeholder="0987654321" />
+                                    </div>
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Address" class="form-label fw-bold"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                        <input asp-for="Address" class="form-control" placeholder="Địa chỉ" />
+                                    </div>
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Password" class="form-label fw-bold"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input asp-for="Password" class="form-control" type="password" />
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="ConfirmPassword" class="form-label fw-bold"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input asp-for="ConfirmPassword" class="form-control" type="password" />
+                                    </div>
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ========== ROLE SELECTION (ĐẦY ĐỦ 4 ROLE) ========== -->
+                        <div class="role-selection-container">
+                            <label class="form-label fw-bold mb-3">Chọn vai trò tài khoản</label>
+
+                            <div class="role-cards">
+                                <!-- Customer Role -->
+                                <div class="role-card @(Model.SelectedRole == "Customer" ? "selected" : "")" data-role="Customer">
+                                    <div class="role-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="role-info">
+                                        <h5 class="role-name">Customer</h5>
+                                        <p class="role-desc">Khách hàng thông thường - Mua sắm và theo dõi đơn hàng</p>
+                                    </div>
+                                    <div class="role-check">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Employee Role -->
+                                <div class="role-card @(Model.SelectedRole == "Employee" ? "selected" : "")" data-role="Employee">
+                                    <div class="role-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <div class="role-info">
+                                        <h5 class="role-name">Employee</h5>
+                                        <p class="role-desc">Nhân viên - Quản lý sản phẩm, đơn hàng và khách hàng</p>
+                                    </div>
+                                    <div class="role-check">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Supplier Role -->
+                                <div class="role-card @(Model.SelectedRole == "Supplier" ? "selected" : "")" data-role="Supplier">
+                                    <div class="role-icon">
+                                        <i class="fas fa-truck"></i>
+                                    </div>
+                                    <div class="role-info">
+                                        <h5 class="role-name">Supplier</h5>
+                                        <p class="role-desc">Nhà cung cấp - Đăng sản phẩm và quản lý kho hàng</p>
+                                    </div>
+                                    <div class="role-check">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Admin Role -->
+                                <div class="role-card @(Model.SelectedRole == "Admin" ? "selected" : "")" data-role="Admin">
+                                    <div class="role-icon">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                    <div class="role-info">
+                                        <h5 class="role-name">Admin</h5>
+                                        <p class="role-desc">Quản trị viên - Toàn quyền quản lý hệ thống</p>
+                                    </div>
+                                    <div class="role-check">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" id="selectedRole" name="SelectedRole" value="@Model.SelectedRole" />
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100 py-2 mt-3">
+                            <i class="fas fa-user-plus"></i> Đăng ký
+                        </button>
+                    </form>
+
+                    <hr />
+
+                    <div class="text-center">
+                        <p class="mb-0">Đã có tài khoản? <a asp-action="Login">Đăng nhập ngay</a></p>
+                    </div>
+
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <div class="alert alert-info mt-3 small">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Lưu ý:</strong> Tài khoản đăng ký sẽ có vai trò <strong>Customer</strong>.
+                            Các vai trò Employee, Supplier, Admin chỉ được tạo bởi quản trị viên.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .input-group-text {
+        background: #f8f9fa;
+        border-right: none;
+    }
+
+    .form-control {
+        border-left: none;
+    }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #dee2e6;
+        }
+
+    .input-group:focus-within {
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        border-radius: 0.375rem;
+    }
+
+    /* Role Selection Styles */
+    .role-selection-container {
+        margin-top: 1rem;
+    }
+
+    .role-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .role-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.875rem 1.25rem;
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .role-card:hover {
+            border-color: #cbd5e0;
+            background: #fff;
+            transform: translateX(5px);
+        }
+
+        .role-card.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+        }
+
+            .role-card.selected .role-icon i,
+            .role-card.selected .role-name,
+            .role-card.selected .role-desc {
+                color: white;
+            }
+
+            .role-card.selected .role-check i {
+                color: white;
+                opacity: 1;
+            }
+
+    .role-icon i {
+        font-size: 1.75rem;
+        color: #667eea;
+    }
+
+    .role-info {
+        flex: 1;
+    }
+
+    .role-name {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 0.25rem 0;
+        color: #1a1a1a;
+    }
+
+    .role-desc {
+        font-size: 0.75rem;
+        color: #666;
+        margin: 0;
+    }
+
+    .role-check i {
+        font-size: 1.25rem;
+        color: #28a745;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .role-card.selected .role-check i {
+        opacity: 1;
+    }
+
+    @@media (max-width: 576px) {
+        .role-card {
+            padding: 0.75rem 1rem;
+        }
+
+        .role-icon i {
+            font-size: 1.25rem;
+        }
+
+        .role-name {
+            font-size: 0.85rem;
+        }
+
+        .role-desc {
+            font-size: 0.65rem;
+        }
+    }
+</style>
+
+<script>
+    // Role selection click handler
+    document.querySelectorAll('.role-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const role = this.dataset.role;
+            document.getElementById('selectedRole').value = role;
+
+            // Update selected style
+            document.querySelectorAll('.role-card').forEach(c => {
+                c.classList.remove('selected');
+            });
+            this.classList.add('selected');
+        });
+    });
+</script>
