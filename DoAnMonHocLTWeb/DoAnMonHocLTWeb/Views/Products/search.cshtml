@@ -1,0 +1,484 @@
+﻿@using GearDTK.Controllers
+@using GearDTK.Models
+
+@model PaginatedList<GearDTK.Models.Product>
+@{
+    ViewData["Title"] = "Tìm kiếm sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var keyword = ViewBag.Keyword as string;
+    var totalCount = ViewBag.TotalCount ?? 0;
+}
+
+<div class="search-page-container">
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-wrapper">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/products">Products</a></li>
+                    <li class="breadcrumb-item active">Search results</li>
+                </ol>
+            </nav>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box-wrapper">
+            <form asp-action="Search" method="get" class="search-form">
+                <div class="search-input-group">
+                    <input type="text" name="keyword" class="search-input" placeholder="Search products..." value="@keyword" autocomplete="off">
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Search Results Info -->
+        <div class="search-info">
+            <span class="search-count">@totalCount results</span>
+            @if (!string.IsNullOrEmpty(keyword))
+            {
+                <span class="search-keyword">for "<strong>@keyword</strong>"</span>
+            }
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <a href="#" class="filter-tab active">PRODUCTS</a>
+            <a href="#" class="filter-tab">SUGGESTIONS</a>
+            <a href="#" class="filter-tab">PAGES</a>
+            <a href="#" class="filter-tab">COLLECT</a>
+        </div>
+
+        <!-- Results Count -->
+        <div class="results-header">
+            <span class="results-title">Products</span>
+            <span class="results-count">@Model.Count products</span>
+        </div>
+
+        <!-- Products Grid -->
+        @if (!Model.Any())
+        {
+            <div class="empty-results">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <h4>No products found</h4>
+                <p>Try searching with different keywords</p>
+            </div>
+        }
+        else
+        {
+            <div class="products-list">
+                @foreach (var product in Model)
+                {
+                    <div class="product-search-item">
+                        <div class="product-search-image">
+                            <a href="/products/details/@product.Slug">
+                                <img src="@product.MainImageUrl" alt="@product.Name"
+                                     onerror="this.src='https://placehold.co/120x120/f5f5f5/999?text=No+Image'">
+                            </a>
+                        </div>
+                        <div class="product-search-info">
+                            <h3 class="product-search-name">
+                                <a href="/products/details/@product.Slug">@product.Name</a>
+                            </h3>
+                            <div class="product-search-price">
+                                @if (product.ComparePrice.HasValue && product.ComparePrice > product.Price)
+                                {
+                                    <span class="current-price">@product.Price.ToString("N0")₫</span>
+                                    <span class="old-price">@product.ComparePrice.Value.ToString("N0")₫</span>
+                                }
+                                else
+                                {
+                                    <span class="current-price">@product.Price.ToString("N0")₫</span>
+                                }
+                            </div>
+                            <div class="product-search-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-count">@Random.Shared.Next(10, 500) reviews</span>
+                            </div>
+                            @if (product.StockQuantity > 0)
+                            {
+                                <button class="btn-add-cart" data-id="@product.Id">
+                                    <i class="fas fa-shopping-cart"></i> Add to cart
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="btn-add-cart disabled" disabled>
+                                    <i class="fas fa-times"></i> Sold Out
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        <!-- View All Results Button -->
+        @if (Model.TotalPages > 1)
+        {
+            <div class="view-all-container">
+                <a href="/products" class="btn-view-all">VIEW ALL RESULTS →</a>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .search-page-container {
+        background: #ffffff;
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb-wrapper {
+        margin-bottom: 2rem;
+    }
+
+    .breadcrumb {
+        background: transparent;
+        padding: 0;
+    }
+
+    .breadcrumb-item a {
+        color: #666;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .breadcrumb-item.active {
+        color: #000;
+        font-weight: 500;
+    }
+
+    /* Search Box */
+    .search-box-wrapper {
+        max-width: 600px;
+        margin: 0 auto 2rem;
+    }
+
+    .search-input-group {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 1rem 1.2rem;
+        border: 2px solid #e5e5e5;
+        border-radius: 50px;
+        font-size: 1rem;
+        transition: all 0.2s;
+    }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #1a1a1a;
+        }
+
+    .search-button {
+        padding: 1rem 1.8rem;
+        background: #1a1a1a;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+        .search-button:hover {
+            background: #333;
+        }
+
+    /* Search Info */
+    .search-info {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .search-count {
+        font-weight: 600;
+        color: #1a1a1a;
+    }
+
+    /* Filter Tabs */
+    .filter-tabs {
+        display: flex;
+        gap: 2rem;
+        border-bottom: 1px solid #e5e5e5;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .filter-tab {
+        color: #999;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+        .filter-tab:hover {
+            color: #1a1a1a;
+        }
+
+        .filter-tab.active {
+            color: #1a1a1a;
+            border-bottom: 2px solid #1a1a1a;
+            padding-bottom: 0.5rem;
+            margin-bottom: -0.5rem;
+        }
+
+    /* Results Header */
+    .results-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 1.5rem;
+    }
+
+    .results-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .results-count {
+        font-size: 0.85rem;
+        color: #666;
+    }
+
+    /* Products List */
+    .products-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .product-search-item {
+        display: flex;
+        gap: 1.5rem;
+        padding: 1rem;
+        border: 1px solid #e5e5e5;
+        border-radius: 12px;
+        transition: all 0.2s;
+        background: white;
+    }
+
+        .product-search-item:hover {
+            border-color: #1a1a1a;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+    .product-search-image {
+        width: 120px;
+        height: 120px;
+        background: #f8f8f8;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+        .product-search-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+    .product-search-info {
+        flex: 1;
+    }
+
+    .product-search-name {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+        .product-search-name a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+            .product-search-name a:hover {
+                color: #667eea;
+            }
+
+    .product-search-price {
+        margin-bottom: 0.5rem;
+    }
+
+    .current-price {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #667eea;
+    }
+
+    .old-price {
+        font-size: 0.85rem;
+        color: #999;
+        text-decoration: line-through;
+        margin-left: 0.5rem;
+    }
+
+    .product-search-rating {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .stars {
+        display: flex;
+        gap: 2px;
+    }
+
+        .stars i {
+            font-size: 11px;
+            color: #ffc107;
+        }
+
+    .rating-count {
+        font-size: 11px;
+        color: #666;
+    }
+
+    .btn-add-cart {
+        background: #1a1a1a;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 8px 20px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+        .btn-add-cart:hover:not(.disabled) {
+            background: #333;
+            transform: scale(1.02);
+        }
+
+        .btn-add-cart.disabled {
+            background: #f0f0f0;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+    /* View All Button */
+    .view-all-container {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .btn-view-all {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        background: transparent;
+        border: 2px solid #1a1a1a;
+        border-radius: 40px;
+        color: #1a1a1a;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s;
+    }
+
+        .btn-view-all:hover {
+            background: #1a1a1a;
+            color: white;
+        }
+
+    /* Empty Results */
+    .empty-results {
+        text-align: center;
+        padding: 3rem;
+        background: #f8f9fa;
+        border-radius: 16px;
+    }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .product-search-item {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .product-search-image {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        .filter-tabs {
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            font-size: 0.8rem;
+        }
+
+        .search-input {
+            padding: 0.8rem 1rem;
+        }
+
+        .search-button {
+            padding: 0.8rem 1.2rem;
+        }
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // Add to cart
+        $('.btn-add-cart:not(.disabled)').click(function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var productId = $btn.data('id');
+            var originalText = $btn.html();
+
+            $btn.html('<i class="fas fa-spinner fa-spin"></i>');
+            $btn.prop('disabled', true);
+
+            $.ajax({
+                url: '/ShoppingCart/AddToCart',
+                type: 'POST',
+                data: { productId: productId, quantity: 1 },
+                success: function(response) {
+                    if (response.success) {
+                        $('#cartCount').text(response.cartCount);
+                        $btn.html('<i class="fas fa-check"></i> Added!');
+                        setTimeout(function() {
+                            $btn.html(originalText);
+                            $btn.prop('disabled', false);
+                        }, 1500);
+                    } else {
+                        $btn.html(originalText);
+                        $btn.prop('disabled', false);
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    $btn.html(originalText);
+                    $btn.prop('disabled', false);
+                    alert('Có lỗi xảy ra!');
+                }
+            });
+        });
+    </script>
+}

@@ -75,6 +75,7 @@ app.MapControllerRoute(
     pattern: "products/category/{slug}",
     defaults: new { controller = "Products", action = "Category" });
 
+
 app.MapRazorPages();  // Giữ nguyên dòng này
 
 app.Run();
