@@ -162,7 +162,7 @@
                                     <!-- Add to Cart Button -->
                                     @if (product.StockQuantity > 0)
                                     {
-                                        <button class="btn-add-cart" data-id="@product.Id">
+                                        <button class="btn-add-cart" data-id="@product.Id" data-stock="@product.StockQuantity">
                                             <i class="fas fa-shopping-cart"></i> Add to cart
                                         </button>
                                     }
@@ -678,21 +678,53 @@
             $('.results-count').text(visibleCount + ' products');
         }
 
-        // Add to cart
-        $('.btn-add-cart:not(.disabled)').click(function() {
+        // Add to cart function (FIXED)
+        $('.btn-add-cart:not(.disabled)').click(function(e) {
+            e.preventDefault();
             var $btn = $(this);
+            var productId = $btn.data('id');
+            var stock = $btn.data('stock');
+            
+            // Check stock
+            if (stock <= 0) {
+                alert('Sản phẩm đã hết hàng!');
+                return;
+            }
+            
             var originalText = $btn.html();
-
             $btn.html('<i class="fas fa-spinner fa-spin"></i> Adding...');
             $btn.prop('disabled', true);
-
-            setTimeout(function() {de
-                $btn.html('<i class="fas fa-check"></i> Added!');
-                setTimeout(function() {
+            
+            $.ajax({
+                url: '/cart/add',
+                type: 'POST',
+                data: { productId: productId, quantity: 1 },
+                success: function(response) {
+                    if (response.success) {
+                        // Update cart count
+                        $('#cartCount').text(response.cartCount);
+                        $('#cartCount').show();
+                        
+                        // Show success state
+                        $btn.html('<i class="fas fa-check"></i> Added!');
+                        setTimeout(function() {
+                            $btn.html(originalText);
+                            $btn.prop('disabled', false);
+                        }, 1500);
+                    } else {
+                        // Show error
+                        $btn.html(originalText);
+                        $btn.prop('disabled', false);
+                        alert(response.message || 'Có lỗi xảy ra!');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', error);
                     $btn.html(originalText);
                     $btn.prop('disabled', false);
-                }, 1500);
-            }, 500);
+                    alert('Có lỗi xảy ra, vui lòng thử lại!');
+                }
+            });
         });
     </script>
 }

@@ -1,0 +1,178 @@
+﻿@model GearDTK.ViewModels.OrderViewModel
+@{
+    ViewData["Title"] = "Thông tin thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var total = Model.Order?.Total ?? 0;
+}
+
+<div class="checkout-container">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Left Column - Billing & Shipping Info -->
+            <div class="col-lg-7">
+                <form id="orderForm" asp-action="PlaceOrder" method="post">
+                    @Html.AntiForgeryToken()
+                    
+                    <!-- Contact -->
+                    <div class="checkout-section">
+                        <h3 class="section-title">Contact</h3>
+                        <div class="mb-3">
+                            <input type="email" class="checkout-input" id="CustomerEmail" name="CustomerEmail" placeholder="Email" required>
+                        </div>
+                    </div>
+
+                    <!-- Delivery -->
+                    <div class="checkout-section">
+                        <h3 class="section-title">Delivery</h3>
+                        
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <select id="Country" class="checkout-input" name="Country">
+                                    <option value="">Country/Region</option>
+                                    <option value="Vietnam" selected>Vietnam</option>
+                                    <option value="USA">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="Korea">Korea</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="CustomerName" class="checkout-input" name="CustomerName" placeholder="First name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="checkout-input" placeholder="Last name">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="checkout-input" placeholder="Company (optional)">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" id="CustomerAddress" class="checkout-input" name="CustomerAddress" placeholder="Address" required>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="checkout-input" placeholder="Apartment, suite, etc. (optional)">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="City" class="checkout-input" name="City" placeholder="City" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="tel" id="CustomerPhone" class="checkout-input" name="CustomerPhone" placeholder="Phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-check mt-3">
+                            <input type="checkbox" class="form-check-input" id="saveInfo">
+                            <label class="form-check-label text-muted small" for="saveInfo">
+                                Save this information for next time
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Method -->
+                    <div class="checkout-section">
+                        <h3 class="section-title">Shipping method</h3>
+                        
+                        <div class="shipping-option">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="ShippingMethod" id="standardShipping" value="Standard Shipping" checked>
+                                <label class="form-check-label" for="standardShipping">
+                                    <div class="d-flex justify-content-between w-100">
+                                        <div>
+                                            <strong>Standard Shipping</strong>
+                                            <div class="small text-muted">Tracking number provided</div>
+                                        </div>
+                                        <span class="text-success">FREE</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" name="OrderNote" value="@Model.OrderNote" />
+                </form>
+            </div>
+
+            <!-- Right Column - Order Summary -->
+            <div class="col-lg-5">
+                <div class="order-summary">
+                    <!-- Order Items -->
+                    <div class="order-items">
+                        <h3 class="summary-title">Order Summary</h3>
+                        
+                        @if (Model.CartItems != null && Model.CartItems.Any())
+                        {
+                            @foreach (var item in Model.CartItems)
+                            {
+                                <div class="order-item">
+                                    <div class="order-item-info">
+                                        <div class="order-item-name">@item.ProductName</div>
+                                        <div class="order-item-price">@item.Price.ToString("N0")₫</div>
+                                    </div>
+                                    <div class="order-item-quantity">Qty: @item.Quantity</div>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                    <!-- Order Note -->
+                    @if (!string.IsNullOrEmpty(Model.OrderNote))
+                    {
+                        <div class="order-note-display">
+                            <i class="fas fa-pen"></i> Note: @Model.OrderNote
+                        </div>
+                    }
+
+                    <!-- Totals -->
+                    <div class="totals">
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">@total.ToString("N0")₫</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping</span>
+                            <span class="text-success">FREE</span>
+                        </div>
+                        <div class="total-row total-grand">
+                            <span>Total</span>
+                            <span id="grandTotal">@total.ToString("N0")₫</span>
+                        </div>
+                    </div>
+
+                    <!-- Place Order Button -->
+                    <button type="submit" form="orderForm" class="btn-place-order" id="placeOrderBtn">
+                        Complete order
+                    </button>
+                    
+                    <div class="payment-guarantee">
+                        <i class="fas fa-lock"></i> Secure payment guaranteed
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ... styles giữ nguyên ... -->
+
+@section Scripts {
+    <script>
+        $('#placeOrderBtn').click(function(e) {
+            var email = $('#CustomerEmail').val();
+            var name = $('#CustomerName').val();
+            var address = $('#CustomerAddress').val();
+            var city = $('#City').val();
+            var phone = $('#CustomerPhone').val();
+            
+            console.log("Email:", email);
+            console.log("Name:", name);
+            console.log("Address:", address);
+            console.log("City:", city);
+            console.log("Phone:", phone);
+            
+            if (!email || !name || !address || !city || !phone) {
+                e.preventDefault();
+                alert('Vui lòng điền đầy đủ thông tin giao hàng!');
+                return false;
+            }
+        });
+    </script>
+}

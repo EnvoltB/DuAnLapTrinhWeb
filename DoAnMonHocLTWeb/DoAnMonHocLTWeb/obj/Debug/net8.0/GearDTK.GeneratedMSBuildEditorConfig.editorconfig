@@ -99,6 +99,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxfUm9sZVNlbGVjdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/DuAnLapTrinhWeb/DoAnMonHocLTWeb/DoAnMonHocLTWeb/Views/Cart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/DuAnLapTrinhWeb/DoAnMonHocLTWeb/DoAnMonHocLTWeb/Views/Categories/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -107,12 +111,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/DuAnLapTrinhWeb/DoAnMonHocLTWeb/DoAnMonHocLTWeb/Views/Checkout/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/DuAnLapTrinhWeb/DoAnMonHocLTWeb/DoAnMonHocLTWeb/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/DuAnLapTrinhWeb/DoAnMonHocLTWeb/DoAnMonHocLTWeb/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/DuAnLapTrinhWeb/DoAnMonHocLTWeb/DoAnMonHocLTWeb/Views/Order/Complete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcQ29tcGxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/DuAnLapTrinhWeb/DoAnMonHocLTWeb/DoAnMonHocLTWeb/Views/Order/Thankyou.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcVGhhbmt5b3UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/DuAnLapTrinhWeb/DoAnMonHocLTWeb/DoAnMonHocLTWeb/Views/Products/Category.cshtml]

@@ -43,7 +43,6 @@ public class ProductController : Controller
         ModelState.Remove("MainImageUrl");
         ModelState.Remove("GalleryImages");
         ModelState.Remove("Category");
-        ModelState.Remove("CategoryId");
         ModelState.Remove("CreatedAt");
         ModelState.Remove("UpdatedAt");
 
@@ -75,6 +74,14 @@ public class ProductController : Controller
                     if (!allowedExtensions.Contains(fileExtension))
                     {
                         ModelState.AddModelError("MainImageFile", "Chỉ chấp nhận file JPG, JPEG, PNG, GIF, WEBP");
+                        ViewBag.Categories = new SelectList(await _categoryRepository.GetAllAsync(), "Id", "Name", product.CategoryId);
+                        return View(product);
+                    }
+
+                    // Kiểm tra kích thước file (tối đa 5MB)
+                    if (product.MainImageFile.Length > 5 * 1024 * 1024)
+                    {
+                        ModelState.AddModelError("MainImageFile", "Kích thước ảnh không được vượt quá 5MB");
                         ViewBag.Categories = new SelectList(await _categoryRepository.GetAllAsync(), "Id", "Name", product.CategoryId);
                         return View(product);
                     }
@@ -116,6 +123,12 @@ public class ProductController : Controller
                     {
                         if (file != null && file.Length > 0)
                         {
+                            // Kiểm tra kích thước file ảnh gallery
+                            if (file.Length > 5 * 1024 * 1024)
+                            {
+                                continue; // Bỏ qua file quá lớn
+                            }
+
                             var fileExtension = Path.GetExtension(file.FileName).ToLower();
                             string fileName = Guid.NewGuid().ToString() + fileExtension;
                             string filePath = Path.Combine(uploadPath, fileName);
@@ -163,7 +176,7 @@ public class ProductController : Controller
         return View(product);
     }
 
-    // POST: Admin/Product/Edit/5 (CÓ XỬ LÝ UPLOAD ẢNH)
+    // POST: Admin/Product/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, Product product)
@@ -208,10 +221,10 @@ public class ProductController : Controller
                 existingProduct.IsBestSeller = product.IsBestSeller;
                 existingProduct.UpdatedAt = DateTime.UtcNow;
 
-                // ========== XỬ LÝ UPLOAD ẢNH CHÍNH MỚI ==========
+                // Xử lý upload ảnh chính mới
                 if (product.MainImageFile != null && product.MainImageFile.Length > 0)
                 {
-                    // Xóa ảnh cũ nếu có
+                    // Xóa ảnh cũ nếu có và không phải ảnh mặc định
                     if (!string.IsNullOrEmpty(existingProduct.MainImageUrl) && existingProduct.MainImageUrl != "/images/products/default.png")
                     {
                         var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", existingProduct.MainImageUrl.TrimStart('/'));
@@ -240,7 +253,7 @@ public class ProductController : Controller
                     existingProduct.MainImageUrl = "/images/products/" + fileName;
                 }
 
-                // ========== XỬ LÝ THÊM ẢNH GALLERY MỚI ==========
+                // Xử lý thêm ảnh gallery mới
                 if (product.GalleryFiles != null && product.GalleryFiles.Count > 0)
                 {
                     List<string> existingGallery = string.IsNullOrEmpty(existingProduct.GalleryImages)
@@ -256,7 +269,7 @@ public class ProductController : Controller
 
                     foreach (var file in product.GalleryFiles)
                     {
-                        if (file != null && file.Length > 0)
+                        if (file != null && file.Length > 0 && file.Length <= 5 * 1024 * 1024)
                         {
                             string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                             string filePath = Path.Combine(uploadPath, fileName);

@@ -185,6 +185,105 @@ namespace DoAnMonHocLTWeb.Migrations
                         });
                 });
 
+            modelBuilder.Entity("GearDTK.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrderCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrderStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ShippingFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShippingMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Subtotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("GearDTK.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderItems");
+                });
+
             modelBuilder.Entity("GearDTK.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -218,6 +317,9 @@ namespace DoAnMonHocLTWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("GalleryImagesBase64")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsBestSeller")
                         .HasColumnType("bit");
 
@@ -226,6 +328,9 @@ namespace DoAnMonHocLTWeb.Migrations
 
                     b.Property<bool>("IsNew")
                         .HasColumnType("bit");
+
+                    b.Property<string>("MainImageBase64")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MainImageUrl")
                         .IsRequired()
@@ -279,7 +384,7 @@ namespace DoAnMonHocLTWeb.Migrations
                             CategoryId = 1,
                             Color = "Frosted White",
                             ComparePrice = 3990000m,
-                            CreatedAt = new DateTime(2026, 6, 9, 3, 48, 42, 949, DateTimeKind.Utc).AddTicks(6816),
+                            CreatedAt = new DateTime(2026, 6, 10, 14, 46, 30, 57, DateTimeKind.Utc).AddTicks(974),
                             Description = "The ATK Blazing Sky ZERO redefines lightweight gaming performance:\r\n                <ul>\r\n                    <li>Ultra-light at just 39g with solid holeless frosted translucent shell</li>\r\n                    <li>Dual 8K wireless connectivity</li>\r\n                    <li>Flagship PAW3950 Ultra sensor for high-precision tracking</li>\r\n                    <li>Nordic 54 series chip for ultra-low latency</li>\r\n                    <li>Nano coating for stable, comfortable grip</li>\r\n                    <li>Built for competitive gaming</li>\r\n                </ul>",
                             GalleryImages = "/images/products/atk-zero-1.png,/images/products/atk-zero-2.png",
                             IsBestSeller = true,
@@ -301,7 +406,7 @@ namespace DoAnMonHocLTWeb.Migrations
                             CategoryId = 2,
                             Color = "Black",
                             ComparePrice = 5890000m,
-                            CreatedAt = new DateTime(2026, 6, 9, 3, 48, 42, 949, DateTimeKind.Utc).AddTicks(6842),
+                            CreatedAt = new DateTime(2026, 6, 10, 14, 46, 30, 57, DateTimeKind.Utc).AddTicks(997),
                             Description = "The ATK RS6 Hall Effect Keyboard delivers unparalleled gaming performance:\r\n                <ul>\r\n                    <li>Hall Effect magnetic switches for ultra-fast response</li>\r\n                    <li>Co-developed with VALORANT pro player Aspas</li>\r\n                    <li>Adjustable actuation points (0.1mm - 4.0mm)</li>\r\n                    <li>Rapid Trigger technology</li>\r\n                    <li>RGB backlighting with customizable effects</li>\r\n                    <li>PBT double-shot keycaps</li>\r\n                    <li>Hot-swappable PCB</li>\r\n                </ul>",
                             GalleryImages = "/images/products/atk-rs6-1.png,/images/products/atk-rs6-2.png",
                             IsBestSeller = true,
@@ -451,6 +556,25 @@ namespace DoAnMonHocLTWeb.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("GearDTK.Models.OrderItem", b =>
+                {
+                    b.HasOne("GearDTK.Models.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GearDTK.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("GearDTK.Models.Product", b =>
                 {
                     b.HasOne("GearDTK.Models.Category", "Category")
@@ -516,6 +640,11 @@ namespace DoAnMonHocLTWeb.Migrations
             modelBuilder.Entity("GearDTK.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("GearDTK.Models.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

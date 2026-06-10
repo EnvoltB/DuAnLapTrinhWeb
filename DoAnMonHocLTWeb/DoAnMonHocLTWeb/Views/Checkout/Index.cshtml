@@ -1,0 +1,433 @@
+﻿@{
+    ViewData["Title"] = "Checkout - GearDTK";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var cartItems = ViewBag.CartItems as List<GearDTK.Models.CartItem>;
+    var total = ViewBag.Total;
+}
+
+<div class="checkout-container">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Left Column - Billing & Shipping Info -->
+            <div class="col-lg-7">
+                <!-- Contact -->
+                <div class="checkout-section">
+                    <h3 class="section-title">Contact</h3>
+                    <div class="mb-3">
+                        <input type="email" class="checkout-input" id="email" placeholder="Email">
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input" id="emailOffers">
+                            <label class="form-check-label text-muted small" for="emailOffers">
+                                Email me with news and offers
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery -->
+                <div class="checkout-section">
+                    <h3 class="section-title">Delivery</h3>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <select id="country" class="checkout-input">
+                                <option value="">Country/Region</option>
+                                <option value="Vietnam" selected>Vietnam</option>
+                                <option value="USA">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="Japan">Japan</option>
+                                <option value="Korea">Korea</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="firstName" class="checkout-input" placeholder="First name">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="lastName" class="checkout-input" placeholder="Last name">
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" id="company" class="checkout-input" placeholder="Company (optional)">
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" id="address" class="checkout-input" placeholder="Address">
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" id="apartment" class="checkout-input" placeholder="Apartment, suite, etc. (optional)">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="city" class="checkout-input" placeholder="City">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="tel" id="phone" class="checkout-input" placeholder="Phone">
+                        </div>
+                    </div>
+                    
+                    <div class="form-check mt-3">
+                        <input type="checkbox" class="form-check-input" id="saveInfo">
+                        <label class="form-check-label text-muted small" for="saveInfo">
+                            Save this information for next time
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Shipping Method -->
+                <div class="checkout-section">
+                    <h3 class="section-title">Shipping method</h3>
+                    
+                    <div class="shipping-option">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="shipping" id="standardShipping" checked>
+                            <label class="form-check-label" for="standardShipping">
+                                <div class="d-flex justify-content-between w-100">
+                                    <div>
+                                        <strong>Standard Shipping</strong>
+                                        <div class="small text-muted">Tracking number provided</div>
+                                    </div>
+                                    <span class="text-success">FREE</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Order Summary -->
+            <div class="col-lg-5">
+                <div class="order-summary">
+                    <!-- Order Items -->
+                    <div class="order-items">
+                        @if (cartItems != null && cartItems.Any())
+                        {
+                            @foreach (var item in cartItems)
+                            {
+                                <div class="order-item">
+                                    <div class="order-item-info">
+                                        <div class="order-item-name">@item.ProductName</div>
+                                        <div class="order-item-price">@item.Price.ToString("N0")₫</div>
+                                    </div>
+                                    <div class="order-item-quantity">Qty: @item.Quantity</div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="order-item">
+                                <div class="order-item-name">No items in cart</div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Sign In Link -->
+                    <div class="signin-link">
+                        <i class="fas fa-user-circle"></i> 
+                        <a href="/Account/Login">Sign in</a> for faster checkout
+                    </div>
+
+                    <!-- Discount Code -->
+                    <div class="discount-section">
+                        <input type="text" class="discount-input" placeholder="Discount code or gift card">
+                        <button class="btn-apply">Apply</button>
+                    </div>
+
+                    <!-- Totals -->
+                    <div class="totals">
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">@(total?.ToString("N0") ?? "0")₫</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping</span>
+                            <span class="text-success">FREE</span>
+                        </div>
+                        <div class="total-row total-grand">
+                            <span>Total</span>
+                            <span id="grandTotal">@(total?.ToString("N0") ?? "0")₫</span>
+                        </div>
+                    </div>
+
+                   
+                    <!-- Place Order Button -->
+                    <button class="btn-place-order" id="placeOrderBtn">
+                        Complete order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .checkout-container {
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .checkout-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .checkout-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .checkout-input:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+        }
+
+        select.checkout-input {
+            background: white;
+            cursor: pointer;
+        }
+
+        .shipping-option {
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .shipping-option:hover {
+            border-color: #1a1a1a;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            background: #fafafa;
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: sticky;
+            top: 20px;
+        }
+
+        .order-items {
+            margin-bottom: 1rem;
+        }
+
+        .order-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .order-item-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.25rem;
+        }
+
+        .order-item-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .order-item-price {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .order-item-quantity {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .signin-link {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .signin-link a {
+            color: #1a1a1a;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .signin-link a:hover {
+            text-decoration: underline;
+        }
+
+        .discount-section {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .discount-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .discount-input:focus {
+            outline: none;
+            border-color: #1a1a1a;
+        }
+
+        .btn-apply {
+            padding: 0.75rem 1.5rem;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-apply:hover {
+            background: #333;
+        }
+
+        .totals {
+            margin: 1rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .total-grand {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            border-top: 1px solid #e5e5e5;
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+        }
+
+        /* Recommended Product */
+        .recommended-product {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .recommended-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            background: #f8f8f8;
+            border-radius: 8px;
+            padding: 0.5rem;
+        }
+
+        .recommended-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .recommended-option {
+            font-size: 0.7rem;
+            color: #666;
+            margin: 0.25rem 0;
+        }
+
+        .recommended-price {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .btn-place-order {
+            width: 100%;
+            background: #1a1a1a;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-place-order:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .checkout-container {
+                padding: 1rem;
+            }
+            
+            .order-summary {
+                margin-top: 1.5rem;
+                position: static;
+            }
+            
+            .recommended-product {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .recommended-img {
+                margin: 0 auto;
+            }
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        // Calculate total when shipping changes or discount applied
+        $('#placeOrderBtn').click(function() {
+            var email = $('#email').val();
+            var firstName = $('#firstName').val();
+            var lastName = $('#lastName').val();
+            var address = $('#address').val();
+            var city = $('#city').val();
+            var phone = $('#phone').val();
+            
+            if (!email || !firstName || !lastName || !address || !city || !phone) {
+                alert('Vui lòng điền đầy đủ thông tin giao hàng!');
+                return;
+            }
+            
+            $.ajax({
+                url: '/checkout/PlaceOrder',
+                type: 'POST',
+                success: function(response) {
+                    window.location.href = '/';
+                },
+                error: function() {
+                    alert('Có lỗi xảy ra, vui lòng thử lại!');
+                }
+            });
+        });
+    </script>
+}
