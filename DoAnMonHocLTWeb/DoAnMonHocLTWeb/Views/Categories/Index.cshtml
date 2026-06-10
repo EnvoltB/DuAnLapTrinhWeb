@@ -1,259 +1,298 @@
-﻿@model IEnumerable<GearDTK.Models.Category>
+﻿@using GearDTK.Controllers
+@model PaginatedList<GearDTK.Models.Product>
 @{
-    ViewData["Title"] = "Danh mục sản phẩm - GearDTK";
+    var category = ViewBag.Category as GearDTK.Models.Category;
+    ViewData["Title"] = category?.Name + " - GearDTK";
 }
 
 <div class="container py-4">
-    <!-- Page Header -->
-    <div class="text-center mb-5">
-        <h1 class="display-5 fw-bold mb-3">Danh mục sản phẩm</h1>
-        <p class="lead text-muted">Khám phá các dòng sản phẩm gaming gear cao cấp của chúng tôi</p>
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="/products">Sản phẩm</a></li>
+            <li class="breadcrumb-item active">@category?.Name</li>
+        </ol>
+    </nav>
+
+    <!-- Category Header -->
+    <div class="category-header mb-4 text-center">
+        <div class="category-icon mb-3">
+            <i class="@category?.IconClass fa-3x"></i>
+        </div>
+        <h1 class="display-5 fw-bold">@category?.Name</h1>
+        <p class="lead text-muted">@category?.Description</p>
     </div>
 
-    <!-- Categories Grid -->
+    <!-- Sort Options -->
+    <div class="row mb-4">
+        <div class="col-md-12 text-end">
+            <div class="btn-group">
+                <a asp-action="Category" asp-route-slug="@category?.Slug" asp-route-sortOrder="name_asc" 
+                   class="btn btn-outline-secondary">Tên A-Z</a>
+                <a asp-action="Category" asp-route-slug="@category?.Slug" asp-route-sortOrder="name_desc" 
+                   class="btn btn-outline-secondary">Tên Z-A</a>
+                <a asp-action="Category" asp-route-slug="@category?.Slug" asp-route-sortOrder="price_asc" 
+                   class="btn btn-outline-secondary">Giá tăng dần</a>
+                <a asp-action="Category" asp-route-slug="@category?.Slug" asp-route-sortOrder="price_desc" 
+                   class="btn btn-outline-secondary">Giá giảm dần</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
     @if (!Model.Any())
     {
         <div class="alert alert-info text-center py-5">
-            <i class="fas fa-folder-open fa-3x mb-3"></i>
-            <h4>Chưa có danh mục nào</h4>
-            <p>Danh mục sẽ được cập nhật sớm!</p>
+            <i class="fas fa-box-open fa-3x mb-3"></i>
+            <h4>Chưa có sản phẩm nào trong danh mục này</h4>
         </div>
     }
     else
     {
         <div class="row g-4">
-            @foreach (var category in Model)
+            @foreach (var product in Model)
             {
-                <div class="col-md-6 col-lg-4">
-                    <a href="/products/category/@category.Slug" class="text-decoration-none">
-                        <div class="category-card h-100">
-                            <div class="category-card-inner">
-                                <div class="category-icon">
-                                    <i class="@category.IconClass"></i>
-                                </div>
-                                <h3 class="category-name">@category.Name</h3>
-                                <p class="category-description">@category.Description</p>
-                                <div class="category-stats">
-                                    <span class="product-count">
-                                        <i class="fas fa-box"></i> @(category.Products?.Count ?? 0) sản phẩm
-                                    </span>
-                                    <span class="shop-now">
-                                        Xem ngay <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                            </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card h-100">
+                        <div class="position-relative">
+                            @if (product.DiscountPercent.HasValue)
+                            {
+                                <span class="badge-discount">-@product.DiscountPercent%</span>
+                            }
+                            @if (product.IsNew)
+                            {
+                                <span class="badge bg-success position-absolute top-0 start-0 m-2">New</span>
+                            }
+                            <a href="/products/details/@product.Slug">
+                                <img src="@product.MainImageUrl" class="card-img-top" alt="@product.Name"
+                                     onerror="this.src='https://placehold.co/400x400/f5f5f5/999?text=No+Image'">
+                            </a>
                         </div>
-                    </a>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="/products/details/@product.Slug" class="text-decoration-none text-dark">@product.Name</a>
+                            </h5>
+                            <div class="product-price">
+                                <span class="current-price">@product.Price.ToString("N0")₫</span>
+                                @if (product.ComparePrice.HasValue)
+                                {
+                                    <span class="old-price">@product.ComparePrice.Value.ToString("N0")₫</span>
+                                }
+                            </div>
+                            <div class="product-rating mt-2">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-count">(128 reviews)</span>
+                            </div>
+                            @if (product.StockQuantity > 0)
+                            {
+                                <button class="btn-add-cart w-100 mt-3" data-id="@product.Id" data-stock="@product.StockQuantity">
+                                    <i class="fas fa-shopping-cart"></i> Add to cart
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="btn-add-cart w-100 mt-3 disabled" disabled>
+                                    <i class="fas fa-times"></i> Sold Out
+                                </button>
+                            }
+                        </div>
+                    </div>
                 </div>
             }
         </div>
     }
 
-    <!-- Features Section -->
-    <div class="features-section mt-5 pt-4">
-        <div class="row g-4">
-            <div class="col-md-3 col-6">
-                <div class="feature-item text-center">
-                    <i class="fas fa-truck fa-2x text-primary mb-2"></i>
-                    <h6>Free Shipping</h6>
-                    <small class="text-muted">Cho đơn hàng > 1.000.000đ</small>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="feature-item text-center">
-                    <i class="fas fa-shield-alt fa-2x text-primary mb-2"></i>
-                    <h6>Bảo hành 12 tháng</h6>
-                    <small class="text-muted">Chính hãng 100%</small>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="feature-item text-center">
-                    <i class="fas fa-undo-alt fa-2x text-primary mb-2"></i>
-                    <h6>Đổi trả 7 ngày</h6>
-                    <small class="text-muted">Hỗ trợ đổi trả</small>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="feature-item text-center">
-                    <i class="fas fa-headset fa-2x text-primary mb-2"></i>
-                    <h6>Hỗ trợ 24/7</h6>
-                    <small class="text-muted">Chăm sóc khách hàng</small>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Pagination -->
+    @if (Model.TotalPages > 1)
+    {
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        
+        <nav class="mt-5">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @prevDisabled">
+                    <a class="page-link" asp-action="Category" asp-route-slug="@category?.Slug" asp-route-pageNumber="@(Model.PageIndex - 1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </li>
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                        <a class="page-link" asp-action="Category" asp-route-slug="@category?.Slug" asp-route-pageNumber="@i">@i</a>
+                    </li>
+                }
+                <li class="page-item @nextDisabled">
+                    <a class="page-link" asp-action="Category" asp-route-slug="@category?.Slug" asp-route-pageNumber="@(Model.PageIndex + 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }
 </div>
+
+@section Scripts {
+    <script>
+        // Add to cart functionality
+        $('.btn-add-cart:not(.disabled)').click(function(e) {
+            e.preventDefault();
+            
+            var $btn = $(this);
+            var productId = $btn.data('id');
+            var stock = $btn.data('stock');
+            var originalText = $btn.html();
+            
+            // Check stock
+            if (stock <= 0) {
+                alert('Sản phẩm đã hết hàng!');
+                return;
+            }
+            
+            // Disable button and show loading
+            $btn.html('<i class="fas fa-spinner fa-spin"></i> Adding...');
+            $btn.prop('disabled', true);
+            
+            $.ajax({
+                url: '/cart/add',
+                type: 'POST',
+                data: { productId: productId, quantity: 1 },
+                success: function(response) {
+                    if (response.success) {
+                        // Update cart count
+                        $('#cartCount').text(response.cartCount);
+                        $('#cartCount').show();
+                        
+                        // Show success
+                        $btn.html('<i class="fas fa-check"></i> Added!');
+                        setTimeout(function() {
+                            $btn.html(originalText);
+                            $btn.prop('disabled', false);
+                        }, 2000);
+                    } else {
+                        // Show error
+                        $btn.html(originalText);
+                        $btn.prop('disabled', false);
+                        alert(response.message || 'Có lỗi xảy ra!');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', error);
+                    $btn.html(originalText);
+                    $btn.prop('disabled', false);
+                    alert('Có lỗi xảy ra, vui lòng thử lại!');
+                }
+            });
+        });
+    </script>
+}
 
 @section Styles {
     <style>
-        .category-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            height: 100%;
+        .product-card {
             border: 1px solid #eee;
-        }
-
-            .category-card:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
-                border-color: #667eea;
-            }
-
-        .category-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-            .category-icon i {
-                font-size: 2.5rem;
-                color: white;
-            }
-
-        .category-card:hover .category-icon {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .category-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 0.75rem;
-        }
-
-        .category-description {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-        }
-
-        .category-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-        }
-
-        .product-count {
-            color: #667eea;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-            .product-count i {
-                margin-right: 0.25rem;
-            }
-
-        .shop-now {
-            color: #667eea;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .category-card:hover .shop-now {
-            transform: translateX(5px);
-        }
-
-        .shop-now i {
-            font-size: 0.75rem;
-            transition: transform 0.3s ease;
-        }
-
-        .category-card:hover .shop-now i {
-            transform: translateX(3px);
-        }
-
-        /* Features Section */
-        .features-section {
-            background: #f8f9fa;
-            border-radius: 20px;
-            padding: 2rem;
-        }
-
-        .feature-item {
-            padding: 1rem;
-            transition: all 0.3s ease;
             border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            background: white;
         }
-
-            .feature-item:hover {
-                background: white;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            }
-
-            .feature-item i {
-                transition: transform 0.3s ease;
-            }
-
-            .feature-item:hover i {
-                transform: scale(1.1);
-            }
-
-            .feature-item h6 {
-                font-weight: 600;
-                margin-bottom: 0.25rem;
-                color: #1a1a1a;
-            }
-
-        /* Responsive */
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-card img {
+            padding: 1rem;
+            background: #f8f9fa;
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+        
+        .badge-discount {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .current-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .old-price {
+            font-size: 0.8rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+        
+        .product-rating .stars {
+            display: inline-flex;
+            gap: 2px;
+        }
+        
+        .product-rating .stars i {
+            font-size: 11px;
+            color: #ffc107;
+        }
+        
+        .rating-count {
+            font-size: 11px;
+            color: #666;
+            margin-left: 0.5rem;
+        }
+        
+        .btn-add-cart {
+            background: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-add-cart:hover:not(.disabled) {
+            background: #333;
+        }
+        
+        .btn-add-cart.disabled {
+            background: #f0f0f0;
+            color: #999;
+            cursor: not-allowed;
+        }
+        
+        .pagination .page-link {
+            color: #667eea;
+        }
+        
+        .pagination .active .page-link {
+            background-color: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+        
         @@media (max-width: 768px) {
-            .category-name {
-                font-size: 1.2rem;
-            }
-
-            .category-icon {
-                width: 60px;
-                height: 60px;
-            }
-
-                .category-icon i {
-                    font-size: 1.8rem;
-                }
-
-            .category-description {
-                font-size: 0.8rem;
-            }
-
-            .features-section {
-                padding: 1.5rem;
-            }
-
-            .feature-item h6 {
-                font-size: 0.8rem;
-            }
-
-            .feature-item small {
-                font-size: 0.7rem;
-            }
-        }
-
-        @@media (max-width: 576px) {
-            .category-card {
-                padding: 1.5rem 1rem;
-            }
-
-            .category-stats {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-
-            .shop-now {
-                width: 100%;
-                text-align: center;
+            .product-card img {
+                height: 150px;
             }
         }
     </style>

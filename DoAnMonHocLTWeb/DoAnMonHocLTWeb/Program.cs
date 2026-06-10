@@ -13,6 +13,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Đăng ký Repository
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+// Đăng ký CartRepository
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSession();
 
 // Đăng ký Identity với ApplicationUser
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>

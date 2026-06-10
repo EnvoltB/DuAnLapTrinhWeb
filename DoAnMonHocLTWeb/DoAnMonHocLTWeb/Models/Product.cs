@@ -96,5 +96,11 @@ public class Product
 
     [NotMapped]
     [Display(Name = "Chọn thư viện ảnh (có thể chọn nhiều)")]
+
     public List<IFormFile>? GalleryFiles { get; set; }
+    [Display(Name = "Hình ảnh chính (Base64)")]
+    public string? MainImageBase64 { get; set; }
+
+    [Display(Name = "Thư viện ảnh (Base64)")]
+    public string? GalleryImagesBase64 { get; set; }
 }

@@ -1,48 +1,31 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using GearDTK.Data;
+using GearDTK.Repositories;
 using GearDTK.ViewModels;
 
 namespace GearDTK.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IProductRepository _productRepository;
+    private readonly ICategoryRepository _categoryRepository;
 
-    public HomeController(ApplicationDbContext context)
+    public HomeController(IProductRepository productRepository, ICategoryRepository categoryRepository)
     {
-        _context = context;
+        _productRepository = productRepository;
+        _categoryRepository = categoryRepository;
     }
 
     public async Task<IActionResult> Index()
     {
-        var Model = new HomeViewModel
+        var viewModel = new HomeViewModel
         {
-            FeaturedProducts = await _context.Products
-                .Include(p => p.Category)
-                .Where(p => p.IsFeatured)
-                .Take(8)
-                .ToListAsync(),
-
-            NewProducts = await _context.Products
-                .Include(p => p.Category)
-                .Where(p => p.IsNew)
-                .Take(8)
-                .ToListAsync(),
-
-            BestSellerProducts = await _context.Products
-                .Include(p => p.Category)
-                .Where(p => p.IsBestSeller)
-                .Take(4)
-                .ToListAsync(),
-
-            Categories = await _context.Categories
-                .Where(c => c.ShowOnHomepage)
-                .OrderBy(c => c.DisplayOrder)
-                .ToListAsync()
+            FeaturedProducts = (await _productRepository.GetFeaturedProductsAsync(8)).ToList(),
+            NewProducts = (await _productRepository.GetNewProductsAsync(8)).ToList(),
+            BestSellerProducts = (await _productRepository.GetBestSellerProductsAsync(4)).ToList(),
+            Categories = (await _categoryRepository.GetHomepageCategoriesAsync()).ToList()
         };
 
-        return View(Model);
+        return View(viewModel);
     }
 
     public IActionResult About()

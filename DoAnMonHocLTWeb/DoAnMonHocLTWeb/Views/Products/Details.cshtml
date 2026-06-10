@@ -153,7 +153,7 @@ else
                                     <input type="number" id="quantity" class="qty-input" value="1" min="1" max="@Model.StockQuantity">
                                     <button class="qty-btn" id="qtyPlus">+</button>
                                 </div>
-                                <button id="addToCartBtn" class="btn-add-cart" data-product-id="@Model.Id">
+                                <button id="addToCartBtn" class="btn-add-cart" data-product-id="@Model.Id" data-stock="@Model.StockQuantity">
                                     <i class="fas fa-shopping-cart"></i> Add to cart
                                 </button>
                             </div>
@@ -332,39 +332,51 @@ else
 
         // Add to cart
         $('#addToCartBtn').click(function() {
-            var $btn = $(this);
-            var productId = $btn.data('product-id');
-            var quantity = $('#quantity').val();
-            var originalText = $btn.html();
-
-            $btn.prop('disabled', true);
-            $btn.html('<i class="fas fa-spinner fa-spin"></i> Adding...');
-
-            $.ajax({
-                url: '/cart/add',
-                type: 'POST',
-                data: { productId: productId, quantity: quantity },
-                success: function(response) {
-                    if (response.success) {
-                        $('#cartCount').text(response.cartCount);
-                        $btn.html('<i class="fas fa-check"></i> Added!');
-                        setTimeout(function() {
-                            $btn.html(originalText);
-                            $btn.prop('disabled', false);
-                        }, 2000);
-                    } else {
+        var $btn = $(this);
+        var productId = $btn.data('product-id');
+        var stock = $btn.data('stock');
+        var quantity = $('#quantity').val();
+        
+        if (stock <= 0) {
+            alert('Sản phẩm đã hết hàng!');
+            return;
+        }
+        
+        if (parseInt(quantity) > stock) {
+            alert('Số lượng vượt quá tồn kho!');
+            return;
+        }
+        
+        var originalText = $btn.html();
+        $btn.html('<i class="fas fa-spinner fa-spin"></i> Adding...');
+        $btn.prop('disabled', true);
+        
+        $.ajax({
+            url: '/cart/add',
+            type: 'POST',
+            data: { productId: productId, quantity: quantity },
+            success: function(response) {
+                if (response.success) {
+                    $('#cartCount').text(response.cartCount);
+                    $('#cartCount').show();
+                    $btn.html('<i class="fas fa-check"></i> Added!');
+                    setTimeout(function() {
                         $btn.html(originalText);
                         $btn.prop('disabled', false);
-                        alert('Error adding to cart');
-                    }
-                },
-                error: function() {
+                    }, 1500);
+                } else {
                     $btn.html(originalText);
                     $btn.prop('disabled', false);
-                    alert('Error adding to cart');
+                    alert(response.message);
                 }
-            });
+            },
+            error: function() {
+                $btn.html(originalText);
+                $btn.prop('disabled', false);
+                alert('Có lỗi xảy ra, vui lòng thử lại!');
+            }
         });
+    });
     </script>
 }
 

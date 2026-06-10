@@ -9,12 +9,13 @@
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
         </div>
 
         <div class="carousel-inner">
-            <!-- Slide 1 - ATK Blazing Sky ZERO -->
+            <!-- Slide 1 - Dùng ảnh .webp -->
             <div class="carousel-item active">
-                <div class="carousel-bg" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                <div class="carousel-bg" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/banner/ZERO-_PC__01.webp'); background-size: cover; background-position: center;">
                     <div class="container h-100">
                         <div class="row h-100 align-items-center">
                             <div class="col-lg-6 text-white">
@@ -26,13 +27,52 @@
                                     <a href="#" class="btn btn-outline-light btn-lg px-4">Learn More</a>
                                 </div>
                             </div>
-                            <div class="col-lg-6 d-none d-lg-block text-center">
-                                <img src="/images/products/atk-blazing-sky-zero.png" alt="ATK Blazing Sky ZERO" class="img-fluid" style="max-height: 350px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 - Banner khuyến mãi -->
+            <div class="carousel-item">
+                <div class="carousel-bg" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/banner/RS6-_-PC__02.webp'); background-size: cover; background-position: center;">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-6 text-white">
+                                <span class="badge bg-info mb-3 px-3 py-2">Limited Edition</span>
+                                <h1 class="display-4 fw-bold">ATK RS6<br>Hall Effect Keyboard</h1>
+                                <p class="lead mb-4">Co-Developed with Aspas • Rapid Trigger</p>
+                                <a href="/products/atk-rs6-hall-effect" class="btn btn-primary btn-lg px-4">Discover Now →</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Slide 3 - Flash Sale -->
+            <div class="carousel-item">
+                <div class="carousel-bg" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/banner/OIP.webp'); background-size: cover; background-position: center;">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center justify-content-center text-center">
+                            <div class="col-lg-8 text-white">
+                                <span class="badge bg-warning text-dark mb-3 px-3 py-2">🔥 Flash Sale 🔥</span>
+                                <h1 class="display-4 fw-bold">Up to 50% OFF</h1>
+                                <p class="lead mb-4">Limited time offer on selected gaming gear</p>
+                                <a href="/products/sale" class="btn btn-light btn-lg px-5">Shop Sale →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</div>
 
             <!-- Slide 2 - ATK RS6 Keyboard -->
             <div class="carousel-item">
@@ -70,12 +110,11 @@
         <div class="row g-4">
             @foreach (var category in Model.Categories)
             {
-                <div class="col-md-6 col-lg-3">
+                    <div class="col-md-6 col-lg-3">
                     <a href="/products/category/@category.Slug" class="category-card">
                         <i class="@category.IconClass"></i>
                         <h5>@category.Name</h5>
-                        <small class="text-muted">@(category.Products?.Count ?? 0) products</small>
-                    </a>
+                     </a>
                 </div>
             }
         </div>
@@ -114,7 +153,7 @@
                                         <span class="old-price">@product.ComparePrice.Value.ToString("N0")₫</span>
                                     }
                                 </div>
-                                <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="@product.Id">
+                                <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="@product.Id" data-stock="@product.StockQuantity">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
@@ -234,9 +273,9 @@
             let originalText = button.html();
 
             $.ajax({
-                url: '/cart/add',
-                type: 'POST',
-                data: { productId: productId, quantity: 1 },
+                    url: '/ShoppingCart/AddToCart',
+                    type: 'POST',
+                    data: { productId: productId, quantity: 1 },
                 success: function(response) {
                     if (response.success) {
                         button.html('<i class="fas fa-check"></i> Added!');

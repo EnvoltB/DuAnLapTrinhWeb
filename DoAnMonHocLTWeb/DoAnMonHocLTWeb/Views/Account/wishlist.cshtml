@@ -1,0 +1,171 @@
+﻿@model List<GearDTK.Models.WishlistItem>
+@{
+    ViewData["Title"] = "Sản phẩm yêu thích";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4">
+    <h1 class="h2 mb-4">Sản phẩm yêu thích</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-heart fa-4x text-muted mb-3"></i>
+            <h3>Chưa có sản phẩm yêu thích</h3>
+            <p>Hãy thêm sản phẩm vào danh sách yêu thích của bạn</p>
+            <a href="/products" class="btn btn-primary mt-3">Mua sắm ngay</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-3" id="wishlist-item-@item.Id">
+                    <div class="product-card">
+                        <div class="position-relative">
+                            <img src="@item.Product?.MainImageUrl" class="card-img-top" alt="@item.Product?.Name"
+                                 onerror="this.src='https://placehold.co/400x400/f5f5f5/999?text=No+Image'">
+                            <button class="btn-remove-wishlist" data-id="@item.Id" title="Xóa khỏi yêu thích">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Product?.Name</h5>
+                            <div class="price">@item.Product?.Price.ToString("N0")₫</div>
+                            <div class="d-flex gap-2 mt-2">
+                                <button class="btn-add-cart btn-sm" data-id="@item.ProductId">
+                                    <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .product-card {
+        border: 1px solid #eee;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s;
+        background: white;
+        height: 100%;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-card img {
+            padding: 1rem;
+            background: #f8f9fa;
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+
+    .btn-remove-wishlist {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+        .btn-remove-wishlist:hover {
+            background: #ff4444;
+            color: white;
+            border-color: #ff4444;
+        }
+
+    .price {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #667eea;
+    }
+
+    .btn-add-cart {
+        width: 100%;
+        background: #1a1a1a;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 8px;
+        cursor: pointer;
+    }
+
+        .btn-add-cart:hover {
+            background: #333;
+        }
+</style>
+
+@section Scripts {
+    <script>
+        // Xóa khỏi wishlist
+        $('.btn-remove-wishlist').click(function() {
+            var id = $(this).data('id');
+            var $item = $(this).closest('.col-md-6');
+
+            $.ajax({
+                url: '/Account/RemoveFromWishlist',
+                type: 'POST',
+                data: { id: id },
+                success: function(response) {
+                    if (response.success) {
+                        $item.remove();
+                        if ($('.col-md-6').length === 0) {
+                            location.reload();
+                        }
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
+        });
+
+        // Thêm vào giỏ hàng
+        $('.btn-add-cart').click(function() {
+            var productId = $(this).data('id');
+            var $btn = $(this);
+            var originalText = $btn.html();
+
+            $btn.html('<i class="fas fa-spinner fa-spin"></i>');
+            $btn.prop('disabled', true);
+
+            $.ajax({
+                url: '/ShoppingCart/AddToCart',
+                type: 'POST',
+                data: { productId: productId, quantity: 1 },
+                success: function(response) {
+                    if (response.success) {
+                        $('#cartCount').text(response.cartCount);
+                        $btn.html('<i class="fas fa-check"></i> Đã thêm');
+                        setTimeout(function() {
+                            $btn.html(originalText);
+                            $btn.prop('disabled', false);
+                        }, 1500);
+                    } else {
+                        $btn.html(originalText);
+                        $btn.prop('disabled', false);
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    $btn.html(originalText);
+                    $btn.prop('disabled', false);
+                    alert('Có lỗi xảy ra!');
+                }
+            });
+        });
+    </script>
+}
