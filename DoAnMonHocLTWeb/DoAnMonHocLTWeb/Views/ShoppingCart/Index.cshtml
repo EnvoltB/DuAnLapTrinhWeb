@@ -1,0 +1,351 @@
+﻿@model List<GearDTK.Models.CartItem>
+@{
+    ViewData["Title"] = "Giỏ hàng của bạn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var total = ViewBag.Total;
+    var orderNote = ViewBag.OrderNote ?? "";
+}
+
+<div class="cart-container">
+    <div class="container">
+        <div class="free-shipping-banner">
+            <i class="fas fa-truck"></i> You are eligible for free shipping!
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart-header">
+                    <div class="row">
+                        <div class="col-6">PRODUCT</div>
+                        <div class="col-3 text-center">QUANTITY</div>
+                        <div class="col-3 text-end">TOTAL</div>
+                    </div>
+                </div>
+
+                @if (!Model.Any())
+                {
+                    <div class="empty-cart text-center py-5">
+                        <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Discover our latest products and add them to your cart</p>
+                        <a href="/products" class="btn btn-dark mt-3">Continue Shopping</a>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var item in Model)
+                    {
+                        <div class="cart-item" id="cart-item-@item.ProductId">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <div class="product-info">
+                                        <div class="product-image">
+                                            <img src="@item.ImageUrl" alt="@item.ProductName"
+                                                 onerror="this.src='https://placehold.co/100x100/f5f5f5/999?text=No+Image'">
+                                        </div>
+                                        <div class="product-details">
+                                            <h5 class="product-title">
+                                                <a href="/products/details/@item.Slug">@item.ProductName</a>
+                                            </h5>
+                                            <div class="product-meta">
+                                                <span class="product-price">@item.Price.ToString("N0")₫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="quantity-control">
+                                        <button type="button" class="qty-btn minus" data-id="@item.ProductId">-</button>
+                                        <input type="number" class="qty-input" data-id="@item.ProductId"
+                                               value="@item.Quantity" min="1" max="@item.StockQuantity">
+                                        <button type="button" class="qty-btn plus" data-id="@item.ProductId">+</button>
+                                        <button type="button" class="remove-btn" data-id="@item.ProductId">Remove</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-3 text-end">
+                                    <div class="item-total" data-id="@item.ProductId">
+                                        @item.Subtotal.ToString("N0")₫
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="col-lg-4">
+                <div class="order-summary">
+                    <h3 class="summary-title">Order Summary</h3>
+
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotalAmount">@total?.ToString("N0")₫</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span class="text-success">Free</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Taxes</span>
+                        <span>Calculated at checkout</span>
+                    </div>
+
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <strong id="totalAmount">@total?.ToString("N0")₫</strong>
+                    </div>
+
+                    <div class="order-note-section">
+                        <div class="order-note-header">
+                            <i class="fas fa-pen"></i> Add order note
+                        </div>
+                        <textarea id="orderNote" class="order-note-input" placeholder="Ghi chú cho đơn hàng..." rows="3">@orderNote</textarea>
+                    </div>
+
+                    <a href="/ShoppingCart/Checkout" class="btn-checkout">
+                        CHECKOUT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .cart-container {
+        background: #ffffff;
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+
+    .free-shipping-banner {
+        background: #e8f5e9;
+        color: #2e7d32;
+        text-align: center;
+        padding: 0.75rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+    }
+
+    .cart-header {
+        padding: 1rem 0;
+        border-bottom: 1px solid #e5e5e5;
+        font-weight: 600;
+        color: #666;
+    }
+
+    .cart-item {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .product-info {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .product-image {
+        width: 100px;
+        height: 100px;
+        background: #f8f8f8;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+    .product-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+        .product-title a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .qty-btn {
+        width: 32px;
+        height: 32px;
+        background: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .qty-input {
+        width: 50px;
+        height: 32px;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .remove-btn {
+        background: none;
+        border: none;
+        color: #999;
+        font-size: 0.75rem;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .order-summary {
+        background: #fafafa;
+        border-radius: 16px;
+        padding: 1.5rem;
+        position: sticky;
+        top: 20px;
+    }
+
+    .summary-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 0.75rem;
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .summary-total {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        margin-top: 0.5rem;
+        border-top: 1px solid #e5e5e5;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .order-note-section {
+        margin: 1rem 0;
+        padding: 1rem 0;
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .order-note-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        resize: vertical;
+    }
+
+    .btn-checkout {
+        display: block;
+        width: 100%;
+        background: #1a1a1a;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 1rem;
+    }
+
+        .btn-checkout:hover {
+            background: #333;
+        }
+
+    .empty-cart {
+        padding: 4rem;
+        text-align: center;
+    }
+
+    @@media (max-width: 768px) {
+        .product-info {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .cart-header {
+            display: none;
+        }
+    }
+</style>
+
+@section Scripts {
+    <script>
+        function updateQuantity(productId, quantity) {
+            $.ajax({
+                url: '/ShoppingCart/UpdateQuantity',
+                type: 'POST',
+                data: { productId: productId, quantity: quantity },
+                success: function(response) {
+                    if (response.success) {
+                        $(`#cart-item-${productId} .item-total`).text(formatPrice(response.subtotal));
+                        $('#subtotalAmount').text(formatPrice(response.total));
+                        $('#totalAmount').text(formatPrice(response.total));
+                        $('#cartCount').text(response.cartCount);
+                    }
+                }
+            });
+        }
+
+        function removeItem(productId) {
+            $.ajax({
+                url: '/ShoppingCart/RemoveFromCart',
+                type: 'POST',
+                data: { productId: productId },
+                success: function(response) {
+                    if (response.success) {
+                        $(`#cart-item-${productId}`).remove();
+                        $('#subtotalAmount').text(formatPrice(response.total));
+                        $('#totalAmount').text(formatPrice(response.total));
+                        $('#cartCount').text(response.cartCount);
+                        if ($('.cart-item').length === 0) location.reload();
+                    }
+                }
+            });
+        }
+
+        function formatPrice(price) { return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "₫"; }
+
+        $('#orderNote').on('change', function() {
+            $.ajax({ url: '/ShoppingCart/SaveOrderNote', type: 'POST', data: { note: $(this).val() } });
+        });
+
+        $('.qty-input').on('change', function() {
+            var id = $(this).data('id'), qty = parseInt($(this).val());
+            if (qty >= 1) updateQuantity(id, qty);
+            else { $(this).val(1); updateQuantity(id, 1); }
+        });
+
+        $('.minus').click(function() {
+            var id = $(this).data('id'), input = $(`#cart-item-${id} .qty-input`), val = parseInt(input.val());
+            if (val > 1) { input.val(val - 1); updateQuantity(id, val - 1); }
+        });
+
+        $('.plus').click(function() {
+            var id = $(this).data('id'), input = $(`#cart-item-${id} .qty-input`), val = parseInt(input.val()), max = parseInt(input.attr('max'));
+            if (val < max) { input.val(val + 1); updateQuantity(id, val + 1); }
+        });
+
+        $('.remove-btn').click(function() { removeItem($(this).data('id')); });
+    </script>
+}

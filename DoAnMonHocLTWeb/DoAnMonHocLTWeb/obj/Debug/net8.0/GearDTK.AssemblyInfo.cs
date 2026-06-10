@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GearDTK")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8cd5179798b0f3ad6615ab374dd724fbefc20968")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+070112fe15616f8b5eee99e77aee6d1cb97380ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("GearDTK")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GearDTK")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -9,6 +9,5 @@ public class CartItem
     public int Quantity { get; set; }
     public string ImageUrl { get; set; } = string.Empty;
     public int StockQuantity { get; set; }
-
     public decimal Subtotal => Price * Quantity;
 }

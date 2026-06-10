@@ -273,9 +273,9 @@
             let originalText = button.html();
 
             $.ajax({
-                url: '/cart/add',
-                type: 'POST',
-                data: { productId: productId, quantity: 1 },
+                    url: '/ShoppingCart/AddToCart',
+                    type: 'POST',
+                    data: { productId: productId, quantity: 1 },
                 success: function(response) {
                     if (response.success) {
                         button.html('<i class="fas fa-check"></i> Added!');

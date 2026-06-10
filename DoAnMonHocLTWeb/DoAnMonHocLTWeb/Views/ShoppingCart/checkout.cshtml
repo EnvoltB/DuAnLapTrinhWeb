@@ -1,0 +1,159 @@
+﻿@model GearDTK.ViewModels.OrderViewModel
+@{
+    ViewData["Title"] = "Thông tin thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var total = Model.Order?.Total ?? 0;
+}
+
+<div class="checkout-container">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <form id="orderForm" asp-action="PlaceOrder" method="post">
+                    @Html.AntiForgeryToken()
+                    
+                    <div class="checkout-section">
+                        <h3 class="section-title">Contact</h3>
+                        <div class="mb-3">
+                            <input type="email" class="checkout-input" id="CustomerEmail" name="CustomerEmail" placeholder="Email" required>
+                        </div>
+                    </div>
+
+                    <div class="checkout-section">
+                        <h3 class="section-title">Delivery</h3>
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <select id="Country" class="checkout-input" name="Country">
+                                    <option value="">Country/Region</option>
+                                    <option value="Vietnam" selected>Vietnam</option>
+                                    <option value="USA">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="Korea">Korea</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="CustomerName" class="checkout-input" name="CustomerName" placeholder="First name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="checkout-input" placeholder="Last name">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="checkout-input" placeholder="Company (optional)">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" id="CustomerAddress" class="checkout-input" name="CustomerAddress" placeholder="Address" required>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="checkout-input" placeholder="Apartment, suite, etc. (optional)">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="City" class="checkout-input" name="City" placeholder="City" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="tel" id="CustomerPhone" class="checkout-input" name="CustomerPhone" placeholder="Phone" required>
+                            </div>
+                        </div>
+                        <div class="form-check mt-3">
+                            <input type="checkbox" class="form-check-input" id="saveInfo">
+                            <label class="form-check-label text-muted small" for="saveInfo">Save this information for next time</label>
+                        </div>
+                    </div>
+
+                    <div class="checkout-section">
+                        <h3 class="section-title">Shipping method</h3>
+                        <div class="shipping-option">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="ShippingMethod" id="standardShipping" value="Standard Shipping" checked>
+                                <label class="form-check-label" for="standardShipping">
+                                    <div class="d-flex justify-content-between w-100">
+                                        <div><strong>Standard Shipping</strong><div class="small text-muted">Tracking number provided</div></div>
+                                        <span class="text-success">FREE</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" name="OrderNote" value="@Model.OrderNote" />
+                </form>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="order-summary">
+                    <h3 class="summary-title">Order Summary</h3>
+                    
+                    @if (Model.CartItems != null && Model.CartItems.Any())
+                    {
+                        @foreach (var item in Model.CartItems)
+                        {
+                            <div class="order-item">
+                                <div class="order-item-info">
+                                    <div class="order-item-name">@item.ProductName</div>
+                                    <div class="order-item-price">@item.Price.ToString("N0")₫</div>
+                                </div>
+                                <div class="order-item-quantity">Qty: @item.Quantity</div>
+                            </div>
+                        }
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.OrderNote))
+                    {
+                        <div class="order-note-display"><i class="fas fa-pen"></i> Note: @Model.OrderNote</div>
+                    }
+
+                    <div class="totals">
+                        <div class="total-row"><span>Subtotal</span><span id="subtotal">@total.ToString("N0")₫</span></div>
+                        <div class="total-row"><span>Shipping</span><span class="text-success">FREE</span></div>
+                        <div class="total-row total-grand"><span>Total</span><span id="grandTotal">@total.ToString("N0")₫</span></div>
+                    </div>
+
+                    <button type="submit" form="orderForm" class="btn-place-order">Complete order</button>
+                    <div class="payment-guarantee"><i class="fas fa-lock"></i> Secure payment guaranteed</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .checkout-container { background: #ffffff; min-height: 100vh; padding: 2rem 0; }
+    .checkout-section { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #e5e5e5; }
+    .section-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
+    .checkout-input { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; }
+    .checkout-input:focus { outline: none; border-color: #1a1a1a; }
+    .shipping-option { border: 1px solid #e5e5e5; border-radius: 12px; padding: 1rem; cursor: pointer; }
+    .order-summary { background: #fafafa; border-radius: 16px; padding: 1.5rem; position: sticky; top: 20px; }
+    .summary-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; }
+    .order-item { padding: 0.75rem 0; border-bottom: 1px solid #e5e5e5; }
+    .order-item-info { display: flex; justify-content: space-between; margin-bottom: 0.25rem; }
+    .order-item-name { font-size: 0.85rem; font-weight: 500; }
+    .order-item-price { font-size: 0.85rem; font-weight: 500; }
+    .order-item-quantity { font-size: 0.75rem; color: #666; }
+    .order-note-display { padding: 0.75rem; background: #fff3e0; border-radius: 8px; font-size: 0.8rem; margin: 1rem 0; }
+    .totals { margin: 1rem 0; }
+    .total-row { display: flex; justify-content: space-between; padding: 0.5rem 0; font-size: 0.9rem; color: #666; }
+    .total-grand { font-size: 1.1rem; font-weight: 600; color: #1a1a1a; border-top: 1px solid #e5e5e5; margin-top: 0.5rem; padding-top: 1rem; }
+    .btn-place-order { width: 100%; background: #1a1a1a; color: white; padding: 1rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
+    .btn-place-order:hover { background: #333; }
+    .payment-guarantee { text-align: center; font-size: 0.75rem; color: #999; margin-top: 1rem; }
+    @@media (max-width: 768px) { .checkout-container { padding: 1rem; } .order-summary { margin-top: 1.5rem; position: static; } }
+</style>
+
+@section Scripts {
+    <script>
+        $('#placeOrderBtn').click(function(e) {
+            var email = $('#CustomerEmail').val();
+            var name = $('#CustomerName').val();
+            var address = $('#CustomerAddress').val();
+            var city = $('#City').val();
+            var phone = $('#CustomerPhone').val();
+            
+            if (!email || !name || !address || !city || !phone) {
+                e.preventDefault();
+                alert('Vui lòng điền đầy đủ thông tin giao hàng!');
+                return false;
+            }
+        });
+    </script>
+}

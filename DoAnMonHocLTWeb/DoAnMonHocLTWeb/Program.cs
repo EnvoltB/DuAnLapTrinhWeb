@@ -16,6 +16,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 // Đăng ký CartRepository
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSession();
 
 // Đăng ký Identity với ApplicationUser
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>

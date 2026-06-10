@@ -1,5 +1,4 @@
-﻿// ViewModels/OrderViewModel.cs
-using GearDTK.Models;
+﻿using GearDTK.Models;
 
 namespace GearDTK.ViewModels;
 
@@ -8,8 +7,6 @@ public class OrderViewModel
     public Order? Order { get; set; }
     public List<CartItem>? CartItems { get; set; }
     public string? OrderNote { get; set; }
-
-    // Thông tin khách hàng
     public string? CustomerEmail { get; set; }
     public string? CustomerName { get; set; }
     public string? CustomerPhone { get; set; }
