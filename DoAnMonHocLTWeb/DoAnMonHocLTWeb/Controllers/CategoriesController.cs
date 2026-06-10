@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using GearDTK.Data;
 using GearDTK.Models;
+using static GearDTK.Controllers.ProductsController;
 
 namespace GearDTK.Controllers;
 

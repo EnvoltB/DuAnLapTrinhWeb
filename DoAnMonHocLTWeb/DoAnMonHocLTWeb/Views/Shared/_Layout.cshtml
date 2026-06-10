@@ -31,7 +31,6 @@
                     <small><i class="fas fa-truck"></i> Free Shipping on Orders Over $50</small>
                 </div>
                 <div class="col-md-6 text-md-end text-center">
-                    <!-- Language Dropdown -->
                     <div class="dropdown d-inline-block me-3">
                         <button class="btn btn-link text-white text-decoration-none dropdown-toggle p-0" type="button" data-bs-toggle="dropdown">
                             <i class="fas fa-globe me-1"></i> English / VND
@@ -42,7 +41,6 @@
                         </ul>
                     </div>
 
-                    <!-- Account Section -->
                     @if (User.Identity.IsAuthenticated)
                     {
                         <div class="dropdown d-inline-block">
@@ -53,40 +51,21 @@
                                 <li><a class="dropdown-item" href="/Account/Profile"><i class="fas fa-user"></i> Hồ sơ</a></li>
                                 <li><a class="dropdown-item" href="/Account/OrderHistory"><i class="fas fa-shopping-bag"></i> Đơn hàng</a></li>
                                 <li><a class="dropdown-item" href="/Account/Wishlist"><i class="fas fa-heart"></i> Yêu thích</a></li>
-
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="/Admin/Dashboard"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</a></li>
                                 }
-                                @if (User.IsInRole("Employee"))
-                                {
-                                    <li><a class="dropdown-item" href="/Employee/Dashboard"><i class="fas fa-briefcase"></i> Employee Dashboard</a></li>
-                                }
-                                @if (User.IsInRole("Supplier"))
-                                {
-                                    <li><a class="dropdown-item" href="/Supplier/Dashboard"><i class="fas fa-truck"></i> Supplier Dashboard</a></li>
-                                }
-
                                 <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a href="/Account/Logout" class="dropdown-item text-danger">
-                                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                                    </a>
-                                </li>
+                                <li><a href="/Account/Logout" class="dropdown-item text-danger">Đăng xuất</a></li>
                             </ul>
                         </div>
                     }
                     else
                     {
-                        <a href="/Account/Login" class="text-white text-decoration-none me-3">
-                            <i class="fas fa-user"></i> Account
-                        </a>
+                        <a href="/Account/Login" class="text-white text-decoration-none me-3">Account</a>
                     }
-
-                    <a href="/Support" class="text-white text-decoration-none">
-                        <i class="fas fa-headset"></i> Support
-                    </a>
+                    <a href="/Support" class="text-white text-decoration-none">Support</a>
                 </div>
             </div>
         </div>
@@ -111,9 +90,7 @@
                 <div class="collapse navbar-collapse" id="navbarMain">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")" href="/">
-                                <i class="fas fa-home"></i> Home
-                            </a>
+                            <a class="nav-link fw-semibold @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")" href="/">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle fw-semibold" href="#" data-bs-toggle="dropdown">
@@ -128,36 +105,37 @@
                                 <li><a class="dropdown-item" href="/products/category/gaming-headsets"><i class="fas fa-headphones"></i> Gaming Headsets</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="/products/category/gaming-mice"><i class="fas fa-mouse"></i> Mice</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="/products/category/gaming-keyboards"><i class="fas fa-keyboard"></i> Keyboards</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="/products/category/mouse-pads"><i class="fas fa-square"></i> Mouse Pads</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="/products/category/gaming-mice">Mice</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="/products/category/gaming-keyboards">Keyboards</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="/products/category/mouse-pads">Mouse Pads</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-semibold" href="#" data-bs-toggle="dropdown">
-                                <i class="fas fa-life-ring"></i> Support
-                            </a>
+                            <a class="nav-link dropdown-toggle fw-semibold" href="#" data-bs-toggle="dropdown">Support</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/support/faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                                <li><a class="dropdown-item" href="/support/warranty"><i class="fas fa-shield-alt"></i> Warranty</a></li>
-                                <li><a class="dropdown-item" href="/support/shipping"><i class="fas fa-truck"></i> Shipping</a></li>
-                                <li><a class="dropdown-item" href="/support/returns"><i class="fas fa-undo-alt"></i> Returns</a></li>
+                                <li><a class="dropdown-item" href="/support/faq">FAQ</a></li>
+                                <li><a class="dropdown-item" href="/support/warranty">Warranty</a></li>
+                                <li><a class="dropdown-item" href="/support/shipping">Shipping</a></li>
+                                <li><a class="dropdown-item" href="/support/returns">Returns</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="/hub"><i class="fas fa-download"></i> Software</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="/community"><i class="fas fa-users"></i> Community</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="/hub">Software</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="/community">Community</a></li>
                     </ul>
 
                     <!-- Header Icons -->
                     <div class="header-icons d-flex align-items-center gap-3">
-                        <a href="/search" class="icon-link">
-                            <i class="fas fa-search fa-lg"></i>
-                        </a>
-                        <a href="/account/wishlist" class="icon-link position-relative">
+                        <form action="/products/search" method="get" class="search-form-header">
+                            <input type="text" name="keyword" class="search-input-header" placeholder="Tìm kiếm sản phẩm..." value="@Context.Request.Query["keyword"]">
+                            <button type="submit" class="search-btn-header">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                        <a href="/Account/Wishlist" class="icon-link position-relative">
                             <i class="fas fa-heart fa-lg"></i>
-                            <span class="wishlist-count position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                            <span class="wishlist-count badge bg-danger">0</span>
                         </a>
                         <a href="/ShoppingCart/Index" class="icon-link position-relative">
                             <i class="fas fa-shopping-bag fa-lg"></i>
-                            <span class="cart-count position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span>
+                            <span class="cart-count badge bg-danger" id="cartCount">0</span>
                         </a>
                     </div>
                 </div>
@@ -167,7 +145,6 @@
 
     <!-- ========== MAIN CONTENT ========== -->
     <main role="main">
-        <!-- Thông báo -->
         @if (TempData["Success"] != null)
         {
             <div class="alert alert-success alert-dismissible fade show text-center m-3" role="alert">
@@ -182,7 +159,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         }
-
         @RenderBody()
     </main>
 
@@ -190,7 +166,6 @@
     <footer class="footer text-white pt-5 pb-4">
         <div class="container">
             <div class="row">
-                <!-- Column 1: Brand -->
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h5 class="fw-bold mb-3 gradient-text">GearDTK</h5>
                     <p class="text-white-50">Premium gaming gear for competitive gamers and esports professionals.</p>
@@ -202,43 +177,35 @@
                         <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
                     </div>
                 </div>
-
-                <!-- Column 2: Shop -->
                 <div class="col-lg-2 col-md-6 mb-4">
                     <h6 class="fw-bold mb-3">Shop</h6>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="/products" class="text-white-50 text-decoration-none">All Products</a></li>
-                        <li class="mb-2"><a href="/products/category/gaming-mice" class="text-white-50 text-decoration-none">Gaming Mice</a></li>
-                        <li class="mb-2"><a href="/products/category/gaming-keyboards" class="text-white-50 text-decoration-none">Keyboards</a></li>
-                        <li class="mb-2"><a href="/products/category/mouse-pads" class="text-white-50 text-decoration-none">Mouse Pads</a></li>
-                        <li class="mb-2"><a href="/products/category/gaming-headsets" class="text-white-50 text-decoration-none">Headsets</a></li>
+                        <li><a href="/products" class="text-white-50">All Products</a></li>
+                        <li><a href="/products/category/gaming-mice" class="text-white-50">Gaming Mice</a></li>
+                        <li><a href="/products/category/gaming-keyboards" class="text-white-50">Keyboards</a></li>
+                        <li><a href="/products/category/mouse-pads" class="text-white-50">Mouse Pads</a></li>
+                        <li><a href="/products/category/gaming-headsets" class="text-white-50">Headsets</a></li>
                     </ul>
                 </div>
-
-                <!-- Column 3: Support -->
                 <div class="col-lg-2 col-md-6 mb-4">
                     <h6 class="fw-bold mb-3">Support</h6>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Contact Us</a></li>
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">FAQ</a></li>
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Warranty</a></li>
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Shipping Info</a></li>
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Returns</a></li>
+                        <li><a href="#" class="text-white-50">Contact Us</a></li>
+                        <li><a href="#" class="text-white-50">FAQ</a></li>
+                        <li><a href="#" class="text-white-50">Warranty</a></li>
+                        <li><a href="#" class="text-white-50">Shipping</a></li>
+                        <li><a href="#" class="text-white-50">Returns</a></li>
                     </ul>
                 </div>
-
-                <!-- Column 4: Features -->
                 <div class="col-lg-2 col-md-6 mb-4">
                     <h6 class="fw-bold mb-3">Features</h6>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">GearDTK Software</a></li>
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Esports Partners</a></li>
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Community</a></li>
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Blog</a></li>
+                        <li><a href="#" class="text-white-50">Software</a></li>
+                        <li><a href="#" class="text-white-50">Esports Partners</a></li>
+                        <li><a href="#" class="text-white-50">Community</a></li>
+                        <li><a href="#" class="text-white-50">Blog</a></li>
                     </ul>
                 </div>
-
-                <!-- Column 5: Newsletter -->
                 <div class="col-lg-3 col-md-12 mb-4">
                     <h6 class="fw-bold mb-3">Newsletter</h6>
                     <p class="text-white-50 small">Subscribe to get special offers, free giveaways, and exclusive deals.</p>
@@ -252,14 +219,12 @@
                     </form>
                 </div>
             </div>
-
             <hr class="mt-4 mb-3 bg-secondary">
-
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start">
                     <small class="text-white-50">© 2025 GearDTK. All rights reserved.</small>
                 </div>
-                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                <div class="col-md-6 text-center text-md-end">
                     <span class="text-white-50">
                         <i class="fab fa-cc-visa fa-lg me-2"></i>
                         <i class="fab fa-cc-mastercard fa-lg me-2"></i>
@@ -271,21 +236,25 @@
         </div>
     </footer>
 
-    <!-- ========== SCRIPTS ========== -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site.js"></script>
     <script src="~/js/cart.js"></script>
 
     <script>
-        // Newsletter form submit
-        $('#newsletterForm').submit(function(e) {
-        e.preventDefault();
-        var email = $('#newsletterEmail').val();
-        if (email) {
-        alert('Cảm ơn ' + email + ' đã đăng ký nhận tin!');
-        $('#newsletterEmail').val('');
+        function updateCartCount() {
+            $.get('/ShoppingCart/GetCartCount', function(data) {
+                $('#cartCount').text(data.count);
+                if (data.count === 0) $('#cartCount').hide();
+                else $('#cartCount').show();
+            });
         }
+        $(document).ready(function() { updateCartCount(); });
+        $('#newsletterForm').submit(function(e) {
+            e.preventDefault();
+            var email = $('#newsletterEmail').val();
+            if (email) alert('Cảm ơn ' + email + ' đã đăng ký nhận tin!');
+            $('#newsletterEmail').val('');
         });
     </script>
 
