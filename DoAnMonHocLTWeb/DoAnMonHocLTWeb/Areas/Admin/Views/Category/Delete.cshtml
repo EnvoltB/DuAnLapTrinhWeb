@@ -1,0 +1,63 @@
+﻿@model GearDTK.Models.Category
+@{
+    ViewData["Title"] = "Xóa danh mục";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Xóa danh mục</h1>
+        <a href="/Admin/Category" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay lại
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            @if (Model.Products != null && Model.Products.Any())
+            {
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Không thể xóa danh mục này!</strong><br />
+                    Danh mục "@Model.Name" đang có <strong>@Model.Products.Count</strong> sản phẩm.
+                    Vui lòng chuyển hoặc xóa các sản phẩm trước khi xóa danh mục.
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Bạn có chắc chắn muốn xóa danh mục <strong>@Model.Name</strong>?
+                    Hành động này không thể hoàn tác!
+                </div>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th style="width: 150px">ID</th>
+                        <td>@Model.Id</td>
+                    </tr>
+                    <tr>
+                        <th>Tên danh mục</th>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <th>Slug</th>
+                        <td>@Model.Slug</td>
+                    </tr>
+                    <tr>
+                        <th>Thứ tự hiển thị</th>
+                        <td>@Model.DisplayOrder</td>
+                    </tr>
+                </table>
+
+                <form asp-action="Delete" method="post" class="mt-3">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Xác nhận xóa
+                    </button>
+                    <a href="/Admin/Category" class="btn btn-secondary">Hủy</a>
+                </form>
+            }
+        </div>
+    </div>
+</div>

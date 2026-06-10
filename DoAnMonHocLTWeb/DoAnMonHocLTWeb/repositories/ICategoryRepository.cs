@@ -10,6 +10,9 @@ public interface ICategoryRepository
     // Lấy danh mục theo ID
     Task<Category?> GetByIdAsync(int id);
 
+    // Lấy danh mục theo ID kèm sản phẩm
+    Task<Category?> GetByIdWithProductsAsync(int id);  // ← THÊM DÒNG NÀY
+
     // Lấy danh mục theo Slug (URL)
     Task<Category?> GetBySlugAsync(string slug);
 

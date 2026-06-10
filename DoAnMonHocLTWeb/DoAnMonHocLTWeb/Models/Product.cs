@@ -90,4 +90,11 @@ public class Product
     public string[] GalleryImagesList => string.IsNullOrEmpty(GalleryImages)
         ? Array.Empty<string>()
         : GalleryImages.Split(',', StringSplitOptions.RemoveEmptyEntries);
+    [NotMapped]
+    [Display(Name = "Chọn ảnh chính")]
+    public IFormFile? MainImageFile { get; set; }
+
+    [NotMapped]
+    [Display(Name = "Chọn thư viện ảnh (có thể chọn nhiều)")]
+    public List<IFormFile>? GalleryFiles { get; set; }
 }

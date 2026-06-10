@@ -25,6 +25,14 @@ public class CategoryRepository : ICategoryRepository
         return await _dbSet.FindAsync(id);
     }
 
+    // ========== THÊM METHOD NÀY ==========
+    public async Task<Category?> GetByIdWithProductsAsync(int id)
+    {
+        return await _dbSet
+            .Include(c => c.Products)
+            .FirstOrDefaultAsync(c => c.Id == id);
+    }
+
     public async Task<Category?> GetBySlugAsync(string slug)
     {
         return await _dbSet.FirstOrDefaultAsync(c => c.Slug == slug);
