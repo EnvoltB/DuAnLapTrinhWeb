@@ -671,3 +671,122 @@ body {
         .wishlist-icon.active i {
             color: white;
         }
+
+/* Hero Fullscreen Section */
+.hero-fullscreen {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+    .hero-slide.active {
+        opacity: 1;
+        z-index: 1;
+    }
+
+/* Hero Link - Toàn bộ slide có thể click */
+.hero-slide-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+    .hero-slide-link .hero-slide {
+        position: relative;
+    }
+
+/* Slider Controls */
+.slider-prev, .slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.slider-prev {
+    left: 20px;
+}
+
+.slider-next {
+    right: 20px;
+}
+
+    .slider-prev:hover, .slider-next:hover {
+        background: white;
+        color: #1a1a1a;
+    }
+
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    width: 40px;
+    height: 3px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+    .dot.active {
+        background: white;
+        width: 60px;
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .slider-prev, .slider-next {
+        width: 40px;
+        height: 40px;
+    }
+
+    .dot {
+        width: 30px;
+    }
+
+        .dot.active {
+            width: 40px;
+        }
+}
