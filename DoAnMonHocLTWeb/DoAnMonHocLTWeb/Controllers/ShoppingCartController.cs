@@ -4,6 +4,7 @@ using GearDTK.Data;
 using GearDTK.Models;
 using GearDTK.Repositories;
 using GearDTK.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GearDTK.Controllers;
 
@@ -21,15 +22,22 @@ public class ShoppingCartController : Controller
     // ========== GIỎ HÀNG ==========
 
     // GET: ShoppingCart/Index
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var cartItems = _cartRepository.GetCartItems();
-        var total = _cartRepository.GetCartTotal();
+        var userId = User.Identity?.Name;
+
+        if (string.IsNullOrEmpty(userId))
+        {
+            return View(new List<CartItem>());
+        }
+
+        var cartItems = await _cartRepository.GetCartItemsAsync(userId);
+        var total = await _cartRepository.GetCartTotalAsync(userId);
         var orderNote = HttpContext.Session.GetString("OrderNote") ?? "";
 
         ViewBag.Total = total;
         ViewBag.OrderNote = orderNote;
-        ViewBag.ItemCount = _cartRepository.GetCartCount();
+        ViewBag.ItemCount = await _cartRepository.GetCartCountAsync(userId);
 
         return View(cartItems);
     }
@@ -38,6 +46,13 @@ public class ShoppingCartController : Controller
     [HttpPost]
     public async Task<IActionResult> AddToCart(int productId, int quantity = 1)
     {
+        var userId = User.Identity?.Name;
+
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Json(new { success = false, message = "Vui lòng đăng nhập để thêm vào giỏ hàng" });
+        }
+
         var product = await _context.Products.FindAsync(productId);
 
         if (product == null)
@@ -50,30 +65,29 @@ public class ShoppingCartController : Controller
             return Json(new { success = false, message = "Số lượng sản phẩm không đủ" });
         }
 
-        _cartRepository.AddToCart(
-            product.Id,
-            product.Name,
-            product.Slug,
-            product.Price,
-            product.MainImageUrl,
-            product.StockQuantity,
-            quantity
-        );
+        await _cartRepository.AddToCartAsync(userId, productId, quantity);
 
-        var cartCount = _cartRepository.GetCartCount();
+        var cartCount = await _cartRepository.GetCartCountAsync(userId);
 
         return Json(new { success = true, cartCount = cartCount });
     }
 
     // POST: ShoppingCart/UpdateQuantity
     [HttpPost]
-    public IActionResult UpdateQuantity(int productId, int quantity)
+    public async Task<IActionResult> UpdateQuantity(int productId, int quantity)
     {
-        _cartRepository.UpdateQuantity(productId, quantity);
+        var userId = User.Identity?.Name;
 
-        var cartItems = _cartRepository.GetCartItems();
-        var total = _cartRepository.GetCartTotal();
-        var cartCount = _cartRepository.GetCartCount();
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Json(new { success = false, message = "Vui lòng đăng nhập" });
+        }
+
+        await _cartRepository.UpdateQuantityAsync(userId, productId, quantity);
+
+        var cartItems = await _cartRepository.GetCartItemsAsync(userId);
+        var total = await _cartRepository.GetCartTotalAsync(userId);
+        var cartCount = await _cartRepository.GetCartCountAsync(userId);
 
         var item = cartItems.FirstOrDefault(x => x.ProductId == productId);
 
@@ -88,12 +102,19 @@ public class ShoppingCartController : Controller
 
     // POST: ShoppingCart/RemoveFromCart
     [HttpPost]
-    public IActionResult RemoveFromCart(int productId)
+    public async Task<IActionResult> RemoveFromCart(int productId)
     {
-        _cartRepository.RemoveFromCart(productId);
+        var userId = User.Identity?.Name;
 
-        var total = _cartRepository.GetCartTotal();
-        var cartCount = _cartRepository.GetCartCount();
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Json(new { success = false, message = "Vui lòng đăng nhập" });
+        }
+
+        await _cartRepository.RemoveFromCartAsync(userId, productId);
+
+        var total = await _cartRepository.GetCartTotalAsync(userId);
+        var cartCount = await _cartRepository.GetCartCountAsync(userId);
 
         return Json(new
         {
@@ -113,18 +134,32 @@ public class ShoppingCartController : Controller
 
     // GET: ShoppingCart/GetCartCount
     [HttpGet]
-    public IActionResult GetCartCount()
+    public async Task<IActionResult> GetCartCount()
     {
-        var count = _cartRepository.GetCartCount();
+        var userId = User.Identity?.Name;
+
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Json(new { count = 0 });
+        }
+
+        var count = await _cartRepository.GetCartCountAsync(userId);
         return Json(new { count = count });
     }
 
     // ========== CHECKOUT ==========
 
     // GET: ShoppingCart/Checkout
-    public IActionResult Checkout()
+    public async Task<IActionResult> Checkout()
     {
-        var cartItems = _cartRepository.GetCartItems();
+        var userId = User.Identity?.Name;
+
+        if (string.IsNullOrEmpty(userId))
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        var cartItems = await _cartRepository.GetCartItemsAsync(userId);
 
         if (!cartItems.Any())
         {
@@ -132,7 +167,7 @@ public class ShoppingCartController : Controller
         }
 
         var orderNote = HttpContext.Session.GetString("OrderNote") ?? "";
-        var total = _cartRepository.GetCartTotal();
+        var total = await _cartRepository.GetCartTotalAsync(userId);
 
         var viewModel = new OrderViewModel
         {
@@ -158,7 +193,14 @@ public class ShoppingCartController : Controller
     {
         try
         {
-            var cartItems = _cartRepository.GetCartItems();
+            var userId = User.Identity?.Name;
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var cartItems = await _cartRepository.GetCartItemsAsync(userId);
 
             if (!cartItems.Any())
             {
@@ -166,24 +208,31 @@ public class ShoppingCartController : Controller
                 return RedirectToAction("Index");
             }
 
-            // Lấy email từ user đã đăng nhập hoặc từ form
-            var userEmail = User.Identity?.Name ?? model.CustomerEmail;
-            var userName = User.Identity?.Name ?? model.CustomerName;
+            // ========== KIỂM TRA TỒN KHO TRƯỚC KHI ĐẶT HÀNG ==========
+            foreach (var item in cartItems)
+            {
+                var product = await _context.Products.FindAsync(item.ProductId);
+                if (product == null || product.StockQuantity < item.Quantity)
+                {
+                    TempData["Error"] = $"Sản phẩm {item.ProductName} không đủ số lượng tồn kho!";
+                    return RedirectToAction("Checkout");
+                }
+            }
 
-            // Tạo đơn hàng mới
+            // Tạo đơn hàng
             var order = new Order
             {
                 OrderCode = GenerateOrderCode(),
                 CustomerName = model.CustomerName ?? "Khách hàng",
-                Email = userEmail ?? model.CustomerEmail ?? "",
+                Email = userId ?? model.CustomerEmail ?? "",
                 Phone = model.CustomerPhone ?? "",
                 Address = model.CustomerAddress ?? "",
                 City = model.City ?? "",
                 Country = model.Country ?? "Vietnam",
-                Subtotal = _cartRepository.GetCartTotal(),
+                Subtotal = await _cartRepository.GetCartTotalAsync(userId),
                 ShippingFee = 0,
                 Discount = 0,
-                Total = _cartRepository.GetCartTotal(),
+                Total = await _cartRepository.GetCartTotalAsync(userId),
                 OrderNote = model.OrderNote ?? "",
                 OrderStatus = "Pending",
                 PaymentStatus = "Pending",
@@ -193,10 +242,11 @@ public class ShoppingCartController : Controller
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            // Tạo OrderItems từ giỏ hàng
+            // Tạo OrderItems và TRỪ TỒN KHO
             foreach (var item in cartItems)
             {
-                var orderItem = new OrderItem
+                // Thêm OrderItem
+                _context.OrderItems.Add(new OrderItem
                 {
                     OrderId = order.Id,
                     ProductId = item.ProductId,
@@ -204,18 +254,23 @@ public class ShoppingCartController : Controller
                     ProductImage = item.ImageUrl,
                     Price = item.Price,
                     Quantity = item.Quantity
-                };
-                _context.OrderItems.Add(orderItem);
+                });
+
+                // ========== TRỪ SỐ LƯỢNG TỒN KHO ==========
+                var product = await _context.Products.FindAsync(item.ProductId);
+                if (product != null)
+                {
+                    product.StockQuantity -= item.Quantity;
+                    _context.Products.Update(product);
+                }
             }
 
             await _context.SaveChangesAsync();
 
-            // Xóa giỏ hàng sau khi đặt hàng thành công
-            _cartRepository.ClearCart();
+            // Xóa giỏ hàng
+            await _cartRepository.ClearCartAsync(userId);
             HttpContext.Session.Remove("OrderNote");
 
-            // Chuyển hướng đến trang ThankYou và lưu orderId vào session
-            HttpContext.Session.SetInt32("LastOrderId", order.Id);
             TempData["Success"] = "Đặt hàng thành công! Mã đơn hàng: " + order.OrderCode;
 
             return RedirectToAction("ThankYou", new { id = order.Id });
@@ -244,7 +299,6 @@ public class ShoppingCartController : Controller
         return View(order);
     }
 
-    // Chỉ GIỮ LẠI MỘT phương thức GenerateOrderCode (xóa cái còn lại)
     private string GenerateOrderCode()
     {
         return "DTK" + DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1000, 9999);

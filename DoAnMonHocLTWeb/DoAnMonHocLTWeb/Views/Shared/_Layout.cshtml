@@ -131,7 +131,7 @@
                         </form>
                         <a href="/Account/Wishlist" class="icon-link position-relative">
                             <i class="fas fa-heart fa-lg"></i>
-                            <span class="wishlist-count badge bg-danger">0</span>
+                            <span class="wishlist-count badge bg-danger" id="wishlistCount">0</span>
                         </a>
                         <a href="/ShoppingCart/Index" class="icon-link position-relative">
                             <i class="fas fa-shopping-bag fa-lg"></i>
@@ -242,19 +242,37 @@
     <script src="~/js/cart.js"></script>
 
     <script>
+        // Cập nhật số lượng giỏ hàng
         function updateCartCount() {
-            $.get('/ShoppingCart/GetCartCount', function(data) {
-                $('#cartCount').text(data.count);
-                if (data.count === 0) $('#cartCount').hide();
-                else $('#cartCount').show();
-            });
+        $.get('/ShoppingCart/GetCartCount', function(data) {
+        $('#cartCount').text(data.count);
+        if (data.count === 0) $('#cartCount').hide();
+        else $('#cartCount').show();
+        });
         }
-        $(document).ready(function() { updateCartCount(); });
+
+        // ========== CẬP NHẬT SỐ LƯỢNG WISHLIST ==========
+        function updateWishlistCount() {
+        $.get('/Account/GetWishlistCount', function(data) {
+        $('#wishlistCount').text(data.count);
+        if (data.count === 0) {
+        $('#wishlistCount').hide();
+        } else {
+        $('#wishlistCount').show();
+        }
+        });
+        }
+
+        $(document).ready(function() {
+        updateCartCount();
+        updateWishlistCount();
+        });
+
         $('#newsletterForm').submit(function(e) {
-            e.preventDefault();
-            var email = $('#newsletterEmail').val();
-            if (email) alert('Cảm ơn ' + email + ' đã đăng ký nhận tin!');
-            $('#newsletterEmail').val('');
+        e.preventDefault();
+        var email = $('#newsletterEmail').val();
+        if (email) alert('Cảm ơn ' + email + ' đã đăng ký nhận tin!');
+        $('#newsletterEmail').val('');
         });
     </script>
 

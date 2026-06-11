@@ -8,7 +8,7 @@ public class WishlistItem
     [Key]
     public int Id { get; set; }
 
-    public string UserEmail { get; set; } = string.Empty;
+    public string UserEmail { get; set; } = string.Empty;  // ← Đổi từ UserId thành UserEmail
 
     public int ProductId { get; set; }
 

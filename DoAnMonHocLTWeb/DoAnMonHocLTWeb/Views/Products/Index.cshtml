@@ -114,13 +114,18 @@
                                     }
                                     @if (product.DiscountPercent.HasValue && product.StockQuantity > 0)
                                     {
-                                        <span class="badge-sale">Sale</span>
+                                        <span class="badge-sale">-@product.DiscountPercent%</span>
                                     }
                                     @if (product.IsNew && product.StockQuantity > 0)
                                     {
                                         <span class="badge-new">New</span>
                                     }
                                 </div>
+
+                                <!-- ========== WISHLIST ICON (TRÁI TIM) ========== -->
+                                <button class="wishlist-icon" data-id="@product.Id" title="Thêm vào yêu thích">
+                                    <i class="far fa-heart"></i>
+                                </button>
 
                                 <!-- Product Image -->
                                 <a href="/products/details/@product.Slug" class="product-image-link">
@@ -323,11 +328,11 @@
             color: #333;
         }
 
-            .filter-checkbox input {
-                width: 16px;
-                height: 16px;
-                cursor: pointer;
-            }
+        .filter-checkbox input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
 
         /* Sort Bar */
         .sort-bar {
@@ -378,9 +383,9 @@
             transition: transform 0.2s ease;
         }
 
-            .product-item:hover {
-                transform: translateY(-2px);
-            }
+        .product-item:hover {
+            transform: translateY(-2px);
+        }
 
         /* Product Badges */
         .product-badges {
@@ -407,7 +412,6 @@
             padding: 4px 8px;
             font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.5px;
         }
 
         .badge-new {
@@ -416,7 +420,47 @@
             padding: 4px 8px;
             font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.5px;
+        }
+
+        /* Wishlist Icon */
+        .wishlist-icon {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wishlist-icon i {
+            font-size: 1.2rem;
+            color: #999;
+            transition: all 0.3s;
+        }
+
+        .wishlist-icon:hover {
+            background: #ff4444;
+        }
+
+        .wishlist-icon:hover i {
+            color: white;
+        }
+
+        .wishlist-icon.active {
+            background: #ff4444;
+        }
+
+        .wishlist-icon.active i {
+            color: white;
         }
 
         /* Product Image */
@@ -435,13 +479,13 @@
             justify-content: center;
         }
 
-            .product-image img {
-                max-width: 100%;
-                max-height: 100%;
-                object-fit: contain;
-                padding: 1rem;
-                transition: transform 0.3s ease;
-            }
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            padding: 1rem;
+            transition: transform 0.3s ease;
+        }
 
         .product-item:hover .product-image img {
             transform: scale(1.05);
@@ -460,14 +504,14 @@
             line-height: 1.4;
         }
 
-            .product-title a {
-                color: #000;
-                text-decoration: none;
-            }
+        .product-title a {
+            color: #000;
+            text-decoration: none;
+        }
 
-                .product-title a:hover {
-                    text-decoration: underline;
-                }
+        .product-title a:hover {
+            text-decoration: underline;
+        }
 
         .product-price {
             margin-bottom: 0.5rem;
@@ -499,10 +543,10 @@
             gap: 2px;
         }
 
-            .stars i {
-                font-size: 11px;
-                color: #ffc107;
-            }
+        .stars i {
+            font-size: 11px;
+            color: #ffc107;
+        }
 
         .rating-count {
             font-size: 12px;
@@ -523,17 +567,17 @@
             transition: all 0.2s ease;
         }
 
-            .btn-add-cart:hover {
-                background: #333;
-                border-color: #333;
-            }
+        .btn-add-cart:hover {
+            background: #333;
+            border-color: #333;
+        }
 
-            .btn-add-cart.disabled {
-                background: #f0f0f0;
-                border-color: #ddd;
-                color: #999;
-                cursor: not-allowed;
-            }
+        .btn-add-cart.disabled {
+            background: #f0f0f0;
+            border-color: #ddd;
+            color: #999;
+            cursor: not-allowed;
+        }
 
         /* Empty State */
         .empty-state {
@@ -594,6 +638,15 @@
             .sort-bar {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+
+            .wishlist-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .wishlist-icon i {
+                font-size: 1rem;
             }
         }
     </style>
@@ -679,14 +732,13 @@
             $('.results-count').text(visibleCount + ' products');
         }
 
-        // Add to cart function (FIXED)
+        // Add to cart function
         $('.btn-add-cart:not(.disabled)').click(function(e) {
             e.preventDefault();
             var $btn = $(this);
             var productId = $btn.data('id');
             var stock = $btn.data('stock');
             
-            // Check stock
             if (stock <= 0) {
                 alert('Sản phẩm đã hết hàng!');
                 return;
@@ -697,23 +749,19 @@
             $btn.prop('disabled', true);
             
             $.ajax({
-                url: '/cart/add',
+                url: '/ShoppingCart/AddToCart',
                 type: 'POST',
                 data: { productId: productId, quantity: 1 },
                 success: function(response) {
                     if (response.success) {
-                        // Update cart count
                         $('#cartCount').text(response.cartCount);
                         $('#cartCount').show();
-                        
-                        // Show success state
                         $btn.html('<i class="fas fa-check"></i> Added!');
                         setTimeout(function() {
                             $btn.html(originalText);
                             $btn.prop('disabled', false);
                         }, 1500);
                     } else {
-                        // Show error
                         $btn.html(originalText);
                         $btn.prop('disabled', false);
                         alert(response.message || 'Có lỗi xảy ra!');
@@ -723,6 +771,45 @@
                     console.error('AJAX Error:', error);
                     $btn.html(originalText);
                     $btn.prop('disabled', false);
+                    alert('Có lỗi xảy ra, vui lòng thử lại!');
+                }
+            });
+        });
+
+        // Wishlist icon click handler
+        $(document).on('click', '.wishlist-icon', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            var $btn = $(this);
+            var productId = $btn.data('id');
+            var $icon = $btn.find('i');
+            
+            $.ajax({
+                url: '/Account/AddToWishlist',
+                type: 'POST',
+                data: { productId: productId },
+                success: function(response) {
+                    if (response.success) {
+                        $btn.addClass('active');
+                        $icon.removeClass('far').addClass('fas');
+                        
+                        // Cập nhật số lượng wishlist trên header
+                        if (typeof updateWishlistCount === 'function') {
+                            updateWishlistCount();
+                        }
+                        
+                        // Hiển thị thông báo
+                        var toast = $('<div class="alert alert-success position-fixed bottom-0 end-0 m-3" style="z-index: 9999; background: #28a745; color: white; border: none;">' +
+                            '<i class="fas fa-heart"></i> Đã thêm vào danh sách yêu thích' +
+                            '</div>');
+                        $('body').append(toast);
+                        setTimeout(function() { toast.fadeOut(300, function() { $(this).remove(); }); }, 2000);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
                     alert('Có lỗi xảy ra, vui lòng thử lại!');
                 }
             });

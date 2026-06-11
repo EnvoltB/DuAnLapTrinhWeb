@@ -631,3 +631,43 @@ body {
         right: auto;
     }
 }
+/* Wishlist Icon */
+.wishlist-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .wishlist-icon i {
+        font-size: 1.2rem;
+        color: #999;
+        transition: all 0.3s;
+    }
+
+    .wishlist-icon:hover {
+        background: #ff4444;
+    }
+
+        .wishlist-icon:hover i {
+            color: white;
+        }
+
+    .wishlist-icon.active {
+        background: #ff4444;
+    }
+
+        .wishlist-icon.active i {
+            color: white;
+        }
