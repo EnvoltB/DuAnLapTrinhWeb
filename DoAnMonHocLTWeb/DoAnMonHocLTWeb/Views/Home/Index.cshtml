@@ -3,118 +3,50 @@
     ViewData["Title"] = "GearDTK - Premium Gaming Gear";
 }
 
-<!-- Hero Carousel Section -->
-<div class="hero-carousel">
-    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+<!-- Hero Section - Full Screen -->
+<section class="hero-fullscreen">
+    <div class="hero-slider">
+        <!-- Slide 1 -->
+        <div class="hero-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/banners/RS6-_-PC__02.webp');">
+            
         </div>
 
-        <div class="carousel-inner">
-            <!-- Slide 1 - Dùng ảnh .webp -->
-            <div class="carousel-item active">
-                <div class="carousel-bg" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/banner/ZERO-_PC__01.webp'); background-size: cover; background-position: center;">
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center">
-                            <div class="col-lg-6 text-white">
-                                <span class="badge bg-danger mb-3 px-3 py-2">Save 30% + Free Gift</span>
-                                <h1 class="display-4 fw-bold">ATK Blazing Sky<br>ZERO</h1>
-                                <p class="lead mb-4">Ultra-light 39g • PAW3950 Sensor • 8K Wireless</p>
-                                <div class="d-flex gap-3">
-                                    <a href="/products/atk-blazing-sky-zero" class="btn btn-primary btn-lg px-4">Shop Now →</a>
-                                    <a href="#" class="btn btn-outline-light btn-lg px-4">Learn More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2 - Banner khuyến mãi -->
-            <div class="carousel-item">
-                <div class="carousel-bg" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/banner/RS6-_-PC__02.webp'); background-size: cover; background-position: center;">
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center">
-                            <div class="col-lg-6 text-white">
-                                <span class="badge bg-info mb-3 px-3 py-2">Limited Edition</span>
-                                <h1 class="display-4 fw-bold">ATK RS6<br>Hall Effect Keyboard</h1>
-                                <p class="lead mb-4">Co-Developed with Aspas • Rapid Trigger</p>
-                                <a href="/products/atk-rs6-hall-effect" class="btn btn-primary btn-lg px-4">Discover Now →</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 - Flash Sale -->
-            <div class="carousel-item">
-                <div class="carousel-bg" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/banner/OIP.webp'); background-size: cover; background-position: center;">
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center justify-content-center text-center">
-                            <div class="col-lg-8 text-white">
-                                <span class="badge bg-warning text-dark mb-3 px-3 py-2">🔥 Flash Sale 🔥</span>
-                                <h1 class="display-4 fw-bold">Up to 50% OFF</h1>
-                                <p class="lead mb-4">Limited time offer on selected gaming gear</p>
-                                <a href="/products/sale" class="btn btn-light btn-lg px-5">Shop Sale →</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Slide 2 -->
+        <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/banners/ZERO-_PC__01.webp');">
+            
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
+        <!-- Slide 3 - Click Challenge -->
+        <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/images/banners/ATK_Dragonfly_A9_Description_Desktop-01.webp');">
+            
+        </div>
+        
     </div>
-</div>
 
-            <!-- Slide 2 - ATK RS6 Keyboard -->
-            <div class="carousel-item">
-                <div class="carousel-bg" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);">
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center">
-                            <div class="col-lg-6 text-white">
-                                <span class="badge bg-info mb-3 px-3 py-2">Pro Player Edition</span>
-                                <h1 class="display-4 fw-bold">ATK RS6<br>Hall Effect Keyboard</h1>
-                                <p class="lead mb-4">Co-Developed with Aspas • Rapid Trigger • 8K Polling</p>
-                                <a href="/products/atk-rs6-hall-effect" class="btn btn-primary btn-lg px-4">Discover Now →</a>
-                            </div>
-                            <div class="col-lg-6 d-none d-lg-block text-center">
-                                <img src="/images/products/atk-rs6-keyboard.png" alt="ATK RS6 Keyboard" class="img-fluid" style="max-height: 350px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Slider Controls -->
+    <button class="slider-prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+    <button class="slider-next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
+    <!-- Slider Dots -->
+    <div class="slider-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
     </div>
-</div>
+</section>
 
-<!-- Categories Section -->
-<section class="categories py-5">
+<!-- Shop by Category Section -->
+<section class="categories-section py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Shop by Category</h2>
+        <h2 class="section-title text-center mb-5">Shop by Category</h2>
         <div class="row g-4">
             @foreach (var category in Model.Categories)
             {
-                    <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3">
                     <a href="/products/category/@category.Slug" class="category-card">
                         <i class="@category.IconClass"></i>
                         <h5>@category.Name</h5>
-                     </a>
+                    </a>
                 </div>
             }
         </div>
@@ -122,72 +54,28 @@
 </section>
 
 <!-- Featured Products Section -->
-<section class="featured-products py-5 bg-light">
+<section class="featured-section py-5 bg-light">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0">🔥 Featured Products</h2>
+            <h2 class="mb-0">Featured Products</h2>
             <a href="/products" class="btn btn-outline-primary">View All →</a>
         </div>
         <div class="row g-4">
-            @foreach (var product in Model.FeaturedProducts)
+            @foreach (var product in Model.FeaturedProducts.Take(4))
             {
                 <div class="col-md-6 col-lg-3">
                     <div class="product-card">
-                        <div class="position-relative">
-                            @if (product.DiscountPercent.HasValue)
-                            {
-                                <span class="badge-discount">-@product.DiscountPercent%</span>
-                            }
-                            <img src="@product.MainImageUrl" class="card-img-top" alt="@product.Name"
-                                 onerror="this.src='https://placehold.co/400x400/1a1a2e/white?text=GearDTK'">
+                        <div class="product-image">
+                            <a href="/products/details/@product.Slug">
+                                <img src="@product.MainImageUrl" alt="@product.Name"
+                                     onerror="this.src='https://placehold.co/300x300/f5f5f5/999?text=No+Image'">
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <small class="text-muted">@product.Category?.Name</small>
-                            <h5 class="card-title">@product.Name</h5>
-                            <p class="card-text small text-muted">@(product.ShortDescription.Length > 60 ? product.ShortDescription.Substring(0, 60) + "..." : product.ShortDescription)</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="price">@product.Price.ToString("N0")₫</span>
-                                    @if (product.ComparePrice.HasValue)
-                                    {
-                                        <span class="old-price">@product.ComparePrice.Value.ToString("N0")₫</span>
-                                    }
-                                </div>
-                                <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="@product.Id" data-stock="@product.StockQuantity">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</section>
-
-<!-- New Arrivals Section -->
-<section class="new-arrivals py-5">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0">✨ New Arrivals</h2>
-            <a href="/products?filter=new" class="btn btn-outline-primary">View All →</a>
-        </div>
-        <div class="row g-4">
-            @foreach (var product in Model.NewProducts)
-            {
-                <div class="col-md-6 col-lg-3">
-                    <div class="product-card">
-                        <div class="position-relative">
-                            <span class="badge bg-success position-absolute top-0 start-0 m-2">New</span>
-                            <img src="@product.MainImageUrl" class="card-img-top" alt="@product.Name"
-                                 onerror="this.src='https://placehold.co/400x400/1a1a2e/white?text=GearDTK'">
-                        </div>
-                        <div class="card-body">
-                            <small class="text-muted">@product.Category?.Name</small>
-                            <h5 class="card-title">@product.Name</h5>
-                            <div class="price">@product.Price.ToString("N0")₫</div>
-                            <button class="btn btn-sm btn-outline-primary w-100 mt-2 add-to-cart-btn" data-product-id="@product.Id">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <div class="product-info">
+                            <h5 class="product-title">@product.Name</h5>
+                            <div class="product-price">@product.Price.ToString("N0")₫</div>
+                            <button class="btn-add-cart" data-id="@product.Id">
+                                <i class="fas fa-shopping-cart"></i> Add to cart
                             </button>
                         </div>
                     </div>
@@ -197,101 +85,384 @@
     </div>
 </section>
 
-<!-- Esports Partners Section -->
-<section class="esports-partners py-5 bg-dark text-white">
-    <div class="container">
-        <h2 class="text-center mb-4">Esports-Verified</h2>
-        <p class="text-center text-white-50 mb-5">Trusted by top esports organizations and champions worldwide</p>
-        <div class="row text-center align-items-center">
-            <div class="col-md-3 col-6 mb-3">
-                <div class="partner-card">
-                    <img src="/images/partners/aspas.png" alt="Aspas" onerror="this.src='https://placehold.co/80x80/333/white?text=Aspas'">
-                    <p class="mt-2 fw-bold">Aspas</p>
-                    <small>VALORANT World Champion</small>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 mb-3">
-                <div class="partner-card">
-                    <img src="/images/partners/chronicle.png" alt="Chronicle" onerror="this.src='https://placehold.co/80x80/333/white?text=Chronicle'">
-                    <p class="mt-2 fw-bold">Chronicle</p>
-                    <small>VALORANT Pro</small>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 mb-3">
-                <div class="partner-card">
-                    <img src="/images/partners/leviatan.png" alt="Leviatán" onerror="this.src='https://placehold.co/80x80/333/white?text=Leviatán'">
-                    <p class="mt-2 fw-bold">Leviatán Esports</p>
-                    <small>VALORANT Team</small>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 mb-3">
-                <div class="partner-card">
-                    <img src="/images/partners/wolves.png" alt="Wolves" onerror="this.src='https://placehold.co/80x80/333/white?text=Wolves'">
-                    <p class="mt-2 fw-bold">Wolves Esports</p>
-                    <small>VALORANT Team</small>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<style>
+    /* Hero Fullscreen Section */
+    .hero-fullscreen {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-height: 600px;
+        overflow: hidden;
+    }
 
-<!-- Features Banner -->
-<section class="features-banner py-5">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-md-3 col-6 text-center">
-                <i class="fas fa-truck fa-2x text-primary mb-2"></i>
-                <h6>Worldwide Shipping</h6>
-                <small class="text-muted">Fast & reliable delivery</small>
-            </div>
-            <div class="col-md-3 col-6 text-center">
-                <i class="fas fa-shield-alt fa-2x text-primary mb-2"></i>
-                <h6>12-Month Warranty</h6>
-                <small class="text-muted">Hassle-free returns</small>
-            </div>
-            <div class="col-md-3 col-6 text-center">
-                <i class="fas fa-lock fa-2x text-primary mb-2"></i>
-                <h6>Secure Payment</h6>
-                <small class="text-muted">Encrypted transactions</small>
-            </div>
-            <div class="col-md-3 col-6 text-center">
-                <i class="fas fa-headset fa-2x text-primary mb-2"></i>
-                <h6>24/7 Support</h6>
-                <small class="text-muted">Dedicated team</small>
-            </div>
-        </div>
-    </div>
-</section>
+    .hero-slider {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
 
-@section Scripts {
-    <script>
-        // Add to cart functionality
-        $('.add-to-cart-btn').click(function(e) {
-            e.preventDefault();
-            let button = $(this);
-            let productId = button.data('product-id');
-            let originalText = button.html();
+    .hero-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
 
-            $.ajax({
-                    url: '/ShoppingCart/AddToCart',
-                    type: 'POST',
-                    data: { productId: productId, quantity: 1 },
-                success: function(response) {
-                    if (response.success) {
-                        button.html('<i class="fas fa-check"></i> Added!');
-                        $('#cartCount').text(response.cartCount);
-                        setTimeout(function() {
-                            button.html(originalText);
-                        }, 2000);
-                    }
-                },
-                error: function() {
-                    button.html('<i class="fas fa-exclamation-triangle"></i> Error');
-                    setTimeout(function() {
-                        button.html(originalText);
-                    }, 2000);
-                }
-            });
-        });
-    </script>
-}
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+    .hero-content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10%;
+        max-width: 600px;
+        color: white;
+        z-index: 2;
+    }
+
+    .hero-content-center {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .hero-content-right {
+        left: auto;
+        right: 10%;
+        text-align: right;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .hero-desc {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+
+    .hero-btn {
+        display: inline-block;
+        background: white;
+        color: #1a1a1a;
+        padding: 12px 30px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+
+        .hero-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+    .hero-btn-outline {
+        display: inline-block;
+        border: 2px solid white;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+
+        .hero-btn-outline:hover {
+            background: white;
+            color: #1a1a1a;
+        }
+
+    .hero-partner {
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+        .hero-partner span:first-child {
+            font-weight: 700;
+        }
+
+    .hero-tag {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-sale {
+        background: #ff4444;
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        margin: 1rem 0;
+    }
+
+    .hero-hashtag {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        color: #667eea;
+    }
+
+    .hero-hashtag-lg {
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 1rem 0;
+        color: #667eea;
+    }
+
+    .hero-brand {
+        font-size: 3rem;
+        font-weight: 900;
+        margin: 0.5rem 0;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-event {
+        font-size: 0.9rem;
+        margin: 1rem 0;
+        line-height: 1.4;
+    }
+
+    /* Slider Controls */
+    .slider-prev, .slider-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.2);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s;
+        backdrop-filter: blur(5px);
+    }
+
+    .slider-prev {
+        left: 20px;
+    }
+
+    .slider-next {
+        right: 20px;
+    }
+
+        .slider-prev:hover, .slider-next:hover {
+            background: white;
+            color: #1a1a1a;
+        }
+
+    .slider-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+    }
+
+    .dot {
+        width: 40px;
+        height: 3px;
+        background: rgba(255,255,255,0.5);
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+        .dot.active {
+            background: white;
+            width: 60px;
+        }
+
+    /* Category Cards */
+    .category-card {
+        display: block;
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+    }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102,126,234,0.15);
+            border-color: #667eea;
+        }
+
+        .category-card i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h5 {
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+    /* Product Cards */
+    .product-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+    .product-image {
+        background: #f8f8f8;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+        .product-image img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+        }
+
+    .product-info {
+        padding: 1rem;
+    }
+
+    .product-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .product-price {
+        font-weight: 700;
+        color: #667eea;
+        margin-bottom: 0.75rem;
+    }
+
+    .btn-add-cart {
+        width: 100%;
+        background: #1a1a1a;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+        .btn-add-cart:hover {
+            background: #333;
+        }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .hero-title {
+            font-size: 2rem;
+        }
+
+        .hero-content {
+            left: 5%;
+            right: 5%;
+        }
+
+        .hero-content-right {
+            text-align: center;
+            right: auto;
+            left: 5%;
+        }
+
+        .slider-prev, .slider-next {
+            width: 40px;
+            height: 40px;
+        }
+
+        .dot {
+            width: 30px;
+        }
+
+            .dot.active {
+                width: 40px;
+            }
+    }
+</style>
+
+<script>
+    // Hero Slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    document.getElementById('nextSlide')?.addEventListener('click', nextSlide);
+    document.getElementById('prevSlide')?.addEventListener('click', prevSlide);
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Auto slide every 5 seconds
+    setInterval(nextSlide, 5000);
+</script>

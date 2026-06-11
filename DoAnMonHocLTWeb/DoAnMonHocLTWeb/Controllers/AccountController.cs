@@ -255,16 +255,17 @@ public class AccountController : Controller
 
         return Json(new { success = false, message = "Không thể hủy đơn hàng này" });
     }
-
     // ========== WISHLIST ==========
+
+    // GET: Account/Wishlist
     [Authorize]
     public async Task<IActionResult> Wishlist()
     {
-        var userEmail = User.Identity?.Name;
+        var userEmail = User.Identity?.Name;  // ← Dùng UserEmail
 
         var wishlistItems = await _context.WishlistItems
             .Include(w => w.Product)
-            .Where(w => w.UserEmail == userEmail)
+            .Where(w => w.UserEmail == userEmail)  // ← Dùng UserEmail
             .OrderByDescending(w => w.AddedDate)
             .ToListAsync();
 
@@ -278,6 +279,11 @@ public class AccountController : Controller
     {
         var userEmail = User.Identity?.Name;
 
+        if (string.IsNullOrEmpty(userEmail))
+        {
+            return Json(new { success = false, message = "Vui lòng đăng nhập để thêm vào yêu thích" });
+        }
+
         // Kiểm tra sản phẩm đã có trong wishlist chưa
         var existingItem = await _context.WishlistItems
             .FirstOrDefaultAsync(w => w.UserEmail == userEmail && w.ProductId == productId);
@@ -289,7 +295,7 @@ public class AccountController : Controller
 
         var wishlistItem = new WishlistItem
         {
-            UserEmail = userEmail,
+            UserEmail = userEmail,  // ← Dùng UserEmail
             ProductId = productId,
             AddedDate = DateTime.Now
         };
@@ -297,7 +303,9 @@ public class AccountController : Controller
         _context.WishlistItems.Add(wishlistItem);
         await _context.SaveChangesAsync();
 
-        return Json(new { success = true, message = "Đã thêm vào danh sách yêu thích" });
+        var wishlistCount = await _context.WishlistItems.CountAsync(w => w.UserEmail == userEmail);
+
+        return Json(new { success = true, message = "Đã thêm vào danh sách yêu thích", count = wishlistCount });
     }
 
     // POST: Account/RemoveFromWishlist
@@ -315,7 +323,25 @@ public class AccountController : Controller
         _context.WishlistItems.Remove(item);
         await _context.SaveChangesAsync();
 
-        return Json(new { success = true, message = "Đã xóa khỏi danh sách yêu thích" });
+        var wishlistCount = await _context.WishlistItems.CountAsync(w => w.UserEmail == userEmail);
+
+        return Json(new { success = true, message = "Đã xóa khỏi danh sách yêu thích", count = wishlistCount });
+    }
+
+    // GET: Account/GetWishlistCount
+    [HttpGet]
+    [Authorize]
+    public async Task<IActionResult> GetWishlistCount()
+    {
+        var userEmail = User.Identity?.Name;
+
+        if (string.IsNullOrEmpty(userEmail))
+        {
+            return Json(new { count = 0 });
+        }
+
+        var count = await _context.WishlistItems.CountAsync(w => w.UserEmail == userEmail);
+        return Json(new { count = count });
     }
 
     private IActionResult RedirectToLocal(string? returnUrl)

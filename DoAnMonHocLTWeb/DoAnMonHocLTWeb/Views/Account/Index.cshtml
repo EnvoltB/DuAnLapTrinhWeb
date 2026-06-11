@@ -1,0 +1,269 @@
+﻿@model List<GearDTK.Models.WishlistItem>
+@{
+    ViewData["Title"] = "Sản phẩm yêu thích";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wishlist-container">
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h2"><i class="fas fa-heart text-danger"></i> Sản phẩm yêu thích</h1>
+            <a href="/products" class="btn btn-outline-primary">
+                <i class="fas fa-shopping-bag"></i> Tiếp tục mua sắm
+            </a>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="empty-wishlist text-center py-5">
+                <i class="fas fa-heart-broken fa-4x text-muted mb-3"></i>
+                <h3>Chưa có sản phẩm yêu thích</h3>
+                <p>Hãy thêm sản phẩm vào danh sách yêu thích của bạn</p>
+                <a href="/products" class="btn btn-primary mt-3">Mua sắm ngay</a>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-3" id="wishlist-item-@item.Id">
+                        <div class="product-card">
+                            <div class="position-relative">
+                                <a href="/products/details/@item.Product?.Slug">
+                                    <img src="@item.Product?.MainImageUrl" class="card-img-top" alt="@item.Product?.Name"
+                                         onerror="this.src='https://placehold.co/400x400/f5f5f5/999?text=No+Image'">
+                                </a>
+                                <button class="btn-remove-wishlist" data-id="@item.Id" title="Xóa khỏi yêu thích">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                @if (item.Product?.DiscountPercent > 0)
+                                {
+                                    <span class="badge-discount">-@item.Product?.DiscountPercent%</span>
+                                }
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="/products/details/@item.Product?.Slug" class="text-decoration-none text-dark">
+                                        @item.Product?.Name
+                                    </a>
+                                </h5>
+                                <div class="product-price">
+                                    <span class="current-price">@item.Product?.Price.ToString("N0")₫</span>
+                                    @if (item.Product?.ComparePrice > 0)
+                                    {
+                                        <span class="old-price">@item.Product?.ComparePrice?.ToString("N0")₫</span>
+                                    }
+                                </div>
+                                <div class="product-rating mt-2">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span class="rating-count">(128 reviews)</span>
+                                </div>
+                                <div class="d-flex gap-2 mt-3">
+                                    @if (item.Product?.StockQuantity > 0)
+                                    {
+                                        <button class="btn-add-cart-from-wishlist w-100" data-id="@item.ProductId">
+                                            <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn-sold-out w-100" disabled>Hết hàng</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .wishlist-container {
+        background: #ffffff;
+        min-height: 100vh;
+    }
+
+    .product-card {
+        border: 1px solid #eee;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s;
+        background: white;
+        height: 100%;
+        position: relative;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-card img {
+            padding: 1rem;
+            background: #f8f9fa;
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+
+    .btn-remove-wishlist {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        transition: all 0.2s;
+        z-index: 10;
+    }
+
+        .btn-remove-wishlist:hover {
+            background: #ff4444;
+            color: white;
+            border-color: #ff4444;
+        }
+
+    .badge-discount {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #ff4444;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .current-price {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #667eea;
+    }
+
+    .old-price {
+        font-size: 0.75rem;
+        color: #999;
+        text-decoration: line-through;
+        margin-left: 0.5rem;
+    }
+
+    .btn-add-cart-from-wishlist {
+        background: #1a1a1a;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+        .btn-add-cart-from-wishlist:hover {
+            background: #333;
+        }
+
+    .btn-sold-out {
+        background: #f0f0f0;
+        color: #999;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 13px;
+        cursor: not-allowed;
+    }
+
+    .empty-wishlist {
+        background: #f8f9fa;
+        border-radius: 16px;
+        padding: 3rem;
+    }
+
+    @@media (max-width: 768px) {
+        .product-card img {
+            height: 150px;
+        }
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // Xóa khỏi wishlist
+        $('.btn-remove-wishlist').click(function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var $item = $(this).closest('.col-md-6');
+
+            $.ajax({
+                url: '/Account/RemoveFromWishlist',
+                type: 'POST',
+                data: { id: id },
+                success: function(response) {
+                    if (response.success) {
+                        $item.fadeOut(300, function() {
+                            $(this).remove();
+                            if ($('.col-md-6').length === 0) {
+                                location.reload();
+                            }
+                        });
+                        // Cập nhật số lượng wishlist
+                        $('.wishlist-count').text(response.count);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Có lỗi xảy ra, vui lòng thử lại!');
+                }
+            });
+        });
+
+        // Thêm vào giỏ hàng từ wishlist
+        $('.btn-add-cart-from-wishlist').click(function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var productId = $btn.data('id');
+            var originalText = $btn.html();
+
+            $btn.html('<i class="fas fa-spinner fa-spin"></i>');
+            $btn.prop('disabled', true);
+
+            $.ajax({
+                url: '/ShoppingCart/AddToCart',
+                type: 'POST',
+                data: { productId: productId, quantity: 1 },
+                success: function(response) {
+                    if (response.success) {
+                        $('#cartCount').text(response.cartCount);
+                        $btn.html('<i class="fas fa-check"></i> Đã thêm');
+                        setTimeout(function() {
+                            $btn.html(originalText);
+                            $btn.prop('disabled', false);
+                        }, 1500);
+                    } else {
+                        $btn.html(originalText);
+                        $btn.prop('disabled', false);
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    $btn.html(originalText);
+                    $btn.prop('disabled', false);
+                    alert('Có lỗi xảy ra!');
+                }
+            });
+        });
+    </script>
+}

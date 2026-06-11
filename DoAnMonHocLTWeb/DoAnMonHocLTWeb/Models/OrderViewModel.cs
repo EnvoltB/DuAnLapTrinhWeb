@@ -1,4 +1,5 @@
-﻿using GearDTK.Models;
+﻿
+using GearDTK.Models;
 
 namespace GearDTK.ViewModels;
 
