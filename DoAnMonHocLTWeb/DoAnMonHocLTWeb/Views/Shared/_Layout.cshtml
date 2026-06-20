@@ -54,7 +54,12 @@
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="/Admin/Dashboard"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="/Admin/Dashboard">
+                                            <i class="fas fa-tachometer-alt"></i> Admin Dashboard
+                                            <span class="badge bg-danger ms-1" id="newOrderBadge" style="display: none;">0</span>
+                                        </a>
+                                    </li>
                                 }
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a href="/Account/Logout" class="dropdown-item text-danger">Đăng xuất</a></li>
@@ -251,7 +256,7 @@
         });
         }
 
-        // ========== CẬP NHẬT SỐ LƯỢNG WISHLIST ==========
+        // Cập nhật số lượng wishlist
         function updateWishlistCount() {
         $.get('/Account/GetWishlistCount', function(data) {
         $('#wishlistCount').text(data.count);
@@ -263,9 +268,33 @@
         });
         }
 
+        // ========== KIỂM TRA ĐƠN HÀNG MỚI (CHỈ CHO ADMIN) ==========
+        function checkNewOrders() {
+        $.get('/Admin/Order/GetNewOrdersCount', function(data) {
+        if (data.count > 0) {
+        $('#newOrderBadge').text(data.count).show();
+        } else {
+        $('#newOrderBadge').hide();
+        }
+        }).fail(function() {
+        // Nếu chưa có action GetNewOrdersCount, ẩn badge
+        $('#newOrderBadge').hide();
+        });
+        }
+
         $(document).ready(function() {
         updateCartCount();
         updateWishlistCount();
+
+        // Kiểm tra đơn hàng mới nếu là Admin
+        @if (User.IsInRole("Admin"))
+        {
+            <text>
+                checkNewOrders();
+                // Kiểm tra mỗi 30 giây
+                setInterval(checkNewOrders, 30000);
+            </text>
+        }
         });
 
         $('#newsletterForm').submit(function(e) {

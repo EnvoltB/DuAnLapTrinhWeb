@@ -179,3 +179,365 @@ D:\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\refint\GearD
 D:\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.pdb
 D:\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.genruntimeconfig.cache
 D:\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\ref\GearDTK.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\appsettings.Development.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\appsettings.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.staticwebassets.runtime.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.staticwebassets.endpoints.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.exe
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.deps.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.runtimeconfig.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.pdb
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Azure.Core.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Azure.Identity.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Humanizer.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Data.Sqlite.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\SQLitePCLRaw.core.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\SQLitePCLRaw.provider.e_sqlite3.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.ClientModel.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.CodeDom.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Drawing.Common.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Memory.Data.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Runtime.Caching.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Windows.Extensions.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\browser-wasm\nativeassets\net8.0\e_sqlite3.a
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-arm\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-arm64\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-armel\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-mips64\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-s390x\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-x64\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-x86\native\libe_sqlite3.so
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\osx-arm64\native\libe_sqlite3.dylib
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\osx-x64\native\libe_sqlite3.dylib
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-arm\native\e_sqlite3.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.csproj.AssemblyReference.cache
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.AssemblyInfoInputs.cache
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.AssemblyInfo.cs
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.csproj.CoreCompileInputs.cache
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.MvcApplicationPartsAssemblyInfo.cs
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.MvcApplicationPartsAssemblyInfo.cache
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.RazorAssemblyInfo.cache
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.RazorAssemblyInfo.cs
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.sourcelink.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\rjimswa.dswa.cache.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\scopedcss\bundle\GearDTK.styles.css
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\scopedcss\projectbundle\GearDTK.bundle.scp.css
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.build.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.build.json.cache
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.development.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\swae.build.ex.cache
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.csproj.Up2Date
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\refint\GearDTK.dll
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.pdb
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.genruntimeconfig.cache
+D:\New folder\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\ref\GearDTK.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\appsettings.Development.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\appsettings.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.staticwebassets.endpoints.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.staticwebassets.runtime.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.exe
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.deps.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.runtimeconfig.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\GearDTK.pdb
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Azure.Core.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Azure.Identity.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Humanizer.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Data.Sqlite.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\SQLitePCLRaw.core.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\SQLitePCLRaw.provider.e_sqlite3.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.ClientModel.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.CodeDom.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Drawing.Common.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Memory.Data.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Runtime.Caching.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\System.Windows.Extensions.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\browser-wasm\nativeassets\net8.0\e_sqlite3.a
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-arm\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-arm64\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-armel\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-mips64\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-s390x\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-x64\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\linux-x86\native\libe_sqlite3.so
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\osx-arm64\native\libe_sqlite3.dylib
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\osx-x64\native\libe_sqlite3.dylib
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-arm\native\e_sqlite3.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.csproj.AssemblyReference.cache
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.GeneratedMSBuildEditorConfig.editorconfig
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.AssemblyInfoInputs.cache
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.AssemblyInfo.cs
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.csproj.CoreCompileInputs.cache
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.MvcApplicationPartsAssemblyInfo.cs
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.MvcApplicationPartsAssemblyInfo.cache
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.RazorAssemblyInfo.cache
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.RazorAssemblyInfo.cs
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.sourcelink.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\rjimswa.dswa.cache.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\scopedcss\bundle\GearDTK.styles.css
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\scopedcss\projectbundle\GearDTK.bundle.scp.css
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.build.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.build.json.cache
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.development.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\swae.build.ex.cache
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.csproj.Up2Date
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\refint\GearDTK.dll
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.pdb
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.genruntimeconfig.cache
+D:\BACKUPWEB\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\ref\GearDTK.dll
