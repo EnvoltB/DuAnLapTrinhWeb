@@ -1,0 +1,204 @@
+﻿@model GearDTK.Models.Order
+
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng #" + Model.OrderCode;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Chi tiết đơn hàng #@Model.OrderCode</h1>
+        <a href="/Admin/Order" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay lại
+        </a>
+    </div>
+
+    <!-- Thông tin đơn hàng -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Thông tin đơn hàng</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>Mã đơn hàng:</strong> @Model.OrderCode
+                        </div>
+                        <div class="col-6">
+                            <strong>Ngày đặt:</strong> @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")
+                        </div>
+                        <div class="col-6">
+                            <strong>Trạng thái:</strong>
+                            @{
+                                var statusClass = Model.OrderStatus switch
+                                {
+                                    "Pending" => "warning",
+                                    "Processing" => "info",
+                                    "Shipped" => "primary",
+                                    "Delivered" => "success",
+                                    "Cancelled" => "danger",
+                                    _ => "secondary"
+                                };
+                            }
+                            <span class="badge bg-@statusClass">@Model.OrderStatus</span>
+                        </div>
+                        <div class="col-6">
+                            <strong>Thanh toán:</strong>
+                            <span class="badge @(Model.PaymentStatus == "Paid" ? "bg-success" : "bg-warning")">
+                                @(Model.PaymentStatus ?? "Chưa thanh toán")
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Thông tin khách hàng</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <strong>Họ tên:</strong> @Model.CustomerName
+                        </div>
+                        <div class="col-12">
+                            <strong>Email:</strong> @Model.Email
+                        </div>
+                        <div class="col-12">
+                            <strong>Số điện thoại:</strong> @Model.Phone
+                        </div>
+                        <div class="col-12">
+                            <strong>Địa chỉ:</strong> @Model.Address, @Model.City, @Model.Country
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.OrderNote))
+                        {
+                            <div class="col-12">
+                                <strong>Ghi chú:</strong> @Model.OrderNote
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Danh sách sản phẩm -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="fas fa-box"></i> Sản phẩm đã đặt</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.OrderItems != null && Model.OrderItems.Any())
+                        {
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@item.ProductImage" alt="@item.ProductName" style="width: 50px; height: 50px; object-fit: contain;"
+                                             onerror="this.src='https://placehold.co/50x50/f5f5f5/999?text=No+Image'">
+                                    </td>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.Price.ToString("N0")₫</td>
+                                    <td>@item.Quantity</td>
+                                    <td><strong>@((item.Price * item.Quantity).ToString("N0"))₫</strong></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" class="text-end"><strong>Tạm tính:</strong></td>
+                            <td><strong>@Model.Subtotal.ToString("N0")₫</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-end"><strong>Phí vận chuyển:</strong></td>
+                            <td><strong class="text-success">Miễn phí</strong></td>
+                        </tr>
+                        <tr class="table-active">
+                            <td colspan="4" class="text-end"><strong>Tổng cộng:</strong></td>
+                            <td><strong class="text-danger">@Model.Total.ToString("N0")₫</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cập nhật trạng thái -->
+    <div class="mt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Cập nhật trạng thái</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-md-3">
+                        <button class="btn btn-warning w-100 update-status" data-id="@Model.Id" data-status="Pending">Chờ xử lý</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-info w-100 update-status" data-id="@Model.Id" data-status="Processing">Đang xử lý</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-primary w-100 update-status" data-id="@Model.Id" data-status="Shipped">Đang giao</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-success w-100 update-status" data-id="@Model.Id" data-status="Delivered">Đã giao</button>
+                    </div>
+                    <div class="col-md-12 mt-2">
+                        <button class="btn btn-danger w-100 update-status" data-id="@Model.Id" data-status="Cancelled">Hủy đơn hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Cập nhật trạng thái
+        $('.update-status').click(function() {
+            var id = $(this).data('id');
+            var status = $(this).data('status');
+            var statusText = $(this).text().trim();
+
+            if (confirm('Bạn có chắc muốn chuyển đơn hàng sang trạng thái "' + statusText + '"?')) {
+                $.ajax({
+                    url: '/Admin/Order/UpdateStatus',
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        status: status,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Cập nhật trạng thái thành công!');
+                            location.reload();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('Có lỗi xảy ra, vui lòng thử lại!');
+                    }
+                });
+            }
+        });
+    </script>
+}

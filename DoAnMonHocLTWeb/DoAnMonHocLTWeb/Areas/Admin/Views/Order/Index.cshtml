@@ -1,0 +1,326 @@
+﻿@model IEnumerable<GearDTK.Models.Order>
+@{
+    ViewData["Title"] = "Quản lý đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var currentStatus = ViewData["CurrentStatus"] as string;
+    var searchString = ViewData["CurrentSearch"] as string;
+}
+
+<!-- Form lấy token -->
+<form id="antiForgeryForm" style="display:none;">
+    @Html.AntiForgeryToken()
+</form>
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h2">Quản lý đơn hàng</h1>
+        <span class="badge bg-primary p-2">Tổng: @ViewBag.TotalCount đơn hàng</span>
+    </div>
+
+    <!-- Thống kê -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-2 col-4">
+            <div class="card bg-primary text-white text-center p-3">
+                <h5 class="mb-0">@ViewBag.TotalCount</h5>
+                <small>Tất cả</small>
+            </div>
+        </div>
+        <div class="col-md-2 col-4">
+            <div class="card bg-warning text-dark text-center p-3">
+                <h5 class="mb-0">@ViewBag.PendingCount</h5>
+                <small>Chờ xử lý</small>
+            </div>
+        </div>
+        <div class="col-md-2 col-4">
+            <div class="card bg-info text-white text-center p-3">
+                <h5 class="mb-0">@ViewBag.ProcessingCount</h5>
+                <small>Đang xử lý</small>
+            </div>
+        </div>
+        <div class="col-md-2 col-4">
+            <div class="card bg-primary text-white text-center p-3">
+                <h5 class="mb-0">@ViewBag.ShippedCount</h5>
+                <small>Đang giao</small>
+            </div>
+        </div>
+        <div class="col-md-2 col-4">
+            <div class="card bg-success text-white text-center p-3">
+                <h5 class="mb-0">@ViewBag.DeliveredCount</h5>
+                <small>Đã giao</small>
+            </div>
+        </div>
+        <div class="col-md-2 col-4">
+            <div class="card bg-danger text-white text-center p-3">
+                <h5 class="mb-0">@ViewBag.CancelledCount</h5>
+                <small>Đã hủy</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bộ lọc và tìm kiếm -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <form asp-action="Index" method="get" class="d-flex">
+                        <input type="text" name="searchString" class="form-control" placeholder="Tìm theo mã, tên khách hàng..." value="@searchString" />
+                        <button type="submit" class="btn btn-primary ms-2">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <a href="/Admin/Order" class="btn btn-secondary ms-2">Xóa</a>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <form asp-action="Index" method="get" id="filterForm">
+                        <select name="statusFilter" class="form-select" id="statusFilterSelect">
+                            <option value="">Tất cả trạng thái</option>
+                            @if (currentStatus == "Pending")
+                            {
+                                <option value="Pending" selected>Chờ xử lý</option>
+                            }
+                            else
+                            {
+                                <option value="Pending">Chờ xử lý</option>
+                            }
+                            @if (currentStatus == "Processing")
+                            {
+                                <option value="Processing" selected>Đang xử lý</option>
+                            }
+                            else
+                            {
+                                <option value="Processing">Đang xử lý</option>
+                            }
+                            @if (currentStatus == "Shipped")
+                            {
+                                <option value="Shipped" selected>Đang giao</option>
+                            }
+                            else
+                            {
+                                <option value="Shipped">Đang giao</option>
+                            }
+                            @if (currentStatus == "Delivered")
+                            {
+                                <option value="Delivered" selected>Đã giao</option>
+                            }
+                            else
+                            {
+                                <option value="Delivered">Đã giao</option>
+                            }
+                            @if (currentStatus == "Cancelled")
+                            {
+                                <option value="Cancelled" selected>Đã hủy</option>
+                            }
+                            else
+                            {
+                                <option value="Cancelled">Đã hủy</option>
+                            }
+                        </select>
+                    </form>
+                </div>
+                <div class="col-md-4 text-end">
+                    <a href="/Admin/Order" class="btn btn-outline-secondary">Xóa bộ lọc</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-box-open fa-4x text-muted mb-3"></i>
+            <h3>Chưa có đơn hàng nào</h3>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Khách hàng</th>
+                        <th>Ngày đặt</th>
+                        <th>Tổng tiền</th>
+                        <th>Số lượng</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        var itemCount = order.OrderItems?.Sum(x => x.Quantity) ?? 0;
+                        var statusClass = order.OrderStatus switch
+                        {
+                            "Pending" => "warning",
+                            "Processing" => "info",
+                            "Shipped" => "primary",
+                            "Delivered" => "success",
+                            "Cancelled" => "danger",
+                            _ => "secondary"
+                        };
+                        var statusText = order.OrderStatus switch
+                        {
+                            "Pending" => "Chờ xử lý",
+                            "Processing" => "Đang xử lý",
+                            "Shipped" => "Đang giao",
+                            "Delivered" => "Đã giao",
+                            "Cancelled" => "Đã hủy",
+                            _ => order.OrderStatus
+                        };
+
+                        <tr>
+                            <td><strong>@order.OrderCode</strong></td>
+                            <td>@order.CustomerName</td>
+                            <td>@order.OrderDate.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td><strong>@order.Total.ToString("N0")₫</strong></td>
+                            <td><span class="badge bg-secondary">@itemCount</span></td>
+                            <td>
+                                <span class="badge bg-@statusClass" id="status-badge-@order.Id">@statusText</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="/Admin/Order/Details/@order.Id" class="btn btn-outline-primary">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item update-status" data-id="@order.Id" data-status="Pending">Chờ xử lý</a></li>
+                                        <li><a class="dropdown-item update-status" data-id="@order.Id" data-status="Processing">Đang xử lý</a></li>
+                                        <li><a class="dropdown-item update-status" data-id="@order.Id" data-status="Shipped">Đang giao</a></li>
+                                        <li><a class="dropdown-item update-status" data-id="@order.Id" data-status="Delivered">Đã giao</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-danger update-status" data-id="@order.Id" data-status="Cancelled">Hủy đơn</a></li>
+                                    </ul>
+                                    <button class="btn btn-outline-danger" onclick="deleteOrder(@order.Id)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<script>
+    // Đợi DOM load xong
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // ========== LẤY TOKEN ==========
+        var tokenInput = document.querySelector('#antiForgeryForm input[name="__RequestVerificationToken"]');
+        var token = tokenInput ? tokenInput.value : '';
+        
+        if (!token) {
+            console.warn('Không tìm thấy token!');
+        }
+
+        // ========== XỬ LÝ SELECT FILTER ==========
+        var statusFilter = document.getElementById('statusFilterSelect');
+        if (statusFilter) {
+            statusFilter.addEventListener('change', function() {
+                var form = document.getElementById('filterForm');
+                if (form) {
+                    form.submit();
+                }
+            });
+        }
+
+        // ========== CẬP NHẬT TRẠNG THÁI ==========
+        var statusButtons = document.querySelectorAll('.update-status');
+        statusButtons.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                var id = this.getAttribute('data-id');
+                var status = this.getAttribute('data-status');
+                var statusText = this.textContent.trim();
+
+                if (confirm('Bạn có chắc muốn chuyển đơn hàng sang trạng thái "' + statusText + '"?')) {
+                    
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/Admin/Order/UpdateStatus', true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.setRequestHeader('RequestVerificationToken', token);
+                    
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                try {
+                                    var response = JSON.parse(xhr.responseText);
+                                    if (response.success) {
+                                        var badge = document.getElementById('status-badge-' + id);
+                                        if (badge) {
+                                            var badgeClass = '';
+                                            switch(status) {
+                                                case 'Pending': badgeClass = 'warning'; break;
+                                                case 'Processing': badgeClass = 'info'; break;
+                                                case 'Shipped': badgeClass = 'primary'; break;
+                                                case 'Delivered': badgeClass = 'success'; break;
+                                                case 'Cancelled': badgeClass = 'danger'; break;
+                                                default: badgeClass = 'secondary';
+                                            }
+                                            badge.textContent = statusText;
+                                            badge.className = 'badge bg-' + badgeClass;
+                                        }
+                                        alert('Cập nhật trạng thái thành công!');
+                                    } else {
+                                        alert(response.message || 'Có lỗi xảy ra!');
+                                    }
+                                } catch (e) {
+                                    console.error('Error parsing response:', e);
+                                    alert('Có lỗi xảy ra! Vui lòng thử lại.');
+                                }
+                            } else {
+                                console.error('Error:', xhr.status, xhr.responseText);
+                                alert('Có lỗi xảy ra! Vui lòng thử lại.');
+                            }
+                        }
+                    };
+                    
+                    var data = 'id=' + encodeURIComponent(id) + '&status=' + encodeURIComponent(status);
+                    xhr.send(data);
+                }
+            });
+        });
+
+        // ========== XÓA ĐƠN HÀNG ==========
+        window.deleteOrder = function(id) {
+            if (confirm('Bạn có chắc muốn xóa đơn hàng này? Hành động này không thể hoàn tác!')) {
+                
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/Admin/Order/Delete', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.setRequestHeader('RequestVerificationToken', token);
+                
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            try {
+                                var response = JSON.parse(xhr.responseText);
+                                if (response.success) {
+                                    location.reload();
+                                } else {
+                                    alert(response.message || 'Có lỗi xảy ra!');
+                                }
+                            } catch (e) {
+                                console.error('Error parsing response:', e);
+                                alert('Có lỗi xảy ra! Vui lòng thử lại.');
+                            }
+                        } else {
+                            console.error('Error:', xhr.status, xhr.responseText);
+                            alert('Có lỗi xảy ra! Vui lòng thử lại.');
+                        }
+                    }
+                };
+                
+                var data = 'id=' + encodeURIComponent(id);
+                xhr.send(data);
+            }
+        };
+        
+    }); // End DOMContentLoaded
+</script>
