@@ -51,4 +51,5 @@ public interface IProductRepository
     Task UpdateAsync(Product product);
     Task DeleteAsync(Product product);
     Task SaveChangesAsync();
+    Task<Product?> GetBySlugWithReviewsAsync(string slug);
 }

@@ -91,14 +91,38 @@ else
 
                         <!-- Rating -->
                         <div class="product-rating">
+
                             <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
+
+                                @{
+                                    double avgRating = ViewBag.AverageRating ?? 0;
+                                }
+
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= Math.Floor(avgRating))
+                                    {
+                                        <i class="fas fa-star text-warning"></i>
+                                    }
+                                    else if (i - avgRating < 1)
+                                    {
+                                        <i class="fas fa-star-half-alt text-warning"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="far fa-star text-warning"></i>
+                                    }
+                                }
+
                             </div>
-                            <span class="rating-count">392 reviews</span>
+
+                            <span class="rating-count">
+
+                                @avgRating.ToString("0.0")
+                                (@ViewBag.TotalReviews reviews)
+
+                            </span>
+
                         </div>
 
                         <!-- Short Description -->
@@ -283,6 +307,249 @@ else
                     </div>
                 </div>
             }
+            <div class="card mt-4">
+                <div class="card-header">
+                    Customer Reviews
+                </div>
+
+                <div class="card-body">
+
+                    @foreach (var review in Model.Reviews.OrderByDescending(x => x.CreatedAt))
+                    {
+                        <div class="border-bottom mb-3 pb-3">
+
+                            <h6>
+                                @review.User.FullName
+                            </h6>
+
+                            <div class="text-warning">
+                                @for (int i = 1; i <= review.Rating; i++)
+                                {
+                                    <i class="fas fa-star"></i>
+                                }
+                            </div>
+
+                            <p>@review.Comment</p>
+
+                            <small class="text-muted">
+                                @review.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                            </small>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <!-- REVIEW SUMMARY -->
+                <div class="card mt-5 shadow-sm border-0">
+
+                    <div class="card-body p-4">
+
+                        <h2 class="text-center fw-bold mb-4">
+                            Customer Reviews
+                        </h2>
+
+                        <div class="review-overview">
+
+                            <!-- Average Rating -->
+                            <div class="review-average">
+
+                                <div class="avg-score">
+                                    @(((double)ViewBag.AverageRating).ToString("0.0"))
+                                </div>
+
+                                <div class="avg-stars">
+
+                                    @{
+                                        double avg = ViewBag.AverageRating ?? 0;
+                                    }
+
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= Math.Round(avg))
+                                        {
+                                            <i class="fas fa-star"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="far fa-star"></i>
+                                        }
+                                    }
+
+                                </div>
+
+                                <div class="review-count">
+                                    Based on <strong>@ViewBag.TotalReviews</strong> reviews
+                                </div>
+
+                            </div>
+
+                            <!-- Rating Breakdown -->
+                            <div class="review-breakdown">
+
+                                @{
+                                    int total = ViewBag.TotalReviews > 0
+                                    ? ViewBag.TotalReviews
+                                    : 1;
+                                }
+
+                                @for (int i = 5; i >= 1; i--)
+                                {
+                                    int count = i switch
+                                    {
+                                        5 => ViewBag.FiveStar,
+                                        4 => ViewBag.FourStar,
+                                        3 => ViewBag.ThreeStar,
+                                        2 => ViewBag.TwoStar,
+                                        _ => ViewBag.OneStar
+                                    };
+
+                                    double percent =
+                                    (double)count * 100 / total;
+
+                                    <div class="rating-row">
+
+                                        <span class="rating-label">
+                                            @i ★
+                                        </span>
+
+                                        <div class="rating-bar">
+
+                                            <div class="rating-fill"
+                                                 style="width:@percent%">
+                                            </div>
+
+                                        </div>
+
+                                        <span class="rating-number">
+                                            @count
+                                        </span>
+
+                                    </div>
+                                }
+
+                            </div>
+
+                            <!-- Write Review Button -->
+                            <div class="review-action">
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <button class="btn btn-review"
+                                            onclick="document.getElementById('reviewForm').scrollIntoView({behavior:'smooth'})">
+                                        Write a Review
+                                    </button>
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- REVIEW LIST -->
+                <div class="card mt-4 shadow-sm border-0">
+
+                    <div class="card-header bg-white fw-bold">
+                        Customer Feedback
+                    </div>
+
+                    <div class="card-body">
+
+                        @if (Model.Reviews.Any())
+                        {
+                            @foreach (var review in Model.Reviews.OrderByDescending(x => x.CreatedAt))
+                            {
+                                <div class="review-item">
+
+                                    <div class="review-user">
+                                        <i class="fas fa-user-circle"></i>
+                                        @review.User.FullName
+                                    </div>
+
+                                    <div class="review-stars">
+
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= review.Rating)
+                                            {
+                                                <i class="fas fa-star"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-star"></i>
+                                            }
+                                        }
+
+                                    </div>
+
+                                    <div class="review-comment">
+                                        @review.Comment
+                                    </div>
+
+                                    <div class="review-date">
+                                        @review.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                                    </div>
+
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="text-center text-muted py-4">
+                                Chưa có đánh giá nào.
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div id="reviewForm"
+                         class="card mt-4 shadow-sm border-0">
+
+                        <div class="card-header bg-white fw-bold">
+                            Write Review
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="rating-stars mb-3">
+
+                                <i class="far fa-star star" data-value="1"></i>
+                                <i class="far fa-star star" data-value="2"></i>
+                                <i class="far fa-star star" data-value="3"></i>
+                                <i class="far fa-star star" data-value="4"></i>
+                                <i class="far fa-star star" data-value="5"></i>
+
+                            </div>
+
+                            <input type="hidden"
+                                   id="rating"
+                                   value="5" />
+
+                            <textarea id="comment"
+                                      class="form-control"
+                                      rows="5"
+                                      placeholder="Write your review here..."></textarea>
+
+                            <button class="btn btn-success mt-3"
+                                    onclick="submitReview()">
+                                Submit Review
+                            </button>
+
+                        </div>
+
+                    </div>
+                }
+            }
+
         </div>
     </div>
 }
@@ -377,11 +644,190 @@ else
             }
         });
     });
+        function submitReview() {
+
+            $.ajax({
+
+                url: '/Products/AddReview',
+
+                type: 'POST',
+
+                contentType: 'application/json',
+
+                data: JSON.stringify({
+
+                    productId: @Model.Id,
+
+                    rating: $('#rating').val(),
+
+                    comment: $('#comment').val()
+
+                }),
+
+                success: function (response) {
+
+                    alert('Đánh giá thành công');
+
+                    location.reload();
+
+                },
+
+                error: function (xhr) {
+
+                    console.log(xhr);
+
+                    alert('Có lỗi xảy ra');
+
+                }
+
+            });
+
+        }
+        $(document).ready(function () {
+
+            $('.star').click(function () {
+
+                let rating = $(this).data('value');
+
+                $('#rating').val(rating);
+
+                $('.star').removeClass('active');
+
+                $('.star').each(function () {
+
+                    if ($(this).data('value') <= rating) {
+
+                        $(this).addClass('active');
+
+                    }
+
+                });
+
+            });
+
+            $('.star[data-value="5"]').click();
+
+        });
     </script>
 }
 
 @section Styles {
     <style>
+        .review-overview {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .review-average {
+            min-width: 220px;
+            text-align: center;
+        }
+
+        .avg-score {
+            font-size: 48px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .avg-stars {
+            color: #f7b500;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .review-count {
+            color: #666;
+        }
+
+        .review-breakdown {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .rating-label {
+            width: 40px;
+        }
+
+        .rating-number {
+            width: 30px;
+            text-align: right;
+        }
+
+        .rating-bar {
+            flex: 1;
+            height: 12px;
+            background: #ececec;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .rating-fill {
+            height: 100%;
+            background: #0d9488;
+        }
+
+        .btn-review {
+            background: #0d9488;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+        }
+
+            .btn-review:hover {
+                color: white;
+                opacity: .9;
+            }
+
+        .review-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .review-user {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .review-stars {
+            color: #f7b500;
+            margin-bottom: 8px;
+        }
+
+        .review-date {
+            color: #999;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .rating-stars {
+            font-size: 36px;
+        }
+
+            .rating-stars .star {
+                color: #ddd;
+                cursor: pointer;
+                transition: .2s;
+            }
+
+                .rating-stars .star.active {
+                    color: #f7b500;
+                }
+
+                .rating-stars .star:hover {
+                    transform: scale(1.15);
+                }
+
         .product-detail-container {
             background: #ffffff;
             min-height: 100vh;
@@ -873,5 +1319,22 @@ else
                 font-size: 14px;
             }
         }
+        .rating-stars {
+            font-size: 32px;
+            cursor: pointer;
+        }
+
+            .rating-stars .star {
+                color: #ddd;
+                transition: .2s;
+            }
+
+                .rating-stars .star.active {
+                    color: #ffc107;
+                }
+
+                .rating-stars .star:hover {
+                    transform: scale(1.1);
+                }
     </style>
 }

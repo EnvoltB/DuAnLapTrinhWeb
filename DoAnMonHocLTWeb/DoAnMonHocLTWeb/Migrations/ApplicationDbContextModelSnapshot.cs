@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DoAnMonHocLTWeb.Migrations
+namespace GearDTK.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -451,7 +451,7 @@ namespace DoAnMonHocLTWeb.Migrations
                             CategoryId = 1,
                             Color = "Frosted White",
                             ComparePrice = 3990000m,
-                            CreatedAt = new DateTime(2026, 6, 11, 2, 53, 59, 900, DateTimeKind.Utc).AddTicks(3977),
+                            CreatedAt = new DateTime(2026, 6, 18, 16, 52, 1, 729, DateTimeKind.Utc).AddTicks(5774),
                             Description = "The ATK Blazing Sky ZERO redefines lightweight gaming performance:\r\n                <ul>\r\n                    <li>Ultra-light at just 39g with solid holeless frosted translucent shell</li>\r\n                    <li>Dual 8K wireless connectivity</li>\r\n                    <li>Flagship PAW3950 Ultra sensor for high-precision tracking</li>\r\n                    <li>Nordic 54 series chip for ultra-low latency</li>\r\n                    <li>Nano coating for stable, comfortable grip</li>\r\n                    <li>Built for competitive gaming</li>\r\n                </ul>",
                             GalleryImages = "/images/products/atk-zero-1.png,/images/products/atk-zero-2.png",
                             IsBestSeller = true,
@@ -473,7 +473,7 @@ namespace DoAnMonHocLTWeb.Migrations
                             CategoryId = 2,
                             Color = "Black",
                             ComparePrice = 5890000m,
-                            CreatedAt = new DateTime(2026, 6, 11, 2, 53, 59, 900, DateTimeKind.Utc).AddTicks(4006),
+                            CreatedAt = new DateTime(2026, 6, 18, 16, 52, 1, 729, DateTimeKind.Utc).AddTicks(5798),
                             Description = "The ATK RS6 Hall Effect Keyboard delivers unparalleled gaming performance:\r\n                <ul>\r\n                    <li>Hall Effect magnetic switches for ultra-fast response</li>\r\n                    <li>Co-developed with VALORANT pro player Aspas</li>\r\n                    <li>Adjustable actuation points (0.1mm - 4.0mm)</li>\r\n                    <li>Rapid Trigger technology</li>\r\n                    <li>RGB backlighting with customizable effects</li>\r\n                    <li>PBT double-shot keycaps</li>\r\n                    <li>Hot-swappable PCB</li>\r\n                </ul>",
                             GalleryImages = "/images/products/atk-rs6-1.png,/images/products/atk-rs6-2.png",
                             IsBestSeller = true,
@@ -648,6 +648,40 @@ namespace DoAnMonHocLTWeb.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ProductReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductReviews");
+                });
+
             modelBuilder.Entity("GearDTK.Models.CartItem", b =>
                 {
                     b.HasOne("GearDTK.Models.Cart", "Cart")
@@ -759,6 +793,25 @@ namespace DoAnMonHocLTWeb.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProductReview", b =>
+                {
+                    b.HasOne("GearDTK.Models.Product", "Product")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GearDTK.Data.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("GearDTK.Models.Cart", b =>
                 {
                     b.Navigation("CartItems");
@@ -772,6 +825,11 @@ namespace DoAnMonHocLTWeb.Migrations
             modelBuilder.Entity("GearDTK.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("GearDTK.Models.Product", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }
