@@ -103,4 +103,6 @@ public class Product
 
     [Display(Name = "Thư viện ảnh (Base64)")]
     public string? GalleryImagesBase64 { get; set; }
+    public virtual ICollection<ProductReview> Reviews { get; set; }
+        = new List<ProductReview>();
 }

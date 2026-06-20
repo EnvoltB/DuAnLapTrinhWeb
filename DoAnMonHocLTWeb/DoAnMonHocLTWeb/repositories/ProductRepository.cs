@@ -44,7 +44,14 @@ public class ProductRepository : IProductRepository
     {
         return await _dbSet.Include(p => p.Category).FirstOrDefaultAsync(p => p.Slug == slug);
     }
-
+    public async Task<Product?> GetBySlugWithReviewsAsync(string slug)
+    {
+        return await _context.Products
+            .Include(p => p.Category)
+            .Include(p => p.Reviews)
+            .ThenInclude(r => r.User)
+            .FirstOrDefaultAsync(p => p.Slug == slug);
+    }
     public async Task<IEnumerable<Product>> GetByCategoryAsync(int categoryId)
     {
         return await _dbSet.Where(p => p.CategoryId == categoryId).ToListAsync();

@@ -92,7 +92,7 @@ public class AccountController : Controller
                 UserName = model.Email,
                 Email = model.Email,
                 EmailConfirmed = true,
-                FullName = model.FullName,
+                FullName = model.FullName,  
                 Phone = model.Phone,
                 Address = model.Address,
                 IsActive = true,
@@ -103,7 +103,7 @@ public class AccountController : Controller
 
             if (result.Succeeded)
             {
-                string roleToAssign = "Customer";
+                string roleToAssign = model.SelectedRole;
 
                 if (!await _roleManager.RoleExistsAsync(roleToAssign))
                 {

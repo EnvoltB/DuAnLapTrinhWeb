@@ -1,5 +1,8 @@
-﻿using GearDTK.Models;
+﻿using GearDTK.Data;
+using GearDTK.Models;
 using GearDTK.Repositories;  // ← THÊM DÒNG NÀY
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,12 +12,20 @@ public class ProductsController : Controller
 {
     private readonly IProductRepository _productRepository;
     private readonly ICategoryRepository _categoryRepository;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly ApplicationDbContext _context;
 
     // Inject Repository thay vì DbContext
-    public ProductsController(IProductRepository productRepository, ICategoryRepository categoryRepository)
+    public ProductsController(
+        IProductRepository productRepository,
+        ICategoryRepository categoryRepository,
+        UserManager<ApplicationUser> userManager,
+        ApplicationDbContext context)
     {
         _productRepository = productRepository;
         _categoryRepository = categoryRepository;
+        _userManager = userManager;
+        _context = context;
     }
 
     // GET: Products/Index
@@ -36,7 +47,6 @@ public class ProductsController : Controller
         return View(paginatedProducts);
     }
 
-    // GET: Products/Details/{slug}
     [HttpGet("/Products/Details/{slug}")]
     public async Task<IActionResult> Details(string slug)
     {
@@ -45,16 +55,33 @@ public class ProductsController : Controller
             return NotFound();
         }
 
-        var product = await _productRepository.GetBySlugWithCategoryAsync(slug);
+        var product = await _productRepository
+            .GetBySlugWithReviewsAsync(slug);
 
         if (product == null)
         {
             return NotFound();
         }
 
-        var relatedProducts = await _productRepository.GetRelatedProductsAsync(product.Id, product.CategoryId);
+        var reviews = product.Reviews.ToList();
 
-        ViewBag.RelatedProducts = relatedProducts;
+        ViewBag.TotalReviews = reviews.Count;
+
+        ViewBag.AverageRating =
+            reviews.Any()
+                ? reviews.Average(x => x.Rating)
+                : 0;
+
+        ViewBag.FiveStar = reviews.Count(x => x.Rating == 5);
+        ViewBag.FourStar = reviews.Count(x => x.Rating == 4);
+        ViewBag.ThreeStar = reviews.Count(x => x.Rating == 3);
+        ViewBag.TwoStar = reviews.Count(x => x.Rating == 2);
+        ViewBag.OneStar = reviews.Count(x => x.Rating == 1);
+
+        ViewBag.RelatedProducts =
+            await _productRepository.GetRelatedProductsAsync(
+                product.Id,
+                product.CategoryId);
 
         return View(product);
     }
@@ -111,6 +138,53 @@ public class ProductsController : Controller
         ViewBag.TotalCount = totalCount;
 
         return View(paginatedProducts);
+    }
+    [Authorize]
+    [HttpPost]
+    public async Task<IActionResult> AddReview([FromBody] ReviewVM model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var userId = _userManager.GetUserId(User);
+
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Unauthorized();
+        }
+
+        var existed = await _context.ProductReviews
+            .FirstOrDefaultAsync(x =>
+                x.ProductId == model.ProductId &&
+                x.UserId == userId);
+
+        if (existed != null)
+        {
+            existed.Rating = model.Rating;
+            existed.Comment = model.Comment;
+            existed.CreatedAt = DateTime.Now;
+        }
+        else
+        {
+            _context.ProductReviews.Add(new ProductReview
+            {
+                ProductId = model.ProductId,
+                UserId = userId,
+                Rating = model.Rating,
+                Comment = model.Comment,
+                CreatedAt = DateTime.Now
+            });
+        }
+
+        await _context.SaveChangesAsync();
+
+        return Json(new
+        {
+            success = true,
+            message = "Đánh giá thành công"
+        });
     }
 }
 

@@ -20,6 +20,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<WishlistItem> WishlistItems { get; set; }
     public DbSet<Cart> Carts { get; set; }
     public DbSet<CartItem> CartItems { get; set; }
+    public DbSet<ProductReview> ProductReviews { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -39,6 +40,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .WithMany(c => c.Products)
             .HasForeignKey(p => p.CategoryId)
             .OnDelete(DeleteBehavior.Restrict);
+        // Cấu hình quan hệ giữa ProductReview và Product(nhiều đánh giá cho một sản phẩm)
+        builder.Entity<ProductReview>()
+     .HasOne(r => r.Product)
+     .WithMany(p => p.Reviews)
+     .HasForeignKey(r => r.ProductId);
+
+        builder.Entity<ProductReview>()
+            .HasOne(r => r.User)
+            .WithMany()
+            .HasForeignKey(r => r.UserId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         // ========== SEED CATEGORIES ==========
         builder.Entity<Category>().HasData(

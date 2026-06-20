@@ -4731,23 +4731,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kiet\\.nuget\\packages\\": {},
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\GearDTK.csproj",
+      "projectUniqueName": "D:\\DoAnWeb\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\GearDTK.csproj",
       "projectName": "GearDTK",
-      "projectPath": "D:\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\GearDTK.csproj",
-      "packagesPath": "C:\\Users\\kiet\\.nuget\\packages\\",
-      "outputPath": "D:\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\obj\\",
+      "projectPath": "D:\\DoAnWeb\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\GearDTK.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "D:\\DoAnWeb\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\kiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
