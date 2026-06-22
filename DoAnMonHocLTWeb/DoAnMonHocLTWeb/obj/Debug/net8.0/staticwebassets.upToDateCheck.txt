@@ -1,10 +1,14 @@
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\images\banners\3b569b62-e43c-483a-9dd6-83ff4a66ea92.webp
+wwwroot\images\banners\44b5b732-1292-4e87-830c-2a66c78ab425.webp
 wwwroot\images\banners\ATK_Dragonfly_A9_Description_Desktop-01.webp
+wwwroot\images\banners\ATK_F1-V2_-PC__01.webp
 wwwroot\images\banners\OIP.webp
 wwwroot\images\banners\RS6-_-PC__02.webp
 wwwroot\images\banners\ZERO-_PC__01.webp
 wwwroot\images\products\05810894-9d5e-45d5-8a3d-56b24a2f67e4.webp
+wwwroot\images\products\0a5919df-2114-4262-a9bf-ecd5bfa875ad.png
 wwwroot\images\products\0b5eae90-3b1b-4ee5-ab3a-d0a574b73fb8.webp
 wwwroot\images\products\15983d8e-fc80-4a71-a499-b840b7b55f45.webp
 wwwroot\images\products\17d4445e-a528-4232-b5f7-b51c0aeb7cf8.webp
@@ -119,6 +123,7 @@ wwwroot\images\products\gallery\9823156c-a26e-4487-82ce-84055576eac9.webp
 wwwroot\images\products\gallery\9b8db53a-8249-4091-9b3f-4442e247d181.webp
 wwwroot\images\products\gallery\a9f8eb64-10f2-4c13-bdef-1c5e9031d2b9.webp
 wwwroot\images\products\gallery\aa692d87-f967-4a59-8cae-7514c7e64109.webp
+wwwroot\images\products\gallery\b39a0d35-b525-48ad-beb5-b86194e38dfa.png
 wwwroot\images\products\gallery\b450bf1b-957d-4950-8866-9a36f371f8c4.webp
 wwwroot\images\products\gallery\bb389418-43fd-4a26-8007-4a807c8f68be.webp
 wwwroot\images\products\gallery\bc562271-a700-463f-a2d8-de8925fa7c3b.webp

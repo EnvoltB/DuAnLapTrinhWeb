@@ -1,0 +1,240 @@
+﻿@model GearDTK.Models.Banners
+@{
+    ViewData["Title"] = "Sửa banner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h2">Sửa banner</h1>
+        <a href="/Admin/Banner" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay lại
+        </a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle"></i> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="ImageUrl" />
+                <input type="hidden" asp-for="CreatedAt" />
+
+                <!-- Hình ảnh hiện tại -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">
+                        <i class="fas fa-image text-primary me-1"></i> Hình ảnh hiện tại
+                    </label>
+                    <div class="current-image-wrapper">
+                        <img src="@Model.ImageUrl" alt="Banner" class="current-image"
+                             onerror="this.src='https://placehold.co/300x150/f5f5f5/999?text=No+Image'">
+                    </div>
+                </div>
+
+                <!-- Chọn ảnh mới -->
+                <div class="mb-3">
+                    <label asp-for="ImageFile" class="form-label fw-bold">
+                        <i class="fas fa-upload text-primary me-1"></i> Chọn ảnh mới
+                    </label>
+                    <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" id="imageInput" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    <small class="text-muted d-block mt-1">Để trống nếu không muốn thay đổi ảnh</small>
+
+                    <!-- Preview ảnh mới -->
+                    <div class="mt-2" id="imagePreviewContainer" style="display: none;">
+                        <img id="imagePreview" src="#" alt="Preview" style="max-height: 150px; border-radius: 8px;" class="img-thumbnail" />
+                        <button type="button" class="btn btn-sm btn-danger mt-1" id="removeImage">
+                            <i class="fas fa-times"></i> Hủy ảnh mới
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Link URL -->
+                <div class="mb-3">
+                    <label asp-for="LinkUrl" class="form-label fw-bold">
+                        <i class="fas fa-link text-primary me-1"></i> Link URL <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                        <input asp-for="LinkUrl" class="form-control" placeholder="VD: /products/details/ten-san-pham" />
+                    </div>
+                    <span asp-validation-for="LinkUrl" class="text-danger"></span>
+                    <small class="text-muted d-block mt-1">
+                        <i class="fas fa-info-circle"></i> Nhập link đến sản phẩm hoặc trang bạn muốn chuyển hướng
+                    </small>
+                </div>
+
+                <!-- Thứ tự hiển thị -->
+                <div class="mb-3">
+                    <label asp-for="DisplayOrder" class="form-label fw-bold">
+                        <i class="fas fa-sort-numeric-down text-primary me-1"></i> Thứ tự hiển thị
+                    </label>
+                    <input asp-for="DisplayOrder" class="form-control" type="number" min="0" />
+                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                    <small class="text-muted">Số càng nhỏ hiển thị càng đầu</small>
+                </div>
+
+                <!-- Hiển thị trên slider chính -->
+                <div class="mb-3 form-check">
+                    <input asp-for="IsMainSlider" class="form-check-input" id="IsMainSlider" />
+                    <label asp-for="IsMainSlider" class="form-check-label fw-bold" for="IsMainSlider">
+                        <i class="fas fa-sliders-h text-success me-1"></i> Hiển thị trên slider chính
+                    </label>
+                </div>
+
+                <!-- Trạng thái -->
+                <div class="mb-3 form-check">
+                    <input asp-for="IsActive" class="form-check-input" id="IsActive" />
+                    <label asp-for="IsActive" class="form-check-label fw-bold" for="IsActive">
+                        <i class="fas fa-eye text-success me-1"></i> Hiển thị
+                    </label>
+                </div>
+
+                <hr />
+
+                <!-- Nút bấm -->
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Cập nhật
+                    </button>
+                    <a href="/Admin/Banner" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Hủy
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Preview ảnh khi chọn file
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const previewContainer = document.getElementById('imagePreviewContainer');
+            const preview = document.getElementById('imagePreview');
+
+            if (file) {
+                // Kiểm tra kích thước file (5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Kích thước ảnh không được vượt quá 5MB!');
+                    this.value = '';
+                    previewContainer.style.display = 'none';
+                    return;
+                }
+
+                // Kiểm tra định dạng file
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Chỉ chấp nhận file JPG, PNG, WEBP, GIF!');
+                    this.value = '';
+                    previewContainer.style.display = 'none';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        });
+
+        // Hủy ảnh mới đã chọn
+        document.getElementById('removeImage').addEventListener('click', function() {
+            document.getElementById('imageInput').value = '';
+            document.getElementById('imagePreviewContainer').style.display = 'none';
+        });
+
+        // Xác nhận khi bấm Cập nhật
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const linkUrl = document.querySelector('input[name="LinkUrl"]').value.trim();
+            if (!linkUrl) {
+                e.preventDefault();
+                alert('Vui lòng nhập Link URL!');
+                document.querySelector('input[name="LinkUrl"]').focus();
+                return false;
+            }
+        });
+    </script>
+}
+
+@section Styles {
+    <style>
+        .card {
+            border: none;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            border-radius: 12px;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102,126,234,0.25);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+
+            .btn-primary:hover {
+                opacity: 0.9;
+                transform: translateY(-1px);
+            }
+
+        .form-check-input:checked {
+            background-color: #667eea;
+            border-color: #667eea;
+        }
+
+        .current-image-wrapper {
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .current-image {
+            max-height: 150px;
+            border-radius: 8px;
+        }
+
+        #imagePreviewContainer {
+            position: relative;
+            display: inline-block;
+        }
+
+        #removeImage {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        .input-group-text {
+            background: #f8f9fa;
+        }
+    </style>
+}

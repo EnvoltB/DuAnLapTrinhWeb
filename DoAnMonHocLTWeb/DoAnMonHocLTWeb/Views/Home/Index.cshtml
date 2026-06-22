@@ -1,4 +1,5 @@
-﻿@model GearDTK.ViewModels.HomeViewModel
+﻿@using GearDTK.Models
+@model GearDTK.ViewModels.HomeViewModel
 @{
     ViewData["Title"] = "GearDTK - Premium Gaming Gear";
 }
@@ -6,33 +7,57 @@
 <!-- Hero Section - Full Screen -->
 <section class="hero-fullscreen">
     <div class="hero-slider">
-        <!-- Slide 1 -->
-        <a href="/products/details/atk-rs6-hall-effect" class="hero-slide-link">
-            <div class="hero-slide active" style="background-image: url('/images/banners/RS6-_-PC__02.webp');"></div>
-        </a>
-
-        <!-- Slide 2 -->
-        <a href="/products/details/atk-blazing-sky-zero" class="hero-slide-link">
-            <div class="hero-slide" style="background-image: url('/images/banners/ZERO-_PC__01.webp');"></div>
-        </a>
-
-        <!-- Slide 3 - Click Challenge -->
-        <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('/images/banners/ATK_Dragonfly_A9_Description_Desktop-01.webp');">
-            
-        </div>
-        
+        @if (Model.Banner.Any())
+        {
+            var firstBanner = Model.Banner.First();
+            @foreach (var banner in Model.Banner)
+            {
+                var isActive = banner == firstBanner;
+                <div class="hero-slide @(isActive ? "active" : "")"
+                     style="background-image: url('@banner.ImageUrl'); background-size: cover; background-position: center;">
+                    @if (!string.IsNullOrEmpty(banner.LinkUrl))
+                    {
+                        <a href="@banner.LinkUrl" class="hero-slide-link"></a>
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <!-- Fallback nếu không có banner -->
+            <a href="/products/details/atk-rs6-hall-effect" class="hero-slide-link">
+                <div class="hero-slide active" style="background-image: url('/images/banners/RS6-_-PC__02.webp');"></div>
+            </a>
+            <a href="/products/details/atk-blazing-sky-zero" class="hero-slide-link">
+                <div class="hero-slide" style="background-image: url('/images/banners/ZERO-_PC__01.webp');"></div>
+            </a>
+            <div class="hero-slide" style="background-image: url('/images/banners/ATK_Dragonfly_A9_Description_Desktop-01.webp');"></div>
+        }
     </div>
+
+
+    <!-- Slider Dots -->
+    <div class="slider-dots">
+        @if (Model.Banner.Any())
+        {
+            @for (int i = 0; i < Model.Banner.Count; i++)
+            {
+                <span class="dot @(i == 0 ? "active" : "")"></span>
+            }
+        }
+        else
+        {
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        }
+    </div>
+</section>
 
     <!-- Slider Controls -->
     <button class="slider-prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
     <button class="slider-next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
 
-    <!-- Slider Dots -->
-    <div class="slider-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-    </div>
 </section>
 
 <!-- Shop by Category Section -->
@@ -119,6 +144,17 @@
             z-index: 1;
         }
 
+    .hero-slide-link {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
     .hero-content {
         position: absolute;
         top: 50%;
@@ -133,6 +169,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
+        max-width: 800px;
     }
 
     .hero-content-right {
@@ -183,76 +220,6 @@
             color: white;
             transform: translateX(5px);
         }
-
-    .hero-btn-outline {
-        display: inline-block;
-        border: 2px solid white;
-        color: white;
-        padding: 12px 30px;
-        border-radius: 40px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s;
-    }
-
-        .hero-btn-outline:hover {
-            background: white;
-            color: #1a1a1a;
-        }
-
-    .hero-partner {
-        margin-top: 2rem;
-        font-size: 0.9rem;
-        opacity: 0.8;
-    }
-
-        .hero-partner span:first-child {
-            font-weight: 700;
-        }
-
-    .hero-tag {
-        font-size: 0.7rem;
-        letter-spacing: 2px;
-        margin-bottom: 0.5rem;
-    }
-
-    .hero-sale {
-        background: #ff4444;
-        display: inline-block;
-        padding: 6px 16px;
-        border-radius: 30px;
-        font-size: 0.8rem;
-        margin: 1rem 0;
-    }
-
-    .hero-hashtag {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-top: 1rem;
-        color: #667eea;
-    }
-
-    .hero-hashtag-lg {
-        font-size: 2rem;
-        font-weight: 800;
-        margin: 1rem 0;
-        color: #667eea;
-    }
-
-    .hero-brand {
-        font-size: 3rem;
-        font-weight: 900;
-        margin: 0.5rem 0;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .hero-event {
-        font-size: 0.9rem;
-        margin: 1rem 0;
-        line-height: 1.4;
-    }
 
     /* Slider Controls */
     .slider-prev, .slider-next {

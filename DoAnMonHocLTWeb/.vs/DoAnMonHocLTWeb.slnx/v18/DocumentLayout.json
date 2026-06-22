@@ -3,12 +3,64 @@
   "WorkspaceRootPath": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\areas\\admin\\controller\\bannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\areas\\admin\\controller\\bannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\models\\banners.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\models\\banners.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\areas\\admin\\views\\banner\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\areas\\admin\\views\\banner\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\areas\\admin\\views\\banner\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\areas\\admin\\views\\banner\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\areas\\admin\\views\\banner\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\areas\\admin\\views\\banner\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\areas\\admin\\controller\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\areas\\admin\\controller\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\repositories\\bannerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\repositories\\bannerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\areas\\admin\\views\\banner\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\areas\\admin\\views\\banner\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\repositories\\ibannerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\repositories\\ibannerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\models\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\models\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\areas\\admin\\controller\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -28,6 +80,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\migrations\\20260620163311_addbannertable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\migrations\\20260620163311_addbannertable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,11 +93,204 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAlwEMAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-20T16:57:31.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "HomeViewModel.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\HomeViewModel.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Models\\HomeViewModel.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\HomeViewModel.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Models\\HomeViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T16:25:27.445Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Models\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\ApplicationDbContext.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Models\\ApplicationDbContext.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAwwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T16:21:31.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BannerController.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\BannerController.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\BannerController.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\BannerController.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\BannerController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAwwCkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T16:21:50.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Index.cshtml",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Index.cshtml",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Index.cshtml",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-20T16:22:13.252Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "create.cshtml",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\create.cshtml",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\create.cshtml",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\create.cshtml",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-20T16:22:34.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Delete.cshtml",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Delete.cshtml",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Delete.cshtml",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-20T16:23:21.132Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Edit.cshtml",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Edit.cshtml",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Edit.cshtml",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-20T16:22:54.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Banners.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\Banners.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Models\\Banners.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\Banners.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Models\\Banners.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T16:21:16.755Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BannerRepository.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\repositories\\BannerRepository.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\repositories\\BannerRepository.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\repositories\\BannerRepository.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\repositories\\BannerRepository.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAcwCwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T16:30:39.39Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IBannerRepository.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\repositories\\IBannerRepository.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\repositories\\IBannerRepository.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\repositories\\IBannerRepository.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\repositories\\IBannerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T16:30:12.945Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\DashboardController.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\DashboardController.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\DashboardController.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\DashboardController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAA8wCQAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T15:52:00.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "index.cshtml",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAAAM0AAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-20T15:57:14.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "20260620163311_AddBannerTable.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Migrations\\20260620163311_AddBannerTable.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Migrations\\20260620163311_AddBannerTable.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Migrations\\20260620163311_AddBannerTable.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Migrations\\20260620163311_AddBannerTable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T16:33:11.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAACIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T16:23:48.223Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Program.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Program.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Program.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T16:32:05.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "index.cshtml",
               "DocumentMoniker": "D:\\BACKUPWEB\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
               "RelativeDocumentMoniker": "..\\..\\..\\BACKUPWEB\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
@@ -49,38 +298,11 @@
               "RelativeToolTip": "..\\..\\..\\BACKUPWEB\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-20T15:57:37.717Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T15:57:37.717Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "index.cshtml",
-              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
-              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
-              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
-              "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAowFwAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-20T15:57:14.575Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DashboardController.cs",
-              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\DashboardController.cs",
-              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\DashboardController.cs",
-              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\DashboardController.cs",
-              "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\DashboardController.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAcwE0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T15:52:00.26Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 15,
               "Title": "OrderController.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\OrderController.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\OrderController.cs",
@@ -88,12 +310,11 @@
               "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\OrderController.cs",
               "ViewState": "AgIAAGsAAAAAAAAAAAAwwFEAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T15:51:10.495Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T15:51:10.495Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 17,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Order\\Index.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Order\\Index.cshtml",
@@ -101,12 +322,11 @@
               "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Order\\Index.cshtml",
               "ViewState": "AgIAAEsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-20T15:51:05.55Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T15:51:05.55Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 18,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Order\\Details.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Order\\Details.cshtml",
@@ -114,12 +334,11 @@
               "RelativeToolTip": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Order\\Details.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-20T15:51:05.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T15:51:05.013Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 19,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\appsettings.json",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\appsettings.json",
@@ -127,8 +346,7 @@
               "RelativeToolTip": "DoAnMonHocLTWeb\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-06-20T15:41:00.975Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-20T15:41:00.975Z"
             }
           ]
         }

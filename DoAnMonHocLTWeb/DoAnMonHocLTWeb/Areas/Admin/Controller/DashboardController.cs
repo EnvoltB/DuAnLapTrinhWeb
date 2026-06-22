@@ -14,18 +14,18 @@ public class DashboardController : Controller
     private readonly IProductRepository _productRepository;
     private readonly ICategoryRepository _categoryRepository;
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly ApplicationDbContext _context;  // ← THÊM DÒNG NÀY
+    private readonly ApplicationDbContext _context;
 
     public DashboardController(
         IProductRepository productRepository,
         ICategoryRepository categoryRepository,
         UserManager<ApplicationUser> userManager,
-        ApplicationDbContext context)  // ← THÊM VÀO CONSTRUCTOR
+        ApplicationDbContext context)
     {
         _productRepository = productRepository;
         _categoryRepository = categoryRepository;
         _userManager = userManager;
-        _context = context;  // ← THÊM DÒNG NÀY
+        _context = context;
     }
 
     public async Task<IActionResult> Index()
@@ -34,6 +34,7 @@ public class DashboardController : Controller
         var productCount = await _productRepository.CountAsync();
         var categoryCount = await _categoryRepository.CountAsync();
         var userCount = _userManager.Users.Count();
+        var BannerCount = await _context.Banners.CountAsync(b => b.IsActive);  // ← THÊM DÒNG NÀY
 
         // ========== THỐNG KÊ ĐƠN HÀNG ==========
         var totalOrders = await _context.Orders.CountAsync();
@@ -56,6 +57,7 @@ public class DashboardController : Controller
         ViewBag.ProductCount = productCount;
         ViewBag.CategoryCount = categoryCount;
         ViewBag.UserCount = userCount;
+        ViewBag.BannerCount = BannerCount;  // ← THÊM DÒNG NÀY
 
         // Đơn hàng
         ViewBag.TotalOrders = totalOrders;

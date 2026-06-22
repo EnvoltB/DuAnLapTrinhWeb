@@ -534,10 +534,19 @@ D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8
 D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.development.json
 D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\swae.build.ex.cache
-D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.csproj.Up2Date
 D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.dll
 D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\refint\GearDTK.dll
 D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.pdb
 D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\GearDTK.genruntimeconfig.cache
 D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\ref\GearDTK.dll
+C:\Users\kiet\Documents\Codex\2026-06-21\files-mentioned-by-the-user-areas\work\build-check\appsettings.Development.json
+C:\Users\kiet\Documents\Codex\2026-06-21\files-mentioned-by-the-user-areas\work\build-check\appsettings.json
+C:\Users\kiet\Documents\Codex\2026-06-21\files-mentioned-by-the-user-areas\work\build-check\GearDTK.staticwebassets.runtime.json
+C:\Users\kiet\Documents\Codex\2026-06-21\files-mentioned-by-the-user-areas\work\build-check\GearDTK.staticwebassets.endpoints.json
+C:\Users\kiet\Documents\Codex\2026-06-21\files-mentioned-by-the-user-areas\work\build-check\GearDTK.exe
+C:\Users\kiet\Documents\Codex\2026-06-21\files-mentioned-by-the-user-areas\work\build-check\GearDTK.deps.json
+C:\Users\kiet\Documents\Codex\2026-06-21\files-mentioned-by-the-user-areas\work\build-check\GearDTK.runtimeconfig.json
+C:\Users\kiet\Documents\Codex\2026-06-21\files-mentioned-by-the-user-areas\work\build-check\GearDTK.dll
+C:\Users\kiet\Documents\Codex\2026-06-21\files-mentioned-by-the-user-areas\work\build-check\GearDTK.pdb
+D:\New folder (2)\DuAnLapTrinhWeb\DoAnMonHocLTWeb\DoAnMonHocLTWeb\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
