@@ -1,0 +1,573 @@
+﻿@model GearDTK.ViewModels.RevenueViewModel
+@{
+    ViewData["Title"] = "Quản lý doanh thu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h2">Quản lý doanh thu</h1>
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary" onclick="exportData()">
+                <i class="fas fa-file-excel"></i> Xuất Excel
+            </button>
+        </div>
+    </div>
+
+    <!-- Bộ lọc -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form asp-action="Index" method="get" class="row g-3 align-items-end">
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Loại thống kê</label>
+                    <select name="filterType" class="form-select" id="filterType">
+                        @if (Model.FilterType == "day")
+                        {
+                            <option value="day" selected>Theo ngày</option>
+                        }
+                        else
+                        {
+                            <option value="day">Theo ngày</option>
+                        }
+                        @if (Model.FilterType == "month")
+                        {
+                            <option value="month" selected>Theo tháng</option>
+                        }
+                        else
+                        {
+                            <option value="month">Theo tháng</option>
+                        }
+                        @if (Model.FilterType == "year")
+                        {
+                            <option value="year" selected>Theo năm</option>
+                        }
+                        else
+                        {
+                            <option value="year">Theo năm</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3" id="dayFilter">
+                    <label class="form-label fw-bold">Ngày</label>
+                    <input type="date" name="selectedDate" class="form-control" value="@Model.SelectedDate?.ToString("yyyy-MM-dd")" />
+                </div>
+
+                <div class="col-md-3" id="monthFilter" style="display:none;">
+                    <label class="form-label fw-bold">Tháng</label>
+                    <select name="selectedMonth" class="form-select">
+                        @for (int i = 1; i <= 12; i++)
+                        {
+                            if (Model.SelectedMonth == i)
+                            {
+                                <option value="@i" selected>Tháng @i</option>
+                            }
+                            else
+                            {
+                                <option value="@i">Tháng @i</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3" id="yearFilter" style="display:none;">
+                    <label class="form-label fw-bold">Năm</label>
+                    <select name="selectedYear" class="form-select">
+                        @for (int i = DateTime.Today.Year; i >= DateTime.Today.Year - 5; i--)
+                        {
+                            if (Model.SelectedYear == i)
+                            {
+                                <option value="@i" selected>@i</option>
+                            }
+                            else
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-filter"></i> Lọc dữ liệu
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Thống kê tổng quan -->
+    <div class="row g-4 mb-4">
+        <div class="col-xl-3 col-lg-6">
+            <div class="card bg-primary text-white h-100">
+                <div class="card-body">
+                    <h6 class="card-title">Tổng doanh thu</h6>
+                    <h2 class="display-6 mb-0">@Model.TotalRevenue.ToString("N0")₫</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card bg-success text-white h-100">
+                <div class="card-body">
+                    <h6 class="card-title">Tổng đơn hàng</h6>
+                    <h2 class="display-6 mb-0">@Model.TotalOrders</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card bg-warning text-white h-100">
+                <div class="card-body">
+                    <h6 class="card-title">Sản phẩm đã bán</h6>
+                    <h2 class="display-6 mb-0">@Model.TotalProductsSold</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card bg-info text-white h-100">
+                <div class="card-body">
+                    <h6 class="card-title">Giá trị đơn hàng TB</h6>
+                    <h2 class="display-6 mb-0">@Model.AverageOrderValue.ToString("N0")₫</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biểu đồ chính - Thu nhỏ lại -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Biểu đồ doanh thu</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="revenueChart" style="width: 100%; height: 280px;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0">Top sản phẩm bán chạy</h5>
+                </div>
+                <div class="card-body p-0" style="max-height: 280px; overflow-y: auto;">
+                    <div class="list-group list-group-flush">
+                        @foreach (var product in Model.TopProducts.Take(5))
+                        {
+                            <div class="list-group-item d-flex align-items-center">
+                                <img src="@product.ImageUrl" class="rounded me-3" style="width: 35px; height: 35px; object-fit: contain;"
+                                     onerror="this.src='https://placehold.co/40x40/f5f5f5/999?text=No+Image'" />
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0 text-truncate" style="max-width: 120px;">@product.ProductName</h6>
+                                    <small class="text-muted">@product.QuantitySold sp</small>
+                                </div>
+                                <span class="fw-bold text-primary">@product.Revenue.ToString("N0")₫</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biểu đồ phụ - Thu nhỏ lại -->
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Doanh thu theo tháng</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="monthlyChart" style="width: 100%; height: 200px;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Doanh thu theo năm</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="yearlyChart" style="width: 100%; height: 200px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Hiển thị/ẩn bộ lọc theo loại
+        document.getElementById('filterType').addEventListener('change', function() {
+        var value = this.value;
+        document.getElementById('dayFilter').style.display = value === 'day' ? 'block' : 'none';
+        document.getElementById('monthFilter').style.display = value === 'month' ? 'block' : 'none';
+        document.getElementById('yearFilter').style.display = value === 'year' ? 'block' : 'none';
+        });
+
+        // Khởi tạo bộ lọc
+        var initialValue = document.getElementById('filterType').value;
+        document.getElementById('dayFilter').style.display = initialValue === 'day' ? 'block' : 'none';
+        document.getElementById('monthFilter').style.display = initialValue === 'month' ? 'block' : 'none';
+        document.getElementById('yearFilter').style.display = initialValue === 'year' ? 'block' : 'none';
+
+        // ========== BIỂU ĐỒ CHÍNH ==========
+        var ctx = document.getElementById('revenueChart').getContext('2d');
+
+        var chartLabels = [];
+        var chartData = [];
+        var chartOrders = [];
+
+        @if (Model.FilterType == "day")
+        {
+            @foreach (var item in Model.DailyRevenue)
+            {
+                @:chartLabels.push("@item.Label");
+                @:chartData.push(@item.Revenue);
+                @:chartOrders.push(@item.OrderCount);
+            }
+        }
+        else if (Model.FilterType == "month")
+        {
+            @foreach (var item in Model.MonthlyRevenue)
+            {
+                @:chartLabels.push("@item.Label");
+                @:chartData.push(@item.Revenue);
+                @:chartOrders.push(@item.OrderCount);
+            }
+        }
+        else if (Model.FilterType == "year")
+        {
+            @foreach (var item in Model.YearlyRevenue)
+            {
+                @:chartLabels.push("@item.Label");
+                @:chartData.push(@item.Revenue);
+                @:chartOrders.push(@item.OrderCount);
+            }
+        }
+
+        // Nếu không có dữ liệu, hiển thị thông báo
+        if (chartLabels.length === 0) {
+        chartLabels = ['Không có dữ liệu'];
+        chartData = [0];
+        chartOrders = [0];
+        }
+
+        var revenueChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: chartLabels,
+        datasets: [
+        {
+        label: 'Doanh thu (VND)',
+        data: chartData,
+        backgroundColor: 'rgba(102, 126, 234, 0.7)',
+        borderColor: '#667eea',
+        borderWidth: 2,
+        borderRadius: 4,
+        order: 1
+        },
+        {
+        label: 'Số đơn hàng',
+        data: chartOrders,
+        type: 'line',
+        borderColor: '#ff6b6b',
+        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+        borderWidth: 2,
+        pointBackgroundColor: '#ff6b6b',
+        pointBorderColor: '#ff6b6b',
+        tension: 0.4,
+        fill: true,
+        order: 0,
+        yAxisID: 'y1'
+        }
+        ]
+        },
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+        legend: {
+        position: 'top',
+        labels: {
+        font: { size: 11 },
+        boxWidth: 12
+        }
+        },
+        tooltip: {
+        callbacks: {
+        label: function(context) {
+        var label = context.dataset.label || '';
+        var value = context.raw;
+        if (context.datasetIndex === 0) {
+        return label + ': ' + new Intl.NumberFormat('vi-VN').format(value) + '₫';
+        }
+        return label + ': ' + value + ' đơn hàng';
+        }
+        }
+        }
+        },
+        scales: {
+        y: {
+        beginAtZero: true,
+        ticks: {
+        callback: function(value) {
+        if (value >= 1000000) {
+        return (value / 1000000).toFixed(1) + 'tr';
+        }
+        return new Intl.NumberFormat('vi-VN').format(value);
+        },
+        font: { size: 10 }
+        },
+        grid: {
+        color: 'rgba(0,0,0,0.05)'
+        }
+        },
+        y1: {
+        position: 'right',
+        beginAtZero: true,
+        grid: {
+        drawOnChartArea: false
+        },
+        ticks: {
+        stepSize: 1,
+        callback: function(value) {
+        return value + ' đ';
+        },
+        font: { size: 10 }
+        }
+        },
+        x: {
+        grid: {
+        display: false
+        },
+        ticks: {
+        font: { size: 10 },
+        maxTicksLimit: 15
+        }
+        }
+        }
+        }
+        });
+
+        // ========== BIỂU ĐỒ THEO THÁNG ==========
+        var monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+        var monthlyLabels = [];
+        var monthlyData = [];
+
+        @foreach (var item in Model.MonthlyRevenue)
+        {
+            @:monthlyLabels.push("@item.Label");
+            @:monthlyData.push(@item.Revenue);
+        }
+
+        new Chart(monthlyCtx, {
+        type: 'line',
+        data: {
+        labels: monthlyLabels,
+        datasets: [{
+        label: 'Doanh thu theo tháng',
+        data: monthlyData,
+        borderColor: '#00b894',
+        backgroundColor: 'rgba(0, 184, 148, 0.1)',
+        tension: 0.4,
+        fill: true,
+        pointBackgroundColor: '#00b894',
+        pointBorderColor: '#00b894',
+        pointRadius: 3
+        }]
+        },
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+        legend: {
+        position: 'top',
+        labels: {
+        font: { size: 11 },
+        boxWidth: 12
+        }
+        },
+        tooltip: {
+        callbacks: {
+        label: function(context) {
+        return 'Doanh thu: ' + new Intl.NumberFormat('vi-VN').format(context.raw) + '₫';
+        }
+        }
+        }
+        },
+        scales: {
+        y: {
+        beginAtZero: true,
+        ticks: {
+        callback: function(value) {
+        if (value >= 1000000) {
+        return (value / 1000000).toFixed(1) + 'tr';
+        }
+        return new Intl.NumberFormat('vi-VN').format(value);
+        },
+        font: { size: 10 }
+        },
+        grid: {
+        color: 'rgba(0,0,0,0.05)'
+        }
+        },
+        x: {
+        grid: {
+        display: false
+        },
+        ticks: {
+        font: { size: 9 },
+        maxTicksLimit: 12
+        }
+        }
+        }
+        }
+        });
+
+        // ========== BIỂU ĐỒ THEO NĂM ==========
+        var yearlyCtx = document.getElementById('yearlyChart').getContext('2d');
+        var yearlyLabels = [];
+        var yearlyData = [];
+
+        @foreach (var item in Model.YearlyRevenue)
+        {
+            @:yearlyLabels.push("@item.Label");
+            @:yearlyData.push(@item.Revenue);
+        }
+
+        new Chart(yearlyCtx, {
+        type: 'bar',
+        data: {
+        labels: yearlyLabels,
+        datasets: [{
+        label: 'Doanh thu theo năm',
+        data: yearlyData,
+        backgroundColor: ['rgba(102,126,234,0.7)', 'rgba(118,75,162,0.7)', 'rgba(240,147,251,0.7)', 'rgba(79,172,254,0.7)', 'rgba(0,242,254,0.7)'],
+        borderRadius: 6,
+        borderColor: ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#00f2fe'],
+        borderWidth: 1
+        }]
+        },
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+        legend: {
+        position: 'top',
+        labels: {
+        font: { size: 11 },
+        boxWidth: 12
+        }
+        },
+        tooltip: {
+        callbacks: {
+        label: function(context) {
+        return 'Doanh thu: ' + new Intl.NumberFormat('vi-VN').format(context.raw) + '₫';
+        }
+        }
+        }
+        },
+        scales: {
+        y: {
+        beginAtZero: true,
+        ticks: {
+        callback: function(value) {
+        if (value >= 1000000) {
+        return (value / 1000000).toFixed(1) + 'tr';
+        }
+        return new Intl.NumberFormat('vi-VN').format(value);
+        },
+        font: { size: 10 }
+        },
+        grid: {
+        color: 'rgba(0,0,0,0.05)'
+        }
+        },
+        x: {
+        grid: {
+        display: false
+        },
+        ticks: {
+        font: { size: 10 }
+        }
+        }
+        }
+        }
+        });
+
+        function exportData() {
+        alert('Chức năng xuất Excel đang được phát triển!');
+        }
+    </script>
+}
+
+@section Styles {
+    <style>
+        .card {
+        border: none;
+        box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        border-radius: 12px;
+        }
+
+        .card-header {
+        background: white;
+        border-bottom: 1px solid #eee;
+        border-radius: 12px 12px 0 0 !important;
+        }
+
+        .card-body {
+        padding: 1rem 1.25rem;
+        }
+
+        .list-group-item {
+        border-left: none;
+        border-right: none;
+        padding: 0.6rem 0.75rem;
+        }
+
+        .list-group-item:first-child {
+        border-top: none;
+        }
+
+        .list-group-item:last-child {
+        border-bottom: none;
+        }
+
+        .list-group-item:hover {
+        background: #f8f9fa;
+        }
+        /* Điều chỉnh kích thước biểu đồ */
+        .card-body canvas {
+        max-height: 280px !important;
+        }
+        /* Card thống kê */
+        .display-6 {
+        font-size: 1.8rem;
+        }
+        /* Scrollbar cho top products */
+        .list-group::-webkit-scrollbar {
+        width: 4px;
+        }
+
+        .list-group::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 2px;
+        }
+
+        .list-group::-webkit-scrollbar-thumb {
+        background: #667eea;
+        border-radius: 2px;
+        }
+        /* Responsive */
+        @@media (max-width: 768px) {
+        .display-6 {
+        font-size: 1.3rem;
+        }
+
+        .card-body canvas {
+        max-height: 200px !important;
+        }
+        }
+    </style>
+}
