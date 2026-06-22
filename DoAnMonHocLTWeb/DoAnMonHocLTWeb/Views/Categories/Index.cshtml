@@ -161,7 +161,7 @@
             $btn.prop('disabled', true);
             
             $.ajax({
-                url: '/cart/add',
+                url: '/ShoppingCart/AddToCart',
                 type: 'POST',
                 data: { productId: productId, quantity: 1 },
                 success: function(response) {
