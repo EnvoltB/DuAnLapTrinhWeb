@@ -1,0 +1,129 @@
+﻿@model GearDTK.Models.FAQ
+@{
+    ViewData["Title"] = "Chỉnh sửa FAQ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <!-- ========== HEADER ========== -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h2 fw-bold mb-1">Chỉnh sửa câu hỏi</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/FAQ" class="text-decoration-none">Quản lý FAQ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa</li>
+                </ol>
+            </nav>
+        </div>
+        <a href="/Admin/FAQ" class="btn btn-outline-secondary mt-2 mt-md-0">
+            <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách
+        </a>
+    </div>
+
+    <!-- ========== FORM CHỈNH SỬA ========== -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom py-3">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-edit me-2 text-primary"></i>Chỉnh sửa FAQ #@Model.Id
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit" method="post">
+                        <!-- Validation Summary -->
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger border-0 shadow-sm" role="alert"></div>
+
+                        <input asp-for="Id" type="hidden" />
+
+                        <div class="mb-4">
+                            <label asp-for="Category" class="form-label fw-semibold">
+                                <i class="fas fa-folder me-2 text-primary"></i>Danh mục
+                            </label>
+                            <input asp-for="Category" class="form-control form-control-lg" placeholder="Nhập danh mục câu hỏi" />
+                            <span asp-validation-for="Category" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Question" class="form-label fw-semibold">
+                                <i class="fas fa-question-circle me-2 text-warning"></i>Câu hỏi
+                            </label>
+                            <input asp-for="Question" class="form-control form-control-lg" placeholder="Nhập nội dung câu hỏi" />
+                            <span asp-validation-for="Question" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Answer" class="form-label fw-semibold">
+                                <i class="fas fa-comment-dots me-2 text-success"></i>Câu trả lời
+                            </label>
+                            <textarea asp-for="Answer" rows="6" class="form-control" placeholder="Nhập câu trả lời chi tiết"></textarea>
+                            <span asp-validation-for="Answer" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-check form-switch mb-4">
+                            <input asp-for="IsActive" class="form-check-input" type="checkbox" role="switch" />
+                            <label asp-for="IsActive" class="form-check-label fw-semibold">
+                                <i class="fas fa-toggle-on me-2 text-info"></i>Hiển thị (Active)
+                            </label>
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="/Admin/FAQ" class="btn btn-light btn-lg">
+                                <i class="fas fa-times me-2"></i>Hủy bỏ
+                            </a>
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                                <i class="fas fa-save me-2"></i>Cập nhật
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .card {
+            border-radius: 12px;
+        }
+
+        .card-header {
+            border-radius: 12px 12px 0 0;
+        }
+
+        .form-control, .form-control-lg {
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+            .form-control:focus {
+                border-color: #86b7fe;
+                box-shadow: 0 0 0 0.25rem rgba(13,110,253,0.15);
+            }
+
+        .form-switch .form-check-input {
+            width: 3rem;
+            height: 1.5rem;
+            cursor: pointer;
+        }
+
+        .form-check-label {
+            cursor: pointer;
+            padding-left: 0.5rem;
+        }
+    </style>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

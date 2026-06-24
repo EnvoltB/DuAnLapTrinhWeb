@@ -2,6 +2,7 @@ wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\banners\3b569b62-e43c-483a-9dd6-83ff4a66ea92.webp
 wwwroot\images\banners\44b5b732-1292-4e87-830c-2a66c78ab425.webp
+wwwroot\images\banners\66d8a45d-03ae-4d35-8652-7ac9f51c258c.webp
 wwwroot\images\banners\ATK_Dragonfly_A9_Description_Desktop-01.webp
 wwwroot\images\banners\ATK_F1-V2_-PC__01.webp
 wwwroot\images\banners\OIP.webp

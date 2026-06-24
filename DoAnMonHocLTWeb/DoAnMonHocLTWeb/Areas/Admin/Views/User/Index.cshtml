@@ -5,34 +5,48 @@
 }
 
 <div class="container-fluid py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h2">Quản lý người dùng</h1>
-        <a href="/Admin/User/Create" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Thêm người dùng
+    <!-- ========== HEADER ========== -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h2 fw-bold mb-1">Quản lý người dùng</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Người dùng</li>
+                </ol>
+            </nav>
+        </div>
+        <a href="/Admin/User/Create" class="btn btn-primary shadow-sm mt-2 mt-md-0">
+            <i class="fas fa-user-plus me-2"></i>Thêm người dùng
         </a>
     </div>
 
+    <!-- ========== THÔNG BÁO ========== -->
     @if (TempData["Success"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="fas fa-check-circle"></i> @TempData["Success"]
+        <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
+            <i class="fas fa-check-circle me-2"></i>@TempData["Success"]
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     }
 
     @if (TempData["Error"] != null)
     {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+        <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>@TempData["Error"]
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     }
 
-    <div class="card">
+    <!-- ========== BẢNG NGƯỜI DÙNG ========== -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-bottom py-3">
+            <h5 class="mb-0 fw-bold"><i class="fas fa-users me-2 text-primary"></i>Danh sách người dùng</h5>
+        </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-hover" id="userTable">
-                    <thead>
+                <table class="table table-hover align-middle" id="userTable" style="width:100%">
+                    <thead class="table-light">
                         <tr>
                             <th>Email</th>
                             <th>Họ tên</th>
@@ -40,22 +54,22 @@
                             <th>Số điện thoại</th>
                             <th>Trạng thái</th>
                             <th>Ngày tạo</th>
-                            <th>Thao tác</th>
+                            <th class="text-center">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var user in Model)
                         {
                             <tr>
-                                <td>@user.Email</td>
+                                <td class="fw-semibold">@user.Email</td>
                                 <td>@user.FullName</td>
                                 <td>
                                     @{
                                         string badgeClass = user.Role switch
                                         {
                                             "Admin" => "bg-danger",
-                                            "Employee" => "bg-warning",
-                                            "Supplier" => "bg-info",
+                                            "Employee" => "bg-warning text-dark",
+                                            "Supplier" => "bg-info text-dark",
                                             _ => "bg-secondary"
                                         };
                                     }
@@ -65,20 +79,20 @@
                                 <td>
                                     @if (user.IsActive)
                                     {
-                                        <span class="badge bg-success">Hoạt động</span>
+                                        <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Hoạt động</span>
                                     }
                                     else
                                     {
-                                        <span class="badge bg-secondary">Khóa</span>
+                                        <span class="badge bg-secondary"><i class="fas fa-lock me-1"></i>Khóa</span>
                                     }
                                 </td>
                                 <td>@user.CreatedAt.ToString("dd/MM/yyyy")</td>
-                                <td>
-                                    <div class="btn-group btn-group-sm">
-                                        <a href="/Admin/User/Edit/@user.Id" class="btn btn-outline-primary">
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a href="/Admin/User/Edit/@user.Id" class="btn btn-outline-primary" title="Sửa">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <button type="button" class="btn btn-outline-danger" onclick="confirmDelete('@user.Id', '@user.Email')">
+                                        <button type="button" class="btn btn-outline-danger" title="Xóa" onclick="confirmDelete('@user.Id', '@user.Email')">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
@@ -92,34 +106,108 @@
     </div>
 </div>
 
-<!-- Modal xác nhận xóa -->
-<div class="modal fade" id="deleteModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<!-- ========== MODAL XÁC NHẬN XÓA ========== -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
             <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title">Xác nhận xóa</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <h5 class="modal-title" id="deleteModalLabel">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Xác nhận xóa
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Bạn có chắc chắn muốn xóa tài khoản <strong id="deleteUserEmail"></strong>?</p>
-                <p class="text-danger">Hành động này không thể hoàn tác!</p>
+                <p class="text-danger mb-0"><i class="fas fa-exclamation-circle me-1"></i>Hành động này không thể hoàn tác!</p>
             </div>
             <div class="modal-footer">
                 <form id="deleteForm" method="post">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn btn-danger">Xóa</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-danger shadow-sm">Xóa vĩnh viễn</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
+@section Styles {
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .card {
+            border-radius: 12px;
+        }
+
+        .card-header {
+            border-radius: 12px 12px 0 0;
+        }
+
+        .table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .btn-group .btn {
+            border-radius: 6px;
+            margin: 0 2px;
+        }
+
+        .page-item.active .page-link {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: 1rem;
+        }
+
+        .modal-content {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+    </style>
+}
+
 @section Scripts {
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
+        $(document).ready(function () {
+        $('#userTable').DataTable({
+        language: {
+        search: "Tìm kiếm:",
+        lengthMenu: "Hiển thị _MENU_ dòng",
+        info: "Đang hiển thị _START_ đến _END_ trong tổng số _TOTAL_",
+        paginate: {
+        first: "Đầu",
+        last: "Cuối",
+        next: "Tiếp",
+        previous: "Trước"
+        },
+        emptyTable: "Không có dữ liệu người dùng",
+        zeroRecords: "Không tìm thấy người dùng phù hợp"
+        },
+        order: [[4, 'desc'], [0, 'asc']], // Sắp xếp trạng thái hoạt động trước, rồi email
+        responsive: true
+        });
+        });
+
         function confirmDelete(userId, userEmail) {
-            $('#deleteUserEmail').text(userEmail);
-            $('#deleteForm').attr('action', '/Admin/User/Delete/' + userId);
-            $('#deleteModal').modal('show');
+        $('#deleteUserEmail').text(userEmail);
+        $('#deleteForm').attr('action', '/Admin/User/Delete/' + userId);
+        $('#deleteModal').modal('show');
         }
     </script>
 }

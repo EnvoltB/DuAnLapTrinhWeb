@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GearDTK.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260618165202_khoitao1")]
-    partial class khoitao1
+    [Migration("20260622022524_khotao")]
+    partial class khotao
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,6 +118,48 @@ namespace GearDTK.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("GearDTK.Models.Banners", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsMainSlider")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LinkUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banners");
                 });
 
             modelBuilder.Entity("GearDTK.Models.Cart", b =>
@@ -454,7 +496,7 @@ namespace GearDTK.Migrations
                             CategoryId = 1,
                             Color = "Frosted White",
                             ComparePrice = 3990000m,
-                            CreatedAt = new DateTime(2026, 6, 18, 16, 52, 1, 729, DateTimeKind.Utc).AddTicks(5774),
+                            CreatedAt = new DateTime(2026, 6, 22, 2, 25, 23, 581, DateTimeKind.Utc).AddTicks(7315),
                             Description = "The ATK Blazing Sky ZERO redefines lightweight gaming performance:\r\n                <ul>\r\n                    <li>Ultra-light at just 39g with solid holeless frosted translucent shell</li>\r\n                    <li>Dual 8K wireless connectivity</li>\r\n                    <li>Flagship PAW3950 Ultra sensor for high-precision tracking</li>\r\n                    <li>Nordic 54 series chip for ultra-low latency</li>\r\n                    <li>Nano coating for stable, comfortable grip</li>\r\n                    <li>Built for competitive gaming</li>\r\n                </ul>",
                             GalleryImages = "/images/products/atk-zero-1.png,/images/products/atk-zero-2.png",
                             IsBestSeller = true,
@@ -476,7 +518,7 @@ namespace GearDTK.Migrations
                             CategoryId = 2,
                             Color = "Black",
                             ComparePrice = 5890000m,
-                            CreatedAt = new DateTime(2026, 6, 18, 16, 52, 1, 729, DateTimeKind.Utc).AddTicks(5798),
+                            CreatedAt = new DateTime(2026, 6, 22, 2, 25, 23, 581, DateTimeKind.Utc).AddTicks(7345),
                             Description = "The ATK RS6 Hall Effect Keyboard delivers unparalleled gaming performance:\r\n                <ul>\r\n                    <li>Hall Effect magnetic switches for ultra-fast response</li>\r\n                    <li>Co-developed with VALORANT pro player Aspas</li>\r\n                    <li>Adjustable actuation points (0.1mm - 4.0mm)</li>\r\n                    <li>Rapid Trigger technology</li>\r\n                    <li>RGB backlighting with customizable effects</li>\r\n                    <li>PBT double-shot keycaps</li>\r\n                    <li>Hot-swappable PCB</li>\r\n                </ul>",
                             GalleryImages = "/images/products/atk-rs6-1.png,/images/products/atk-rs6-2.png",
                             IsBestSeller = true,
