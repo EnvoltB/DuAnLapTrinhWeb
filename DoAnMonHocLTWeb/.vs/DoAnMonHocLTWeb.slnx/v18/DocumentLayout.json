@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -29,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\areas\\admin\\controller\\bannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\areas\\admin\\controller\\bannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|solutionrelative:doanmonhocltweb\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C5B14698-B9AE-E801-2DFC-C0C6A1F3C109}|DoAnMonHocLTWeb\\GearDTK.csproj|d:\\new folder (2)\\duanlaptrinhweb\\doanmonhocltweb\\doanmonhocltweb\\models\\banners.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -109,11 +113,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "DoAnMonHocLTWeb\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-22T02:26:02.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Views\\Products\\Details.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Views\\Products\\Details.cshtml",
@@ -121,12 +137,11 @@
               "RelativeToolTip": "DoAnMonHocLTWeb\\Views\\Products\\Details.cshtml",
               "ViewState": "AgIAAIcAAAAAAAAAAAAAAJIAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-22T01:59:49.118Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-22T01:59:49.118Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Revenue\\Index.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Revenue\\Index.cshtml",
@@ -138,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "RevenueController.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\RevenueController.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\RevenueController.cs",
@@ -150,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "RevenueViewModel.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\RevenueViewModel.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Models\\RevenueViewModel.cs",
@@ -162,19 +177,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Models\\ApplicationDbContext.cs",
               "ToolTip": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\ApplicationDbContext.cs",
               "RelativeToolTip": "DoAnMonHocLTWeb\\Models\\ApplicationDbContext.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAwwBsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-20T16:21:31.55Z"
+              "WhenOpened": "2026-06-20T16:21:31.55Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "BannerController.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\BannerController.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\BannerController.cs",
@@ -186,7 +202,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Index.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Index.cshtml",
@@ -198,7 +214,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "index.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
@@ -210,7 +226,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Order\\Index.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Order\\Index.cshtml",
@@ -222,7 +238,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "HomeViewModel.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\HomeViewModel.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Models\\HomeViewModel.cs",
@@ -234,7 +250,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Views\\Home\\Index.cshtml",
@@ -246,7 +262,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "create.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\create.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\create.cshtml",
@@ -258,7 +274,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Delete.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Delete.cshtml",
@@ -270,7 +286,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Edit.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Banner\\Edit.cshtml",
@@ -282,7 +298,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Banners.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Models\\Banners.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Models\\Banners.cs",
@@ -294,7 +310,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "BannerRepository.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\repositories\\BannerRepository.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\repositories\\BannerRepository.cs",
@@ -306,7 +322,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "IBannerRepository.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\repositories\\IBannerRepository.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\repositories\\IBannerRepository.cs",
@@ -318,7 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "DashboardController.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\DashboardController.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\DashboardController.cs",
@@ -330,7 +346,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "20260620163311_AddBannerTable.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Migrations\\20260620163311_AddBannerTable.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Migrations\\20260620163311_AddBannerTable.cs",
@@ -342,7 +358,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Controllers\\HomeController.cs",
@@ -354,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Program.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Program.cs",
@@ -366,7 +382,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "index.cshtml",
               "DocumentMoniker": "D:\\BACKUPWEB\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
               "RelativeDocumentMoniker": "..\\..\\..\\BACKUPWEB\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Dashboard\\index.cshtml",
@@ -378,7 +394,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "OrderController.cs",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\OrderController.cs",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Controller\\OrderController.cs",
@@ -390,7 +406,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Order\\Details.cshtml",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\Areas\\Admin\\Views\\Order\\Details.cshtml",
@@ -402,7 +418,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\New folder (2)\\DuAnLapTrinhWeb\\DoAnMonHocLTWeb\\DoAnMonHocLTWeb\\appsettings.json",
               "RelativeDocumentMoniker": "DoAnMonHocLTWeb\\appsettings.json",
