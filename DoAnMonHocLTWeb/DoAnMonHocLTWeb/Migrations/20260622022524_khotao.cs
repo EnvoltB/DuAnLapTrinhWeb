@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GearDTK.Migrations
 {
     /// <inheritdoc />
-    public partial class khoitao1 : Migration
+    public partial class khotao : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -60,6 +60,27 @@ namespace GearDTK.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Banners",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LinkUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsMainSlider = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Banners", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -395,8 +416,8 @@ namespace GearDTK.Migrations
                 columns: new[] { "Id", "Brand", "CategoryId", "Color", "ComparePrice", "CreatedAt", "Description", "GalleryImages", "GalleryImagesBase64", "IsBestSeller", "IsFeatured", "IsNew", "MainImageBase64", "MainImageUrl", "Name", "Price", "ShortDescription", "Slug", "Specifications", "StockQuantity", "UpdatedAt", "Weight" },
                 values: new object[,]
                 {
-                    { 1, "ATK GEAR", 1, "Frosted White", 3990000m, new DateTime(2026, 6, 18, 16, 52, 1, 729, DateTimeKind.Utc).AddTicks(5774), "The ATK Blazing Sky ZERO redefines lightweight gaming performance:\r\n                <ul>\r\n                    <li>Ultra-light at just 39g with solid holeless frosted translucent shell</li>\r\n                    <li>Dual 8K wireless connectivity</li>\r\n                    <li>Flagship PAW3950 Ultra sensor for high-precision tracking</li>\r\n                    <li>Nordic 54 series chip for ultra-low latency</li>\r\n                    <li>Nano coating for stable, comfortable grip</li>\r\n                    <li>Built for competitive gaming</li>\r\n                </ul>", "/images/products/atk-zero-1.png,/images/products/atk-zero-2.png", null, true, true, true, null, "/images/products/atk-blazing-sky-zero.png", "ATK Blazing Sky ZERO", 2990000m, "Ultra-light 39g wireless gaming mouse with PAW3950 sensor", "atk-blazing-sky-zero", "{\"Sensor\":\"PAW3950 Ultra\",\"Connectivity\":\"Dual 8K Wireless\",\"Battery Life\":\"80 hours\",\"Switch\":\"Optical\",\"DPI\":\"26000\"}", 50, null, 39 },
-                    { 2, "ATK GEAR", 2, "Black", 5890000m, new DateTime(2026, 6, 18, 16, 52, 1, 729, DateTimeKind.Utc).AddTicks(5798), "The ATK RS6 Hall Effect Keyboard delivers unparalleled gaming performance:\r\n                <ul>\r\n                    <li>Hall Effect magnetic switches for ultra-fast response</li>\r\n                    <li>Co-developed with VALORANT pro player Aspas</li>\r\n                    <li>Adjustable actuation points (0.1mm - 4.0mm)</li>\r\n                    <li>Rapid Trigger technology</li>\r\n                    <li>RGB backlighting with customizable effects</li>\r\n                    <li>PBT double-shot keycaps</li>\r\n                    <li>Hot-swappable PCB</li>\r\n                </ul>", "/images/products/atk-rs6-1.png,/images/products/atk-rs6-2.png", null, true, true, true, null, "/images/products/atk-rs6-keyboard.png", "ATK RS6 Hall Effect Keyboard", 4590000m, "Co-Developed with Pro Player Aspas - Extreme Performance Gaming Keyboard", "atk-rs6-hall-effect", "{\"Switch Type\":\"Hall Effect Magnetic\",\"Keycaps\":\"PBT Double-shot\",\"Connectivity\":\"Wired USB-C\",\"Polling Rate\":\"8000Hz\",\"Actuation\":\"Adjustable 0.1-4.0mm\",\"Form Factor\":\"75%\"}", 35, null, 850 }
+                    { 1, "ATK GEAR", 1, "Frosted White", 3990000m, new DateTime(2026, 6, 22, 2, 25, 23, 581, DateTimeKind.Utc).AddTicks(7315), "The ATK Blazing Sky ZERO redefines lightweight gaming performance:\r\n                <ul>\r\n                    <li>Ultra-light at just 39g with solid holeless frosted translucent shell</li>\r\n                    <li>Dual 8K wireless connectivity</li>\r\n                    <li>Flagship PAW3950 Ultra sensor for high-precision tracking</li>\r\n                    <li>Nordic 54 series chip for ultra-low latency</li>\r\n                    <li>Nano coating for stable, comfortable grip</li>\r\n                    <li>Built for competitive gaming</li>\r\n                </ul>", "/images/products/atk-zero-1.png,/images/products/atk-zero-2.png", null, true, true, true, null, "/images/products/atk-blazing-sky-zero.png", "ATK Blazing Sky ZERO", 2990000m, "Ultra-light 39g wireless gaming mouse with PAW3950 sensor", "atk-blazing-sky-zero", "{\"Sensor\":\"PAW3950 Ultra\",\"Connectivity\":\"Dual 8K Wireless\",\"Battery Life\":\"80 hours\",\"Switch\":\"Optical\",\"DPI\":\"26000\"}", 50, null, 39 },
+                    { 2, "ATK GEAR", 2, "Black", 5890000m, new DateTime(2026, 6, 22, 2, 25, 23, 581, DateTimeKind.Utc).AddTicks(7345), "The ATK RS6 Hall Effect Keyboard delivers unparalleled gaming performance:\r\n                <ul>\r\n                    <li>Hall Effect magnetic switches for ultra-fast response</li>\r\n                    <li>Co-developed with VALORANT pro player Aspas</li>\r\n                    <li>Adjustable actuation points (0.1mm - 4.0mm)</li>\r\n                    <li>Rapid Trigger technology</li>\r\n                    <li>RGB backlighting with customizable effects</li>\r\n                    <li>PBT double-shot keycaps</li>\r\n                    <li>Hot-swappable PCB</li>\r\n                </ul>", "/images/products/atk-rs6-1.png,/images/products/atk-rs6-2.png", null, true, true, true, null, "/images/products/atk-rs6-keyboard.png", "ATK RS6 Hall Effect Keyboard", 4590000m, "Co-Developed with Pro Player Aspas - Extreme Performance Gaming Keyboard", "atk-rs6-hall-effect", "{\"Switch Type\":\"Hall Effect Magnetic\",\"Keycaps\":\"PBT Double-shot\",\"Connectivity\":\"Wired USB-C\",\"Polling Rate\":\"8000Hz\",\"Actuation\":\"Adjustable 0.1-4.0mm\",\"Form Factor\":\"75%\"}", 35, null, 850 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -508,6 +529,9 @@ namespace GearDTK.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Banners");
 
             migrationBuilder.DropTable(
                 name: "CartItems");

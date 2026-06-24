@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Software Center";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <!-- ========== HEADER ========== -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h2 fw-bold mb-1">Software Center</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Software Center</li>
+                </ol>
+            </nav>
+        </div>
+        <p class="text-muted mb-0 mt-2 mt-md-0">
+            <i class="fas fa-download me-2"></i>Tải phần mềm chính thức từ các thương hiệu
+        </p>
+    </div>
+
+    <!-- ========== DANH SÁCH PHẦN MỀM ========== -->
+    <div class="row g-4">
+        <!-- ATK HUB -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm software-card h-100">
+                <div class="card-body text-center p-4">
+                    <div class="icon-wrapper bg-primary bg-opacity-10 text-primary rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width:80px;height:80px;">
+                        <i class="fas fa-mouse fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">ATK HUB</h5>
+                    <p class="text-muted mb-4">Phần mềm chính thức cho thiết bị chơi game ATK.</p>
+                    <a href="https://hub.atk.pro/" target="_blank" class="btn btn-primary px-4">
+                        <i class="fas fa-external-link-alt me-2"></i>Truy cập
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- HyperX NGENUITY -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm software-card h-100">
+                <div class="card-body text-center p-4">
+                    <div class="icon-wrapper bg-danger bg-opacity-10 text-danger rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width:80px;height:80px;">
+                        <i class="fas fa-keyboard fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">HyperX NGENUITY</h5>
+                    <p class="text-muted mb-4">Tùy chỉnh sản phẩm HyperX của bạn.</p>
+                    <a href="https://hyperx.com/pages/ngenuity" target="_blank" class="btn btn-danger px-4">
+                        <i class="fas fa-external-link-alt me-2"></i>Truy cập
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logitech G HUB -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm software-card h-100">
+                <div class="card-body text-center p-4">
+                    <div class="icon-wrapper bg-success bg-opacity-10 text-success rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width:80px;height:80px;">
+                        <i class="fas fa-gamepad fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Logitech G HUB</h5>
+                    <p class="text-muted mb-4">Cấu hình thiết bị chơi game Logitech.</p>
+                    <a href="https://www.logitechg.com/ghub" target="_blank" class="btn btn-success px-4">
+                        <i class="fas fa-external-link-alt me-2"></i>Truy cập
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Razer Synapse -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm software-card h-100">
+                <div class="card-body text-center p-4">
+                    <div class="icon-wrapper bg-warning bg-opacity-10 text-warning rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width:80px;height:80px;">
+                        <i class="fas fa-cloud fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Razer Synapse</h5>
+                    <p class="text-muted mb-4">Cấu hình phần cứng dựa trên đám mây.</p>
+                    <a href="https://www.razer.com/synapse-3" target="_blank" class="btn btn-warning px-4">
+                        <i class="fas fa-external-link-alt me-2"></i>Truy cập
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .software-card {
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+            .software-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 25px rgba(0,0,0,0.1) !important;
+            }
+
+        .icon-wrapper {
+            transition: transform 0.3s ease;
+        }
+
+        .software-card:hover .icon-wrapper {
+            transform: scale(1.1);
+        }
+
+        .btn {
+            border-radius: 8px;
+            font-weight: 500;
+        }
+    </style>
+}

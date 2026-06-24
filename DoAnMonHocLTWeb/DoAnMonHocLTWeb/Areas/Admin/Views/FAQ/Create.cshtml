@@ -1,0 +1,65 @@
+﻿@model GearDTK.Models.FAQ
+
+@{
+    ViewData["Title"] = "Create FAQ";
+}
+
+<div class="container mt-4">
+
+    <h2>Create FAQ</h2>
+
+    <form asp-action="Create" method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+
+            <select asp-for="Category" class="form-select">
+                <option>Order</option>
+                <option>Shipping & Delivery</option>
+                <option>Exchange & Return</option>
+                <option>Payment & Checkout</option>
+                <option>Warranty & Support</option>
+                <option>Discounts & Promotions</option>
+                <option>Subscription</option>
+                <option>Security & Privacy</option>
+                <option>Miscellaneous</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Question</label>
+
+            <input asp-for="Question"
+                   class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Answer</label>
+
+            <textarea asp-for="Answer"
+                      rows="5"
+                      class="form-control"></textarea>
+        </div>
+
+        <div class="form-check mb-3">
+            <input asp-for="IsActive"
+                   class="form-check-input" />
+
+            <label class="form-check-label">
+                Active
+            </label>
+        </div>
+
+        <button type="submit"
+                class="btn btn-success">
+            Save FAQ
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+            Back
+        </a>
+
+    </form>
+
+</div>
